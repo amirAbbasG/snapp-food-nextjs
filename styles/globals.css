@@ -14,3 +14,69 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* @font-face {
+  font-family: "Bekan";
+  src: local("Bekan"), ("../fonts/byekan.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "IranianSans";
+  src: local("IranianSans"), url("../fonts/IranianSans.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Ih";
+  src: local("Ih"), url("../fonts/ih.ttf") format("truetype");
+  font-weight: normal;
+}
+ */
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cccdcf;
+  border-radius: 7px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a4a4;
+}
+
+.rec.rec-arrow:hover {
+  background-color: #f700a2 !important;
+}
+
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+.rec.rec-arrow {
+  background-color: #ffffff;
+}
+
+.rec.rec-arrow.rec.rec-arrow-right {
+  position: absolute;
+  left: 0;
+}
+.rec.rec-arrow.rec.rec-arrow-left {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.rec.rec-carousel {
+  position: relative;
+}
