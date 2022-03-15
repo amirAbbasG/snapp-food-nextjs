@@ -1,7 +1,6 @@
-const {Schema, model} = require('mongoose')
+import { Schema, model } from "mongoose";
 
+const schema = new Schema({}, { strict: false });
+const SupportedCities = model("supportedCities", schema, "supportedCities");
 
-const schema = new Schema({}, {strict: false})
-const  SupportedCities = model( "supportedCities", schema, "supportedCities")
-
-module.exports = SupportedCities
+module.exports = SupportedCities;
