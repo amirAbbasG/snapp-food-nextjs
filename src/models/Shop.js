@@ -34,4 +34,4 @@ ShopSchema.methods.getAuthToken = function () {
   });
 };
 const ShopModel = model("shops", ShopSchema);
-module.exports = ShopModel;
+export default ShopModel;

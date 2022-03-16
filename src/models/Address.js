@@ -8,4 +8,4 @@ const AddressSchema = Schema({
   latitude: { type: Number, default: 0 },
 });
 
-module.exports = AddressSchema;
+export default AddressSchema;

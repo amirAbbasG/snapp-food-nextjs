@@ -9,5 +9,6 @@ const CommentSchema = new Schema({
   replay: String,
 });
 
-const FoodModel = model("comments", CommentSchema);
-module.exports = FoodModel;
+const CommentModel = model("comments", CommentSchema);
+
+export default CommentModel;

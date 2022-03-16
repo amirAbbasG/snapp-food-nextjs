@@ -12,4 +12,4 @@ const DiscountSchema = new Schema({
 
 const DiscountModel = model("discounts", DiscountSchema);
 
-module.exports = DiscountModel;
+export default DiscountModel;

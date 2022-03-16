@@ -14,4 +14,4 @@ const FoodSchema = new Schema({
 
 const FoodModel = model("foods", FoodSchema);
 
-module.exports = FoodModel;
+export default FoodModel;

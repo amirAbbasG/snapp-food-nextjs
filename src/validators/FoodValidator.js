@@ -22,4 +22,4 @@ const editFoodValidator = (data) => {
   return schema.validate(data);
 };
 
-module.exports = { addFoodValidator, editFoodValidator };
+export { addFoodValidator, editFoodValidator };

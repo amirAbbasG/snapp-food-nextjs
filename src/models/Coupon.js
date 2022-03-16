@@ -12,4 +12,4 @@ const CouponSchema = new Schema({
   shopId: { type: Schema.Types.ObjectId, ref: "shops" },
 });
 
-module.exports = CouponSchema;
+export default CouponSchema;

@@ -27,4 +27,4 @@ UserSchema.methods.genAuthToken = function () {
 
 const UserModel = model("users", UserSchema);
 
-module.exports = UserModel;
+export default UserModel;

@@ -38,8 +38,4 @@ const shopEditValidator = (data) => {
   return schema.validate(data);
 };
 
-module.exports = {
-  shopEditValidator,
-  shopRegisterValidator,
-  shopLoginValidator,
-};
+export { shopEditValidator, shopRegisterValidator, shopLoginValidator };

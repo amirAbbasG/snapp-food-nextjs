@@ -13,4 +13,4 @@ const PaymentSchema = new Schema({
 
 const PaymentModel = model("payments", PaymentSchema);
 
-module.exports = PaymentModel;
+export default PaymentModel;

@@ -58,7 +58,7 @@ const commentValidator = (data) => {
   return schema.validate(data);
 };
 
-module.exports = {
+export {
   userLoginValidator,
   userRegisterValidator,
   userEditValidator,

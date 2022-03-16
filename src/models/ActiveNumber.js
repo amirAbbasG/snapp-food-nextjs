@@ -6,4 +6,4 @@ const ActiveNumberSchema = new Schema({
 
 const ActiveNumberModel = model("activeNumberSchemas", ActiveNumberSchema);
 
-module.exports = ActiveNumberModel;
+export default ActiveNumberModel;
