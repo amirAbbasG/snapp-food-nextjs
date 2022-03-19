@@ -1,20 +1,11 @@
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 import { CategoryCard } from "../";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
-import { isEmpty } from "lodash/lang";
-const RestaurantCategoriesBox = () => {
-  const { root, item } = useStyles();
-  const shopTypes = useSelector((state) => state.shopTypes);
-  const [categories, setCategories] = useState([]);
+import { isEmpty } from "lodash";
 
-  useEffect(() => {
-    if (!isEmpty(shopTypes)) {
-      const { categories } = shopTypes.find((s) => s.type === "رستوران");
-      setCategories(categories);
-    }
-  }, [shopTypes]);
+const RestaurantCategoriesBox = ({ categories }) => {
+  const { root, item } = useStyles();
 
   return (
     <>

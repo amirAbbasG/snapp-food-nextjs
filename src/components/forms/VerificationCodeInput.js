@@ -1,4 +1,3 @@
-import React from "react";
 import ReactCodeInput from "react-code-input";
 import { Typography } from "@mui/material";
 import { useFormikContext } from "formik";

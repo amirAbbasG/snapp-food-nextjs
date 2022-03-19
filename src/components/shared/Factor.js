@@ -1,11 +1,10 @@
-import React from "react";
 import { Typography, Stack } from "@mui/material";
 import { styled } from "@mui/styles";
-import { useSelector } from "react-redux";
 import { separatePrice } from "../../utils/priceSeparator";
 
 const Factor = ({ orderId, couponDiscount = 0 }) => {
-  const orders = useSelector((state) => state.orders);
+  // const orders = useSelector((state) => state.orders);
+  const orders = [];
   const order = orders.find((o) => o._id === orderId);
 
   const UnderLinedStack = styled(Stack)(({ theme }) => ({

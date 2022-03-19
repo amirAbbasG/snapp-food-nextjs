@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import {
   Menu,
   MenuItem,
@@ -7,27 +6,27 @@ import {
   ListItemIcon,
   Stack,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { PersonOutline, Logout } from "@mui/icons-material";
-import { accountContext } from "../../Contexts";
+
 import { useSelector } from "react-redux";
 
 const ProfileMenu = ({ onClose, anchorEl }) => {
   const open = Boolean(anchorEl);
-  const { exitAccount } = useContext(accountContext);
-  const navigate = useNavigate();
+  // const { exitAccount } = useContext(accountContext);
+  const router = useRouter();
 
-  const account = useSelector((state) => state.account);
+  // const account = useSelector((state) => state.account);
 
   return (
     <Menu anchorEl={anchorEl} onClose={onClose} open={open}>
       <MenuList>
-        <MenuItem onClick={() => navigate("profile")}>
+        <MenuItem onClick={() => router.push("/profile")}>
           <ListItemIcon>
             <PersonOutline />
           </ListItemIcon>
           <Stack>
-            <ListItemText>{account.fullName}</ListItemText>
+            <ListItemText>"{account.fullName}"</ListItemText>
             <ListItemText style={{ color: "#00B862" }}>
               مشاهده حساب کاربری
             </ListItemText>
@@ -35,7 +34,7 @@ const ProfileMenu = ({ onClose, anchorEl }) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            exitAccount();
+            // exitAccount();
             onClose();
           }}
         >

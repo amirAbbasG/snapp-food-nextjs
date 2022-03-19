@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   FormControl,
   InputLabel,
@@ -7,12 +7,10 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
 import { sortTypes } from "../../utils/values";
-import { sortShops } from "../../redux/action/shopsActions";
 
 const SortShopsSelect = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [sortType, setSortType] = useState("پیش فرض");
   const [open, setOpen] = useState(false);
   const { select, icon } = useStyles();
@@ -21,10 +19,9 @@ const SortShopsSelect = () => {
     const {
       target: { value },
     } = event;
-    dispatch(sortShops(value.type));
+    // dispatch(sortShops(value.type));
     setSortType(value.title);
     setOpen(false);
-    console.log(event);
   };
   return (
     <FormControl

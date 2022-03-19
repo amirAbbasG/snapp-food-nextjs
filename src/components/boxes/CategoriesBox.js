@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import {
   Avatar,
   Paper,
@@ -9,24 +9,22 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { filterShopByShopType } from "../../redux/action/shopsActions";
 
 const CategoriesBox = ({ shopType }) => {
-  const shopTypes = useSelector((state) => state.shopTypes);
+  const shopTypes = [];
   let type = shopTypes.find((s) => s.type === shopType);
   if (!type) {
     type = shopTypes.find((s) => s.type === "رستوران");
   }
 
   const categories = type.categories;
-  const dispatch = useDispatch();
 
   const handlePressCategory = (category) => {
-    dispatch(filterShopByShopType(category));
+    // dispatch(filterShopByShopType(category));
   };
 
   const handlePressAllCategory = () => {
-    dispatch(filterShopByShopType(shopType));
+    // dispatch(filterShopByShopType(shopType));
   };
 
   const { root, img, titleBox, categoryItem } = useStyles();

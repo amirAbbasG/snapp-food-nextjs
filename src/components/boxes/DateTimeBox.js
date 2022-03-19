@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography, Container } from "@mui/material";
 import { AccessTime, CalendarToday } from "@mui/icons-material";
 import { getPersianDate, getClock } from "../../utils/dateConvertor";

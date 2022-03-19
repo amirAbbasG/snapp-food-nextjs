@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Grid, Paper, Button, Typography, IconButton } from "@mui/material";
 import {
   AddBusiness,
@@ -8,7 +8,7 @@ import {
   PersonOutline,
   ListAlt,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { makeStyles, styled } from "@mui/styles";
 import {
   ShopTypesBox,
@@ -20,11 +20,10 @@ import {
   AddressDialog,
   OrdersDrawer,
 } from "../";
-import { useSelector } from "react-redux";
 import { isEmpty } from "lodash";
-import { globalContext } from "../../Contexts";
+import { globalContext } from "../../contexts";
 
-const Header = ({ showShopTypes }) => {
+const Header = ({ shopTypes }) => {
   const {
     root,
     SearchBox,
@@ -47,7 +46,8 @@ const Header = ({ showShopTypes }) => {
     marginRight: "4px",
   }));
 
-  const account = useSelector((state) => state.account);
+  // const account = useSelector((state) => state.account);
+  const account = {};
 
   const handleOpenProfileMenu = (event) => {
     setprofileAnchorEl(event.currentTarget);
@@ -63,10 +63,12 @@ const Header = ({ showShopTypes }) => {
             </Grid>
 
             {isEmpty(account) ? (
-              <Link to="#" onClick={() => setOpenAddress(false)}>
-                <Grid pt={1} item className={addressButton}>
-                  <AddressButton />
-                </Grid>
+              <Link href="#">
+                <a onClick={() => setOpenAddress(false)}>
+                  <Grid pt={1} item className={addressButton}>
+                    <AddressButton />
+                  </Grid>
+                </a>
               </Link>
             ) : (
               <Grid item xs={12} sm={9} container className={addressBox}>
@@ -74,16 +76,22 @@ const Header = ({ showShopTypes }) => {
                   <MyLocation style={{ color: "#808080" }} />
                 </Grid>
                 <Grid item>
-                  <Link to="#" onClick={() => setOpenAddress(true)}>
-                    <Typography lineHeight={0.7}>آدرس انتخابی</Typography>
-                    <Typography lineHeight={0.7} color="GrayText" fontSize={10}>
-                      {!isEmpty(account.addresses)
-                        ? `${[...account.addresses]
-                            .reverse()[0]
-                            .exactAddress.slice(0, 30)}...`
-                        : "آدرسی ثبت نشده"}
-                      {<ArrowDropDown color="primary" />}
-                    </Typography>
+                  <Link href="#">
+                    <a onClick={() => setOpenAddress(true)}>
+                      <Typography lineHeight={0.7}>آدرس انتخابی</Typography>
+                      <Typography
+                        lineHeight={0.7}
+                        color="GrayText"
+                        fontSize={10}
+                      >
+                        {!isEmpty(account.addresses)
+                          ? `${[...account.addresses]
+                              .reverse()[0]
+                              .exactAddress.slice(0, 30)}...`
+                          : "آدرسی ثبت نشده"}
+                        {<ArrowDropDown color="primary" />}
+                      </Typography>
+                    </a>
                   </Link>
                 </Grid>
               </Grid>
@@ -146,7 +154,7 @@ const Header = ({ showShopTypes }) => {
             </Grid>
           )}
         </Grid>
-        {showShopTypes && <ShopTypesBox />}
+        {shopTypes && <ShopTypesBox shopTypes={shopTypes} />}
       </Paper>
       <SearchDialog
         open={openSearch}

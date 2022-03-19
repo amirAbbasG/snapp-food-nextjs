@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Stack } from "@mui/material";
 import { Formik } from "formik";
 import { SubmitButton } from "../";
-import { accountContext } from "../../Contexts";
 
 const MyForm = ({
   children,
@@ -11,7 +10,9 @@ const MyForm = ({
   validationSchema,
   dontUseDefaltSubmitButton,
 }) => {
-  const { isLoadingButton, setIsLoadingButton } = useContext(accountContext);
+  // const { isLoadingButton, setIsLoadingButton } = useContext(accountContext);
+
+  const [isLoadingButton, setIsLoadingButton] = useState();
 
   useEffect(() => {
     return () => {

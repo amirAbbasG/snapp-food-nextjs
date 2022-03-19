@@ -1,4 +1,3 @@
-import React from "react";
 import { IconButton, Card } from "@mui/material";
 import { YouTube, Instagram, Twitter, Telegram } from "@mui/icons-material";
 

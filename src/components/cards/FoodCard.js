@@ -1,7 +1,7 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { Card, CardContent, CardMedia, Box, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { FoodPriceBox, FoodOrderButtons } from "../";
 
 const FoodCard = ({ food, onClick }) => {
@@ -10,25 +10,27 @@ const FoodCard = ({ food, onClick }) => {
   return (
     <Card className={root}>
       <Box width="100%">
-        <Link to="#" onClick={onClick}>
-          <Box className={contentBox}>
-            <CardContent
-              sx={{ flexWrap: "wrap", padding: "10px 2px !important" }}
-            >
-              <Typography fontSize={16} fontWeight="bold">
-                {food.name}
-              </Typography>
-              <Typography fontSize={11} color="GrayText">
-                {food.description}
-              </Typography>
-            </CardContent>
-            <CardMedia
-              component="img"
-              className={img}
-              image={`http://192.168.43.209:4000/${food.foodImage}`}
-              alt="food"
-            />
-          </Box>
+        <Link href="#">
+          <a onClick={onClick}>
+            <Box className={contentBox}>
+              <CardContent
+                sx={{ flexWrap: "wrap", padding: "10px 2px !important" }}
+              >
+                <Typography fontSize={16} fontWeight="bold">
+                  {food.name}
+                </Typography>
+                <Typography fontSize={11} color="GrayText">
+                  {food.description}
+                </Typography>
+              </CardContent>
+              <CardMedia
+                component="img"
+                className={img}
+                image={`http://192.168.43.209:4000/${food.foodImage}`}
+                alt="food"
+              />
+            </Box>
+          </a>
         </Link>
         <Box className={actionBox}>
           <FoodPriceBox price={food.price} discount={food.discount} />

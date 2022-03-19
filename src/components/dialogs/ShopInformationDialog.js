@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Typography,
@@ -8,7 +7,6 @@ import {
   Grid,
   linearProgressClasses,
 } from "@mui/material";
-import { useSelector } from "react-redux";
 import { makeStyles, useTheme } from "@mui/styles";
 import Mapir from "mapir-react-component";
 import { LocationOn, Star } from "@mui/icons-material";
@@ -19,16 +17,19 @@ import { CommentBox } from "../";
 import { Map } from "../../utils/map";
 
 const ShopInformationDialog = ({ open, handleClose }) => {
-  const { informationBox, shopLogo, scoreRow, starBox, mapBox } = useStyles();
-
-  const shopDetails = useSelector((state) => state.shopDetails);
+  // const shopDetails = useSelector((state) => state.shopDetails);
+  const shopDetails = {
+    comments: [],
+  };
   const comments = shopDetails.comments;
   const { city, exactAddress, longitude, latitude } = shopDetails.address;
   const commentsCount = comments.length;
   const nonZeroScoreCommentsCount = [...comments].filter(
     (c) => c.score !== 0
   ).length;
+
   const theme = useTheme();
+
   const scoreRanges = [
     { color: theme.palette.success.dark, value: 5 },
     { color: theme.palette.success.main, value: 4 },
@@ -44,6 +45,8 @@ const ShopInformationDialog = ({ open, handleClose }) => {
     const scorePercentage = (scoreCount * 100) / nonZeroScoreCommentsCount;
     return Math.floor(scorePercentage);
   };
+
+  const { informationBox, shopLogo, scoreRow, starBox, mapBox } = useStyles();
 
   return (
     <MyDialog width="100%" onClose={handleClose} open={open}>

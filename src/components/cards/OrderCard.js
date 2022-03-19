@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Badge, Button, Stack, Typography, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { InfoOutlined, Autorenew, LocationOn } from "@mui/icons-material";
 import { DateTimeBox } from "../";
 import { separatePrice } from "../../utils/priceSeparator";
-import { useDispatch } from "react-redux";
 import { FactorDialog } from "../";
-import { reOrder } from "../../redux/action/orderActions";
 
 const OrderCard = ({ order }) => {
   const { root, shopImage, foodBox } = useStyles();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [openFactor, setOpenFactor] = useState(false);
 
   return (
@@ -19,12 +17,14 @@ const OrderCard = ({ order }) => {
       <Stack spacing={2} className={root}>
         <Stack spacing={3}>
           <Container>
-            <Link to="#">
-              <img
-                className={shopImage}
-                alt="shop-logo"
-                src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
-              />
+            <Link href="#">
+              <a>
+                <img
+                  className={shopImage}
+                  alt="shop-logo"
+                  src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
+                />
+              </a>
             </Link>
             <Stack spacing={1}>
               <Typography mr={1} fontWeight="bold">
@@ -69,7 +69,7 @@ const OrderCard = ({ order }) => {
               مشاهده فاکتور
             </Button>
             <Button
-              onClick={() => dispatch(reOrder(order._id))}
+              // onClick={() => dispatch(reOrder(order._id))}
               color="primary"
               variant="contained"
               startIcon={<Autorenew />}

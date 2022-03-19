@@ -1,8 +1,7 @@
-import React from "react";
 import { Grid, Typography, Stack } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
 import { SocialMediaButton, SnappFoodLogo } from "../";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { socialMedias, links } from "../../utils/values";
 
 const Footer = () => {
@@ -36,8 +35,10 @@ const Footer = () => {
         className={linkBox}
       >
         {links.map((item, index) => (
-          <Link to="#" key={index}>
-            <FooterText>{item}</FooterText>
+          <Link href="#" key={index}>
+            <a>
+              <FooterText>{item}</FooterText>
+            </a>
           </Link>
         ))}
       </Grid>

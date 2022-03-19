@@ -9,25 +9,26 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
-import { accountContext } from "../../Contexts";
+import Link from "next/link";
 import { validateAction } from "../../utils/validators";
 import { AuthTextField, VerificationCodeInput, MyForm } from "../";
 
 const AuthDialog = ({ open, handleClose }) => {
   const { dialog, logo, titleBox } = useStyles();
   const [number, setNumber] = useState("");
-  const {
-    action,
-    handleUserAuthSubmit,
-    setAction,
-    setIsLoadingButton,
-    forgotPassword,
-  } = useContext(accountContext);
+  const action = "";
+
+  // const {
+  //   action,
+  //   handleUserAuthSubmit,
+  //   setAction,
+  //   setIsLoadingButton,
+  //   forgotPassword,
+  // } = useContext(accountContext);
 
   const onClose = () => {
-    setAction("");
-    setIsLoadingButton(false);
+    // setAction("");
+    // setIsLoadingButton(false);
     handleClose();
   };
 
@@ -61,7 +62,7 @@ const AuthDialog = ({ open, handleClose }) => {
 
       <DialogContent>
         <MyForm
-          onSubmit={(user) => handleUserAuthSubmit(user)}
+          // onSubmit={(user) => handleUserAuthSubmit(user)}
           validationSchema={validateAction(action)}
           initialValues={{
             number: number,
@@ -101,10 +102,14 @@ const AuthDialog = ({ open, handleClose }) => {
           )}
 
           {action === "login" && (
-            <Link onClick={() => forgotPassword(number)} to="#">
-              <Typography size="xs" color="textSecondary" mt={2}>
-                رمز عبور خود را فراموش کردید؟
-              </Typography>
+            <Link href="#">
+              <a
+              // onClick={() => forgotPassword(number)}
+              >
+                <Typography size="xs" color="textSecondary" mt={2}>
+                  رمز عبور خود را فراموش کردید؟
+                </Typography>
+              </a>
             </Link>
           )}
         </MyForm>

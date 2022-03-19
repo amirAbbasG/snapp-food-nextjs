@@ -1,13 +1,12 @@
-import React from "react";
 import { Drawer, Typography, Button, Stack } from "@mui/material";
-import { useSelector } from "react-redux";
 import { Restore } from "@mui/icons-material";
 import { DrawerOrderCard } from "../";
 import { makeStyles } from "@mui/styles";
 
 const OrdersDrawer = ({ open, handleClose }) => {
   const { drawer, ordersBox } = useStyles();
-  const orders = useSelector((state) => state.orders);
+  // const orders = useSelector((state) => state.orders);
+  const orders = [];
   const deliverdOrders = [...orders].filter((o) => o.isPaid && o.isDelivered);
   return (
     <Drawer

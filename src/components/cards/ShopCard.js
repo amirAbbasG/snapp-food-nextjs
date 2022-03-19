@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { SportsMotorsports } from "@mui/icons-material";
 import { separatePrice } from "../../utils/priceSeparator";
 import { calculateRate } from "../../utils/rateCalculator";
@@ -18,10 +18,10 @@ const ShopCard = ({ shop }) => {
   const { root, contentBox, logo, deliveryBox } = useStyles();
   const cost = separatePrice(shop.deliveryCost);
   const rate = calculateRate(shop.comments);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
-    <Card className={root} onClick={() => navigate(`/shopDetails/${shop._id}`)}>
+    <Card className={root} onClick={() => router.push(`/shops/${shop._id}`)}>
       <CardMedia
         component="img"
         height="160"

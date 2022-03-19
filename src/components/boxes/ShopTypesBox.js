@@ -1,25 +1,25 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { Grid, Typography, IconButton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-const ShopTypesBox = () => {
+const ShopTypesBox = ({ shopTypes }) => {
   const { root, icon, itemBox } = useStyles();
-  const shopTypes = useSelector((state) => state.shopTypes);
   return (
     <Grid wrap="nowrap" container columns={10} className={root}>
       {shopTypes &&
         shopTypes.map((item) => (
           <Grid xs={2} lg={1} md={1} key={item._id} item className={itemBox}>
-            <Link to={`/shops/${item.type}`} state={{ data: false }}>
-              <IconButton>
-                <img
-                  className={icon}
-                  alt={item.type}
-                  src={`/images/${item.imageName.replace("jpg", "png")}`}
-                />
-              </IconButton>
+            <Link href={`/shops?category=${item.type}`}>
+              <a>
+                <IconButton>
+                  <img
+                    className={icon}
+                    alt={item.type}
+                    src={`/images/${item.imageName.replace("jpg", "png")}`}
+                  />
+                </IconButton>
+              </a>
             </Link>
             <Typography fontSize={11} color="gray">
               {item.type}

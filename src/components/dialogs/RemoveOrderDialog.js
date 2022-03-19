@@ -1,13 +1,11 @@
-import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Dialog, DialogContent, Button, DialogTitle } from "@mui/material";
-import { useDispatch } from "react-redux";
 import { removeCart } from "../../redux/action/orderActions";
 
 const RemoveOrderDialog = ({ open, onClose, orderId }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const handleYes = () => {
-    dispatch(removeCart(orderId));
+    // dispatch(removeCart(orderId));
     onClose();
   };
 

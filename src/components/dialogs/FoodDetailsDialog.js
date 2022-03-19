@@ -1,7 +1,5 @@
-import React from "react";
 import { Grid, Typography, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
 import {
   MyDialog,
   CommentBox,
@@ -12,7 +10,8 @@ import {
 import { calculateRate } from "../../utils/rateCalculator";
 
 const FoodDetailsDialog = ({ foodId, open, handleClose }) => {
-  const shopDetails = useSelector((state) => state.shopDetails);
+  // const shopDetails = useSelector((state) => state.shopDetails);
+  const shopDetails = { foods: [] };
   const food = shopDetails.foods.find((f) => f._id === foodId);
   const rate = calculateRate(food.comments);
 

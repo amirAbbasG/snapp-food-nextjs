@@ -61,13 +61,13 @@ let theme = createTheme({
   overrides: {
     MuiButton: {
       text: {
-        fontFamily: "IranianSans",
+        fontFamily: "irsans",
       },
     },
 
     MuiTypography: {
       root: {
-        fontFamily: "IranianSans",
+        fontFamily: "irsans",
       },
       body1: {
         fontSize: 13,
@@ -75,22 +75,22 @@ let theme = createTheme({
     },
     MuiTextField: {
       root: {
-        fontFamily: "IranianSans",
+        fontFamily: "irsans",
       },
     },
     MuiInputLabel: {
       root: {
-        fontFamily: "IranianSans",
+        fontFamily: "irsans",
       },
     },
     MuiTab: {
       root: {
-        fontFamily: "IranianSans",
+        fontFamily: "irsans",
       },
     },
     MuiCssBaseline: {
       "@global": {
-        "@font-face": "IranianSans",
+        "@font-face": "irsans",
       },
     },
   },
@@ -100,7 +100,7 @@ let theme = createTheme({
     3: " 0 3px 6px 0 rgba(0, 0, 0, 0.15), 0 3px 6px 0 rgba(0, 0, 0, 0.15)",
   },
   typography: {
-    fontFamily: "IranianSans",
+    fontFamily: "irsans",
     body1: {
       fontSize: 13,
     },

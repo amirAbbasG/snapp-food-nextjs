@@ -1,23 +1,18 @@
-import React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { ActionButton } from "../";
-import {
-  removeFoodFromCart,
-  addToCart,
-  removeCart,
-} from "../../redux/action/orderActions";
 import { isEmpty } from "lodash";
 import { errorMessage } from "../../utils/toast";
 
 const FoodOrderButtons = ({ foodId }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const shopDetails = useSelector((state) => state.shopDetails);
-  const orders = useSelector((state) => state.orders);
-  const account = useSelector((state) => state.account);
-  const food = shopDetails.foods.find((f) => f._id === foodId);
+  // const shopDetails = useSelector((state) => state.shopDetails);
+  // const orders = useSelector((state) => state.orders);
+  // const account = useSelector((state) => state.account);
+  // const food = shopDetails.foods.find((f) => f._id === foodId);
+
+  const orders = [];
 
   const shopOrders = orders.find(
     (o) => o.shopId._id === food.shopId && !o.isPaid
@@ -31,21 +26,21 @@ const FoodOrderButtons = ({ foodId }) => {
   }
 
   const handleMinus = () => {
-    if (foodCountInOrder !== 0) {
-      if (shopOrders.foods.length < 2 && shopOrders.foods[0].count < 2) {
-        dispatch(removeCart(shopOrders._id));
-      } else {
-        dispatch(removeFoodFromCart(foodId));
-      }
-    }
+    // if (foodCountInOrder !== 0) {
+    //   if (shopOrders.foods.length < 2 && shopOrders.foods[0].count < 2) {
+    //     dispatch(removeCart(shopOrders._id));
+    //   } else {
+    //     dispatch(removeFoodFromCart(foodId));
+    //   }
+    // }
   };
 
   const handleAdd = () => {
-    if (isEmpty(account)) {
-      errorMessage("برای افزودن به سبد خرید وارد حسابد کاربری خود شوید");
-    } else {
-      dispatch(addToCart(foodId));
-    }
+    // if (isEmpty(account)) {
+    //   errorMessage("برای افزودن به سبد خرید وارد حسابد کاربری خود شوید");
+    // } else {
+    //   dispatch(addToCart(foodId));
+    // }
   };
 
   const { orderButtonBox, button } = useStyles();

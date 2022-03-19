@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
-import { accountContext } from "../../Contexts";
+import { useContext } from "react";
 import { MyDialog } from "../";
 import { AuthTextField, MyForm } from "..";
 import { changePasswordSchema } from "../../utils/validators";
 
 const ChangePasswordDialog = ({ open, handleClose }) => {
-  const { changeAuthenticatedUserPassword, setIsLoadingButton } =
-    useContext(accountContext);
+  // const { changeAuthenticatedUserPassword, setIsLoadingButton } =
+  //   useContext(accountContext);
 
   const onClose = () => {
-    setIsLoadingButton(false);
+    // setIsLoadingButton(false);
     handleClose();
   };
 
@@ -22,7 +21,7 @@ const ChangePasswordDialog = ({ open, handleClose }) => {
           newPassword: "",
           confirmPassword: "",
         }}
-        onSubmit={(passwords) => changeAuthenticatedUserPassword(passwords)}
+        // onSubmit={(passwords) => changeAuthenticatedUserPassword(passwords)}
       >
         <AuthTextField title="پسورد فعلی" name="oldPassword" />
 

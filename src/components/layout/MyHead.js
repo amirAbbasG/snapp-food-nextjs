@@ -1,8 +1,8 @@
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 
-const MyHelmet = ({ title, description, keywords }) => {
+const MyHead = ({ title, description, keywords }) => {
   return (
-    <Helmet>
+    <Head>
       <title> اسنپ فود | {title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
@@ -98,8 +98,8 @@ const MyHelmet = ({ title, description, keywords }) => {
         content="سفارش آنلاین غذا، میوه، نان، شیرینی و ..."
       />
       <meta name="theme-color" content="#F700A2" />
-    </Helmet>
+    </Head>
   );
 };
 
-export default MyHelmet;
+export default MyHead;

@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Typography, Paper, Stack, IconButton } from "@mui/material";
 import { styled } from "@mui/styles";
 import { DeleteForeverOutlined } from "@mui/icons-material";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { isEmpty } from "lodash";
 import { RemoveOrderDialog, FoodPriceBox, FoodOrderButtons, Factor } from "../";
 
 const CartBox = ({ shopId }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [openRemoveCart, setOpenRemoveCart] = useState(false);
-  const orders = useSelector((state) => state.orders);
+  const orders = [];
   const order = orders.find((o) => o.shopId._id === shopId && !o.isPaid);
 
   const UnderLinedStack = styled(Stack)(({ theme }) => ({
@@ -58,7 +57,9 @@ const CartBox = ({ shopId }) => {
               </UnderLinedStack>
               <Factor orderId={order._id} />
               <Button
-                onClick={() => navigate(`/finalizeOrder/${order._id}`)}
+                onClick={() =>
+                  router.push(`/orders/finalizeOrder?orderId=${order._id}`)
+                }
                 variant="contained"
                 sx={{ width: "100%", padding: 1, marginTop: 2 }}
               >

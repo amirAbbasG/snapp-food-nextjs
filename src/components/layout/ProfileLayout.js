@@ -1,27 +1,35 @@
-import React, { useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
+import Link from "next/link";
 import { Stack, Paper, Typography, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { DefaultLayout } from "../";
-import { useSelector } from "react-redux";
-import { accountContext } from "../../Contexts";
 import { isEmpty } from "lodash";
 import ShouldLoginPage from "../../pages/profile/ShouldLoginPage";
 
-const ProfileLayout = () => {
+const ProfileLayout = ({ children }) => {
+  // const account = useSelector((state) => state.account);
+  const account = {
+    fullName: "",
+    number: 1,
+    email: "",
+  };
+  // const { exitAccount } = useContext(accountContext);
+
   const { fullName, numberBox, paper, paperBox, root } = useStyles();
-  const account = useSelector((state) => state.account);
-  const { exitAccount } = useContext(accountContext);
 
   const ProfileItem = ({ url, title, onClick }) => (
-    <Link to={url}>
-      <Stack
-        p={3}
-        sx={{ borderTop: "1px #e3e3e4 solid", "&:hover": { paddingRight: 4 } }}
-      >
-        <Typography onClick={onClick}>{title}</Typography>
-      </Stack>
+    <Link href={url}>
+      <a onClick={onClick}>
+        <Stack
+          p={3}
+          sx={{
+            borderTop: "1px #e3e3e4 solid",
+            "&:hover": { paddingRight: 4 },
+          }}
+        >
+          <Typography>{title}</Typography>
+        </Stack>
+      </a>
     </Link>
   );
 
@@ -34,30 +42,42 @@ const ProfileLayout = () => {
           <Grid item xs={12} md={4} className={paperBox}>
             <Paper elevation={2} className={paper}>
               <Stack>
-                <Link to="/profile">
-                  <Stack p={3}>
-                    <Typography className={fullName}>
-                      {account.fullName}
-                    </Typography>
-                    <Stack className={numberBox}>
-                      <Typography lineHeight={0.5} color="GrayText">
-                        {account.number}
+                <Link href="/profile">
+                  <a>
+                    <Stack p={3}>
+                      <Typography className={fullName}>
+                        {account.fullName}
                       </Typography>
-                      <KeyboardArrowLeft color="gray" />
+                      <Stack className={numberBox}>
+                        <Typography lineHeight={0.5} color="GrayText">
+                          {account.number}
+                        </Typography>
+                        <KeyboardArrowLeft color="gray" />
+                      </Stack>
                     </Stack>
-                  </Stack>
+                  </a>
                 </Link>
                 <ProfileItem url="orders" title="سفارش های من" />
-                <ProfileItem url="payments" title="پرداخت های من" />
-                <ProfileItem url="favoriteShops" title="فروشگاهای مورد علاقه" />
+                <ProfileItem
+                  url="/profile/user-payments"
+                  title="پرداخت های من"
+                />
+                <ProfileItem
+                  url="/profile/favourite-shops"
+                  title="فروشگاهای مورد علاقه"
+                />
                 <ProfileItem url="#" title="دریافت تخفیف" />
-                <ProfileItem url="#" onClick={exitAccount} title="خروج" />
+                <ProfileItem
+                  url="#"
+                  // onClick={exitAccount}
+                  title="خروج"
+                />
               </Stack>
             </Paper>
           </Grid>
           <Grid item md={9} xs={12} className={paperBox}>
             <Paper elevation={2} className={paper}>
-              <Outlet />
+              {children}
             </Paper>
           </Grid>
         </Grid>

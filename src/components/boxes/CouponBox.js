@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import { Stack, Typography, ButtonBase } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Carousel from "react-elastic-carousel";
 import { globalContext, shopsContext } from "../../Contexts";
 
 const CouponBox = ({ shopId, coupons }) => {
+  const [couponId, setCouponId] = useState();
   const { isLg, isMd, isSm, isXs } = useContext(globalContext);
-  const { couponId, setCoupon } = useContext(shopsContext);
+  // const { couponId, setCoupon } = useContext(shopsContext);
+
   let showCount = 4;
 
   if (isLg) {
@@ -35,7 +37,7 @@ const CouponBox = ({ shopId, coupons }) => {
           <ButtonBase
             key={coupon._id}
             className={couponBox}
-            onClick={() => setCoupon(coupon, shopId)}
+            onClick={() => setCouponId(coupon._id)}
             style={{
               borderColor: coupon._id === couponId && "#00B862",
             }}

@@ -1,14 +1,13 @@
-import React from "react";
 import { makeStyles, styled } from "@mui/styles";
 import { Typography, Stack, Container } from "@mui/material";
 import { MyDialog } from "../";
-import { useSelector } from "react-redux";
 import { separatePrice } from "../../utils/priceSeparator";
 
 const FactorDialog = ({ open, handleClose, orderId }) => {
   const { priceItem } = useStyles();
 
-  const orders = useSelector((state) => state.orders);
+  // const orders = useSelector((state) => state.orders);
+  const orders = [];
   const order = orders.find((o) => o._id === orderId);
 
   const PriceItem = ({ title, price, color }) => (

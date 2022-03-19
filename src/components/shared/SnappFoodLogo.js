@@ -1,19 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const SnappFoodLogo = ({ className }) => {
   return (
-    <Link to="/">
-      <img
-        style={{
-          width: "4.4rem",
-          height: "4.4rem",
-          marginLeft: "1rem",
-        }}
-        className={className}
-        src="/images/logo-name.png"
-        alt="snapp food logo"
-      />
+    <Link href="/">
+      <a>
+        <img
+          style={{
+            width: "4.4rem",
+            height: "4.4rem",
+            marginLeft: "1rem",
+          }}
+          className={className}
+          src="/images/logo-name.png"
+          alt="snapp food logo"
+        />
+      </a>
     </Link>
   );
 };

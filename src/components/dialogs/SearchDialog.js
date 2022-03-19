@@ -8,7 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Search, StorefrontTwoTone } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
@@ -62,18 +62,22 @@ const SearchDialog = ({ open, handleClose }) => {
         ) : (
           <Stack spacing={3} className={shopsBox}>
             <Link
-              to="/Shops"
-              state={{ data: searchShop }}
+              to="/shops"
+              // state={{ data: searchShop }}
               onClick={handleReset}
             >
-              <Typography color="textSecondary">{`مشاهده همه (${searchShop.length}) >`}</Typography>
+              <a>
+                <Typography color="textSecondary">{`مشاهده همه (${searchShop.length}) >`}</Typography>
+              </a>
             </Link>
             {searchShop.slice(0, 9).map((shop) => (
-              <Link to={`/shopDetails/${shop._id}`} onClick={handleReset}>
-                <Stack direction="row">
-                  <StorefrontTwoTone />
-                  <Typography mr={2}>{shop.shopName}</Typography>
-                </Stack>
+              <Link to={`/shops/${shop._id}`}>
+                <a onClick={handleReset}>
+                  <Stack direction="row">
+                    <StorefrontTwoTone />
+                    <Typography mr={2}>{shop.shopName}</Typography>
+                  </Stack>
+                </a>
               </Link>
             ))}
           </Stack>

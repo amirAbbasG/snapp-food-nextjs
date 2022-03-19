@@ -7,11 +7,26 @@ import { CacheProvider } from "@emotion/react";
 import ErrrorBoundary from "../src/components";
 import theme from "../src/theme";
 import createEmotionCache from "../src/theme/createEmotionCache";
+import { GlobalContextProvider } from "../src/contexts";
+import { DefaultLayout } from "../src/components";
+import { getShopTypesApi } from "../src/services/shopServices";
 import "../styles/globals.css";
 
 const clientSideEmotionCache = createEmotionCache();
 
+export async function getStaticProps() {
+  const {
+    data: { shopTypes },
+  } = await getShopTypesApi();
+  return {
+    props: {
+      shopTypes,
+    },
+  };
+}
+
 function MyApp({
+  shopTypes,
   Component,
   emotionCache = clientSideEmotionCache,
   pageProps,
@@ -24,7 +39,11 @@ function MyApp({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ErrrorBoundary>
-          <Component {...pageProps} />
+          <GlobalContextProvider>
+            <DefaultLayout shopTypes={shopTypes}>
+              <Component {...pageProps} />
+            </DefaultLayout>
+          </GlobalContextProvider>
         </ErrrorBoundary>
       </ThemeProvider>
     </CacheProvider>

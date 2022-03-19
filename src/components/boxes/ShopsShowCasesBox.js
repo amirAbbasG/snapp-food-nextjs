@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import Link from "next/link";
 import { Typography, Stack } from "@mui/material";
 import { ChevronLeft } from "@mui/icons-material";
 import Carousel from "react-elastic-carousel";
@@ -24,20 +24,22 @@ const ShopsShowCasesBox = ({ data, title }) => {
     <>
       <Stack direction="row" justifyContent="space-between" py={2} mt={4}>
         <Typography variant="h6">{title}</Typography>
-        <Link to="Shops" state={{ data }}>
-          <Stack direction="row" alignItems="center">
-            <Typography color="textSecondary" variant="h6">
-              مشاهده همه
-            </Typography>
-            <ChevronLeft
-              style={{
-                fontSize: 30,
-                fontWeight: "bold",
-                marginRight: 1,
-                color: "#00B862",
-              }}
-            />
-          </Stack>
+        <Link href="/shops">
+          <a>
+            <Stack direction="row" alignItems="center">
+              <Typography color="textSecondary" variant="h6">
+                مشاهده همه
+              </Typography>
+              <ChevronLeft
+                style={{
+                  fontSize: 30,
+                  fontWeight: "bold",
+                  marginRight: 1,
+                  color: "#00B862",
+                }}
+              />
+            </Stack>
+          </a>
         </Link>
       </Stack>
       <Carousel

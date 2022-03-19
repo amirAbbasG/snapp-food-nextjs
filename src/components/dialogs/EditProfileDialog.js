@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
-import { accountContext } from "../../Contexts";
 import { MyDialog } from "../";
 import { AuthTextField, MyForm } from "..";
-import { useSelector } from "react-redux";
 
 const EditProfileDialog = ({ open, handleClose }) => {
-  const account = useSelector((state) => state.account);
-  const { editProfile, setIsLoadingButton } = useContext(accountContext);
+  // const account = useSelector((state) => state.account);
+  // const { editProfile, setIsLoadingButton } = useContext(accountContext);
+
+  const account = {
+    fullName: "",
+    number: 1,
+    email: "",
+  };
 
   const onClose = () => {
     setIsLoadingButton(false);
@@ -15,13 +18,12 @@ const EditProfileDialog = ({ open, handleClose }) => {
 
   //#region apply changers
   const handleSummit = (user) => {
-    console.log("dd", user);
     if (user.email === "") {
-      editProfile({
-        fullName: user.fullName,
-      });
+      // editProfile({
+      //   fullName: user.fullName,
+      // });
     } else {
-      editProfile(user);
+      // editProfile(user);
     }
     onClose();
   };

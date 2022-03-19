@@ -26,7 +26,7 @@ export { default as MyForm } from "./forms/MyForm";
 //#region layout
 export { default as DefaultLayout } from "./layout/DefaultLayout";
 export { default as ProfileLayout } from "./layout/ProfileLayout";
-export { default as MyHelmet } from "./layout/MyHelmet";
+export { default as MyHead } from "./layout/MyHead";
 export { default as ErrrorBoundary } from "./layout/ErrrorBoundary";
 //#endregion
 

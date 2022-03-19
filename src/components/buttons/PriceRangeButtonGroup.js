@@ -1,12 +1,17 @@
-import React, { useContext, memo } from "react";
+import { useContext, memo } from "react";
 import { Button, ButtonGroup, Grid, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { priceRanges } from "../../utils/values";
-import { shopsContext } from "../../Contexts";
 
 const PriceRangeButtonGroup = () => {
+  // const { priceRange, setPriceRange } = useContext(shopsContext);
+  const [priceRange, setPriceRange] = useState({
+    title: "همه",
+    minPrice: 0,
+    maxPrice: 1000000,
+  });
+
   const { root, buttonGroup } = useStyles();
-  const { priceRange, setPriceRange } = useContext(shopsContext);
 
   return (
     <Grid item className={root} p={2}>

@@ -1,14 +1,13 @@
-import React from "react";
 import { Grid, Typography, Card } from "@mui/material";
 import { KeyboardArrowLeft } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 
 const CategoryCard = ({ category }) => {
   const { titleGrid, root, title } = useStyles();
 
   return (
-    <Link to={`/shops/${category}`} state={{ data: false }}>
+    <Link href={`/shops?category=${category}`}>
       <Card
         elevation={2}
         className={root}

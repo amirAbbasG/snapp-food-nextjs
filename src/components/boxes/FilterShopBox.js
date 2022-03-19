@@ -1,14 +1,20 @@
-import React, { useContext, memo } from "react";
+import { useContext, memo, useState } from "react";
 import { Paper, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { shopsContext } from "../../Contexts";
 import { FilterItem } from "../";
 
 const FilterShopBox = () => {
   const { root } = useStyles();
+  const [priceRange, setPriceRange] = useState({
+    title: "همه",
+    minPrice: 0,
+    maxPrice: 1000000,
+  });
+  const [isFreeExpress, setIsFreeExpress] = useState(false);
+  const [haveCoupon, setHaveCoupon] = useState(false);
 
-  const { setIsFreeExpress, isFreeExpress, haveCoupon, setHaveCoupon } =
-    useContext(shopsContext);
+  // const { setIsFreeExpress, isFreeExpress, haveCoupon, setHaveCoupon } =
+  //   useContext(shopsContext);
 
   return (
     <Grid item className={root} p={2}>

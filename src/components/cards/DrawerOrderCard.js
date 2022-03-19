@@ -1,25 +1,24 @@
-import React from "react";
 import { Button, Stack, Typography, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Autorenew } from "@mui/icons-material";
 import { DateTimeBox } from "../";
-import { useDispatch } from "react-redux";
-import { reOrder } from "../../redux/action/orderActions";
 
 const DrawerOrderCard = ({ order }) => {
   const { root, shopImage } = useStyles();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <Stack className={root}>
       <Container>
-        <Link to="#">
-          <img
-            className={shopImage}
-            alt="shop-logo"
-            src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
-          />
+        <Link href="/">
+          <a>
+            <img
+              className={shopImage}
+              alt="shop-logo"
+              src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
+            />
+          </a>
         </Link>
         <Stack spacing={1}>
           <Typography mr={1} fontWeight="bold">
@@ -30,7 +29,7 @@ const DrawerOrderCard = ({ order }) => {
       </Container>
       <Button
         sx={{ width: "50%" }}
-        onClick={() => dispatch(reOrder(order._id))}
+        // onClick={() => dispatch(reOrder(order._id))}
         color="secondary"
         variant="contained"
         startIcon={<Autorenew />}

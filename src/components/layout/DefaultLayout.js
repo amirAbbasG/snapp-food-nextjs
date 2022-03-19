@@ -1,17 +1,11 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
 import { Grid } from "@mui/material";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const DefaultLayout = ({
-  showShopTypes = true,
-  children,
-  useDefaultOutlet = true,
-}) => {
+const DefaultLayout = ({ shopTypes, children, useDefaultOutlet = true }) => {
   return (
     <>
-      <Header showShopTypes={showShopTypes} />
+      <Header shopTypes={shopTypes} />
       <Grid
         style={{
           overflowX: "hidden",
@@ -28,7 +22,7 @@ const DefaultLayout = ({
             width: "100%",
           }}
         >
-          {useDefaultOutlet ? <Outlet /> : children}
+          {children}
         </Grid>
         <Footer />
       </Grid>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Stack, Switch, Typography } from "@mui/material";
 import { styled } from "@mui/styles";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Star } from "@mui/icons-material";

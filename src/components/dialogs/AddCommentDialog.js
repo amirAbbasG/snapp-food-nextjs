@@ -1,13 +1,12 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Stack, TextField, Button, Rating, Typography } from "@mui/material";
 import { MyDialog } from "../";
-import { shopsContext } from "../../Contexts";
 
 const AddCommentDialog = ({ open, handleClose, id }) => {
   const [commentText, setCommentText] = useState("");
   const [score, setScore] = useState(0);
 
-  const { addComment } = useContext(shopsContext);
+  // const { addComment } = useContext(shopsContext);
 
   const handleRating = (rate) => {
     if (score === 1 && rate === 1) {
@@ -56,7 +55,7 @@ const AddCommentDialog = ({ open, handleClose, id }) => {
       <Button
         sx={{ width: "100%" }}
         variant="contained"
-        onClick={handleAddComment}
+        // onClick={handleAddComment}
       >
         ثبت نظر
       </Button>

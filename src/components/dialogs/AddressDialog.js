@@ -1,11 +1,10 @@
-import React, { useState, memo, useContext } from "react";
+import { useState, memo, useContext } from "react";
 import Mapir from "mapir-react-component";
 import { makeStyles } from "@mui/styles";
 import { Button, Grid, TextField } from "@mui/material";
 import { MyDialog } from "../";
 import { Map } from "../../utils/map";
-import { getAddress } from "../../api/addressApi";
-import { accountContext } from "../../Contexts";
+import { getAddress } from "../../services/addressServices";
 
 const AddressDialog = memo(({ open, handleClose }) => {
   const [latitude, setLatitude] = useState(0);
@@ -13,7 +12,7 @@ const AddressDialog = memo(({ open, handleClose }) => {
   const [city, setCity] = useState("");
   const [exactAddress, setExactAddress] = useState("");
 
-  const { addAddress } = useContext(accountContext);
+  // const { addAddress } = useContext(accountContext);
 
   const handleClickMarker = () => {
     setCity("");
@@ -31,13 +30,13 @@ const AddressDialog = memo(({ open, handleClose }) => {
   };
 
   const hanldeSubmit = () => {
-    addAddress({
-      city,
-      exactAddress,
-      latitude,
-      longitude,
-      title: "آدرس من",
-    });
+    // addAddress({
+    //   city,
+    //   exactAddress,
+    //   latitude,
+    //   longitude,
+    //   title: "آدرس من",
+    // });
     handleClose();
     handleClickMarker();
   };

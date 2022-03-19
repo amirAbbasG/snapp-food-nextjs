@@ -8,6 +8,12 @@ export default class MyDocument extends Document {
     return (
       <Html lang="fa">
         <Head>
+          <link
+            rel="preload"
+            href="/fonts/irsans.ttf"
+            as="font"
+            crossOrigin="anonymous"
+          ></link>
           <meta name="theme-color" content={theme.palette.primary.main} />
           {this.props.emotionStyleTags}
         </Head>
