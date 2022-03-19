@@ -1,7 +1,10 @@
 import Head from "next/head";
+
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
+
+import ErrrorBoundary from "../src/components";
 import theme from "../src/theme";
 import createEmotionCache from "../src/theme/createEmotionCache";
 import "../styles/globals.css";
@@ -20,7 +23,9 @@ function MyApp({
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <ErrrorBoundary>
+          <Component {...pageProps} />
+        </ErrrorBoundary>
       </ThemeProvider>
     </CacheProvider>
   );

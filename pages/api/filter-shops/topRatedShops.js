@@ -1,8 +1,9 @@
+import { rest } from "lodash";
 import mongoDb from "../../../src/lib/mongoDb";
 import ShopModel from "../../../src/models/Shop";
-import { getFoodWithDiscount } from "../../../src/utils/rateCalculator";
+import { calculateRate } from "../../../src/utils/rateCalculator";
 
-const discountedShops = async (req, res) => {
+const topRatedShops = async (req, res) => {
   try {
     await mongoDb();
 
@@ -10,14 +11,13 @@ const discountedShops = async (req, res) => {
 
     const shops = await ShopModel.find()
       .populate({ path: "comments", select: "score -_id" })
-      .populate({ path: "foods", select: "price discount -_id" })
       .select("-userNumber -userPassword -ownerFullName");
 
-    const discountedShops = [...shops]
-      .filter((s) => getFoodWithDiscount(s.foods > 0))
+    const topRatedShops = [...shops]
+      .sort((a, b) => calculateRate(b.comments) - calculateRate(a.comments))
       .slice(0, limit);
 
-    res.status(200).send({ discountedShops });
+    rest.status(200).send({ topRatedShops });
   } catch (error) {
     const err = new Error("مشکلی پیش آمده : ", error);
     err.statusCode = 500;
@@ -25,4 +25,4 @@ const discountedShops = async (req, res) => {
   }
 };
 
-export default discountedShops;
+export default topRatedShops;
