@@ -2,17 +2,19 @@ import { Grid } from "@mui/material";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const DefaultLayout = ({ shopTypes, children, useDefaultOutlet = true }) => {
+const DefaultLayout = ({  children }) => {
   return (
-    <>
-      <Header shopTypes={shopTypes} />
+    <Grid sx={{width: "100%", flex: 1}}>
+      <Header  />
       <Grid
-        style={{
+        sx={{
           overflowX: "hidden",
           overflowY: "scroll",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+            width: "100%",
+
         }}
       >
         <Grid
@@ -26,7 +28,7 @@ const DefaultLayout = ({ shopTypes, children, useDefaultOutlet = true }) => {
         </Grid>
         <Footer />
       </Grid>
-    </>
+    </Grid>
   );
 };
 

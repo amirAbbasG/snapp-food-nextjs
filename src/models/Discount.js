@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const DiscountSchema = new Schema({
   title: { type: String, required: true },
@@ -10,6 +10,6 @@ const DiscountSchema = new Schema({
   maxDiscount: Number,
 });
 
-const DiscountModel = model("discounts", DiscountSchema);
 
-export default DiscountModel;
+
+export default models.discounts || model("discounts", DiscountSchema);

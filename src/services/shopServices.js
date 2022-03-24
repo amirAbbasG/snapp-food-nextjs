@@ -1,11 +1,12 @@
 import http from "./";
 
+
 export const getShopTypesApi = () => {
-  return http.get("shop-types");
+  return http.get("shopTypes");
 };
 
-export const getShopTypeByNameApi = (name) => {
-  return http.get(`shop-types/${name}`);
+export const getShopTypeByIdApi = (id) => {
+  return http.get(`shopTypes/${id}`);
 };
 
 export const getShopDetailsApi = (shopId) => {
@@ -13,21 +14,22 @@ export const getShopDetailsApi = (shopId) => {
 };
 
 export const addOrRemoveFavoriteShopApi = (shopId) => {
-  return http.put(`user/addShopToFavorites?shopId=${shopId}`);
+  return http.post(`user/addShopToFavorites?shopId=${shopId}`);
 };
 
 export const getShopByCategory = (category, limit) => {
-  return http.put(`filter-shops/${category}?limit=${limit}`);
+
+  return http.get(encodeURI(`filterShops/${category}?limit=${limit}`));
 };
 
 export const getDiscountedShops = (limit) => {
-  return http.put(`filter-shops/discountedShops?limit=${limit}`);
+  return http.get(`filterShops/discountedShops?limit=${limit}`);
 };
 
 export const getShopsWithCoupon = (limit) => {
-  return http.put(`filter-shops/shopsWithCoupon?limit=${limit}`);
+  return http.get(`filterShops/shopsWithCoupon?limit=${limit}`);
 };
 
 export const getTopRatedShops = (limit) => {
-  return http.put(`filter-shops/topRatedShops?limit=${limit}`);
+  return http.get(`filterShops/topRatedShops?limit=${limit}`);
 };

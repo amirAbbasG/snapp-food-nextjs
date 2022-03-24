@@ -1,7 +1,8 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
+import jwt from "jsonwebtoken"
+
 import AddressSchema from "./Address";
 import CouponSchema from "./Coupon";
-import jwt from "@tsndr/cloudflare-worker-jwt";
 
 const ShopSchema = new Schema({
   shopType: {
@@ -33,5 +34,5 @@ ShopSchema.methods.getAuthToken = function () {
     expiresIn: "36h",
   });
 };
-const ShopModel = model("shops", ShopSchema);
-export default ShopModel;
+
+export default models.shops || model("shops", ShopSchema);

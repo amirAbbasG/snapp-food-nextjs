@@ -1,4 +1,9 @@
 import { memo } from "react";
+
+import { useRouter } from "next/router";
+import Image from "next/image"
+
+
 import {
   Card,
   CardContent,
@@ -7,33 +12,40 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { useRouter } from "next/router";
 import { SportsMotorsports } from "@mui/icons-material";
+
 import { separatePrice } from "../../utils/priceSeparator";
 import { calculateRate } from "../../utils/rateCalculator";
 import { RateBox } from "../";
 
 const ShopCard = ({ shop }) => {
-  const { root, contentBox, logo, deliveryBox } = useStyles();
+
+
+  const { root, contentBox, logo, deliveryBox } = styles;
+
   const cost = separatePrice(shop.deliveryCost);
   const rate = calculateRate(shop.comments);
   const router = useRouter();
 
   return (
-    <Card className={root} onClick={() => router.push(`/shops/${shop._id}`)}>
+    <Card sx={root} onClick={() => router.push(`/shops/${shop._id}`, null, {scroll: false})}>
       <CardMedia
         component="img"
         height="160"
-        image={`http://localhost:4000/${shop.shopImage}`}
+        image={`/images/shop/${shop.shopImage}`}
         alt="food shop"
       />
-      <CardContent className={contentBox}>
-        <img
-          src={`http://localhost:4000/${shop.shopLogo}`}
+      <CardContent sx={contentBox}>
+        <Stack sx={logo}>
+
+        <Image
+            height={80}
+            width={80}
+          src={`/images/logo/${shop.shopLogo}`}
           alt="shop logo"
-          className={logo}
+
         />
+        </Stack>
         <Typography gutterBottom variant="h6" mt={1} component="div">
           {shop.shopName}
         </Typography>
@@ -46,7 +58,7 @@ const ShopCard = ({ shop }) => {
         <Typography color="gray" mt={1}>
           {shop.shopType} ، {shop.category}
         </Typography>
-        <Paper className={deliveryBox}>
+        <Paper sx={deliveryBox}>
           <SportsMotorsports
             sx={{ color: "gray", fontSize: 17, marginLeft: 1 }}
           />
@@ -61,15 +73,15 @@ const ShopCard = ({ shop }) => {
 
 export default memo(ShopCard);
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     cursor: "pointer",
     position: "relative",
     overflow: "hidden",
-    maxWidth: 350,
+    maxWidth: "350px",
     width: "100%",
-    "&:hover": {
-      boxShadow: theme.shadows[3],
+    '&:hover': {
+      boxShadow: 3,
     },
   },
   contentBox: {
@@ -79,16 +91,16 @@ const useStyles = makeStyles((theme) => ({
   },
   deliveryBox: {
     display: "flex",
-    borderRadius: 20,
-    padding: 10,
-    marginTop: 7,
+    borderRadius: "20px",
+    padding: "10px",
+    marginTop: "7px",
   },
   logo: {
-    width: 80,
-    height: 80,
     position: "absolute",
-    top: 97,
-    boxShadow: theme.shadows[3],
-    borderRadius: 10,
+    top: "97px",
+    boxShadow: 3,
+    borderRadius: "10px",
+    overflow: "hidden"
   },
-}));
+};
+

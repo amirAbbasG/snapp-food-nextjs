@@ -1,7 +1,10 @@
 import { useState } from "react";
+
+import Link from "next/link";
+import Image from "next/image"
+
 import { Badge, Button, Stack, Typography, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import Link from "next/link";
 import { InfoOutlined, Autorenew, LocationOn } from "@mui/icons-material";
 import { DateTimeBox } from "../";
 import { separatePrice } from "../../utils/priceSeparator";
@@ -19,7 +22,8 @@ const OrderCard = ({ order }) => {
           <Container>
             <Link href="#">
               <a>
-                <img
+                <Image
+                width
                   className={shopImage}
                   alt="shop-logo"
                   src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
@@ -105,8 +109,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   shopImage: {
-    width: "3.7rem",
-    height: "3.7rem",
     borderRadius: 7,
     marginLeft: 7,
     boxShadow: theme.shadows[1],

@@ -1,6 +1,7 @@
 html,
 body {
   padding: 0;
+  direction: rtl;
   margin: 0;
   font-family: irsans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -15,10 +16,13 @@ a {
   box-sizing: border-box;
 }
 
+
+
 @font-face {
-  font-family: "irsans";
-  src: local("irsans"), ("../fonts/irsans.ttf") format("truetype");
-  font-weight: normal;
+  font-family: 'irsans';
+  src: url('/fonts/irsans.ttf');
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* width */

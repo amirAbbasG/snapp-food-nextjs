@@ -24,14 +24,14 @@ const ShopsShowCasesBox = ({ data, title }) => {
     <>
       <Stack direction="row" justifyContent="space-between" py={2} mt={4}>
         <Typography variant="h6">{title}</Typography>
-        <Link href="/shops">
+        <Link href="/shops" scroll={false}>
           <a>
             <Stack direction="row" alignItems="center">
               <Typography color="textSecondary" variant="h6">
                 مشاهده همه
               </Typography>
               <ChevronLeft
-                style={{
+                sx={{
                   fontSize: 30,
                   fontWeight: "bold",
                   marginRight: 1,

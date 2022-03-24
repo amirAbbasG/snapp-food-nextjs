@@ -11,12 +11,12 @@ import {
 import Link from "next/link";
 import { Search, StorefrontTwoTone } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
 
 const SearchDialog = ({ open, handleClose }) => {
   const { dialog, helpText, textField, shopsBox } = useStyles();
   const [searchText, setSearchText] = useState("");
-  const shops = useSelector((state) => state.shops);
+  // const shops = useSelector((state) => state.shops);
+  const shops = [];
 
   const searchShop = [...shops].filter(
     (s) =>

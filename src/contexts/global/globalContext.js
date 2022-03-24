@@ -1,10 +1,6 @@
 import { createContext } from "react";
 
 const globalContext = createContext({
-  backClickHandler: () => {},
-  chekNet: () => {},
-  errorToast: () => {},
-  successToast: () => {},
   isLg: false,
   isMd: false,
   isSm: false,

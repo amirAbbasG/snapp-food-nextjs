@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const schema = new Schema({}, { strict: false });
-const SupportedCities = model("supportedCities", schema, "supportedCities");
 
-export default SupportedCities;
+
+export default models.supportedCities || model("supportedCities", schema, "supportedCities")

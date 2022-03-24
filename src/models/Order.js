@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 import AddressSchema from "./Address";
 import CouponSchema from "./Coupon";
 
@@ -25,6 +25,5 @@ const OrderSchema = new Schema({
   usedCoupon: CouponSchema,
 });
 
-const OrderModel = model("orders", OrderSchema);
 
-export default OrderModel;
+export default models.orders || model("orders", OrderSchema);

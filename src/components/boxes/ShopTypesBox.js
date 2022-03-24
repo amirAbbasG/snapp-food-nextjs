@@ -1,27 +1,39 @@
-import { memo } from "react";
-import { Grid, Typography, IconButton } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import Link from "next/link";
+import Image from "next/image";
 
-const ShopTypesBox = ({ shopTypes }) => {
-  const { root, icon, itemBox } = useStyles();
+import { Grid, Typography, IconButton } from "@mui/material";
+import useSWR from 'swr';
+import { makeStyles } from "@mui/styles";
+
+
+
+const ShopTypesBox = () => {
+
+
+
+  const { data, error } = useSWR('/api/shopTypes')
+
+
+  const { root, itemBox } = useStyles();
+
   return (
     <Grid wrap="nowrap" container columns={10} className={root}>
-      {shopTypes &&
-        shopTypes.map((item) => (
+      {(data && data.shopTypes) &&
+        data.shopTypes.map((item) => (
           <Grid xs={2} lg={1} md={1} key={item._id} item className={itemBox}>
             <Link href={`/shops?category=${item.type}`}>
               <a>
                 <IconButton>
-                  <img
-                    className={icon}
+                  <Image
+                    width={55}
+                    height={55}
                     alt={item.type}
                     src={`/images/${item.imageName.replace("jpg", "png")}`}
                   />
                 </IconButton>
               </a>
             </Link>
-            <Typography fontSize={11} color="gray">
+            <Typography fontSize={12} color="gray">
               {item.type}
             </Typography>
           </Grid>
@@ -30,7 +42,7 @@ const ShopTypesBox = ({ shopTypes }) => {
   );
 };
 
-export default memo(ShopTypesBox);
+export default ShopTypesBox
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,9 +56,5 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-  },
-  icon: {
-    width: "3rem",
-    height: "3rem",
   },
 }));

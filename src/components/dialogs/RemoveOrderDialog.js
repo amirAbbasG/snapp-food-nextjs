@@ -1,6 +1,5 @@
 import { makeStyles } from "@mui/styles";
 import { Dialog, DialogContent, Button, DialogTitle } from "@mui/material";
-import { removeCart } from "../../redux/action/orderActions";
 
 const RemoveOrderDialog = ({ open, onClose, orderId }) => {
   // const dispatch = useDispatch();

@@ -9,15 +9,17 @@ import {
 import { useRouter } from "next/router";
 import { PersonOutline, Logout } from "@mui/icons-material";
 
-import { useSelector } from "react-redux";
-
 const ProfileMenu = ({ onClose, anchorEl }) => {
   const open = Boolean(anchorEl);
   // const { exitAccount } = useContext(accountContext);
   const router = useRouter();
 
   // const account = useSelector((state) => state.account);
-
+   const account = {
+     fullname: "",
+     email: "dd",
+     number:1
+   }
   return (
     <Menu anchorEl={anchorEl} onClose={onClose} open={open}>
       <MenuList>
@@ -26,7 +28,7 @@ const ProfileMenu = ({ onClose, anchorEl }) => {
             <PersonOutline />
           </ListItemIcon>
           <Stack>
-            <ListItemText>"{account.fullName}"</ListItemText>
+            <ListItemText>{account.fullName}</ListItemText>
             <ListItemText style={{ color: "#00B862" }}>
               مشاهده حساب کاربری
             </ListItemText>

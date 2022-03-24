@@ -7,18 +7,17 @@ const shopsByCategory = async (req, res) => {
 
     const { category, limit } = req.query;
 
+
     const shops = await ShopModel.find({
-      $or: [{ shopType: category }, { category }],
+      $or: [{ shopType: category }, { category}],
     })
       .populate({ path: "comments", select: "score -_id" })
       .select("-userNumber -userPassword -ownerFullName")
       .limit(limit);
 
-    res.status(200).send({ shops });
+    res.status(200).send({ shops, done: true });
   } catch (error) {
-    const err = new Error("مشکلی پیش آمده : ", error);
-    err.statusCode = 500;
-    throw err;
+   res.status(500).send({message: "مشکلی پیش آمده", done: false, error})
   }
 };
 

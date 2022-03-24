@@ -1,9 +1,8 @@
-import { useState, memo, useContext } from "react";
-import Mapir from "mapir-react-component";
+import React, { useState, memo, useContext } from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Grid, TextField } from "@mui/material";
 import { MyDialog } from "../";
-import { Map } from "../../utils/map";
+// import { Map } from "../../utils/map";
 import { getAddress } from "../../services/addressServices";
 
 const AddressDialog = memo(({ open, handleClose }) => {
@@ -46,7 +45,7 @@ const AddressDialog = memo(({ open, handleClose }) => {
   return (
     <MyDialog open={open} onClose={handleClose} title="آدرس جدید" width="80%">
       <Grid className={mapBox}>
-        <Mapir
+        {/* <Mapir
           userLocation
           onClick={handleClickMap}
           center={[51.42047, 35.729054]}
@@ -57,7 +56,7 @@ const AddressDialog = memo(({ open, handleClose }) => {
             coordinates={[longitude, latitude]}
             anchor="bottom"
           />
-        </Mapir>
+        </Mapir> */}
 
         <TextField
           variant="outlined"

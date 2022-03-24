@@ -1,6 +1,5 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const schema = new Schema({}, { strict: false });
-const ShopTypes = model("ShopTypes", schema, "ShopTypes");
 
-export default ShopTypes;
+export default models.ShopTypes ||  model("ShopTypes", schema, "ShopTypes")

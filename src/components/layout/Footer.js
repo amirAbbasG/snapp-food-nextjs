@@ -1,21 +1,57 @@
-import { Grid, Typography, Stack } from "@mui/material";
-import { makeStyles, styled } from "@mui/styles";
-import { SocialMediaButton, SnappFoodLogo } from "../";
 import Link from "next/link";
+import Image from "next/image";
+import { Grid, Typography, Stack } from "@mui/material";
+import { useTheme } from "@mui/styles";
+import {styled} from "@mui/system";
+
+import { SocialMediaButton, SnappFoodLogo } from "../";
 import { socialMedias, links } from "../../utils/values";
 
 const Footer = () => {
-  const { root, logoBox, socialsMediaBox, linkBox, img } = useStyles();
+
+  const theme = useTheme()
+
+  const styles =  {
+    root: {
+      backgroundColor: theme.palette.secondary.main,
+      padding: "1rem",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      flex: 1
+    },
+
+    socialsMediaBox: {
+      direction: "column",
+    },
+
+    linkBox: {
+      [theme.breakpoints.down("md")]: {
+        marginBottom: "2rem",
+        textAlign: "center",
+      },
+    },
+
+    logoBox: {
+      [theme.breakpoints.down("md")]: {
+        justifyContent: "space-around",
+        marginBottom: "2rem",
+      },
+    },
+  };
+  const { root, logoBox, socialsMediaBox, linkBox } = styles;
+
   const FooterText = styled(Typography)({
     marginBottom: "1rem",
     color: "gray",
   });
 
   return (
-    <Stack direction={{ xs: "column", md: "row" }} className={root}>
-      <Grid container className={logoBox}>
+    <Stack direction={{ xs: "column", md: "row" }} sx={root}>
+      <Grid container sx={logoBox}>
         <SnappFoodLogo />
-        <Grid item className={socialsMediaBox}>
+        <Grid item sx={socialsMediaBox}>
           <Typography variant="h6" fontWeight="bold" color="primary">
             اسنپ فود
           </Typography>
@@ -43,39 +79,11 @@ const Footer = () => {
         ))}
       </Grid>
 
-      <img src="/images/enamad.png" alt="enamad logo" className={img} />
+      <Image src="/images/enamad.png" alt="enamad logo" width={300} height={300} />
     </Stack>
   );
 };
 
 export default Footer;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.secondary.main,
-    padding: "1rem",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-  },
-  img: {
-    width: "6rem",
-    height: "6rem",
-  },
-  socialsMediaBox: {
-    direction: "column",
-  },
-  linkBox: {
-    [theme.breakpoints.down("md")]: {
-      marginBottom: "2rem",
-      textAlign: "center",
-    },
-  },
-  logoBox: {
-    [theme.breakpoints.down("md")]: {
-      justifyContent: "space-around",
-      marginBottom: "2rem",
-    },
-  },
-}));
+

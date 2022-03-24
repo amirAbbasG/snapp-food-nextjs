@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { DefaultLayout } from "../";
 import { isEmpty } from "lodash";
-import ShouldLoginPage from "../../pages/profile/ShouldLoginPage";
+import ShouldLoginPage from "../../../pages/profile/should-login";
 
 const ProfileLayout = ({ children }) => {
   // const account = useSelector((state) => state.account);

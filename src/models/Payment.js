@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const PaymentSchema = new Schema({
   orderId: { type: Schema.Types.ObjectId, ref: "orders", required: true },
@@ -11,6 +11,6 @@ const PaymentSchema = new Schema({
   success: { type: Boolean, default: false },
 });
 
-const PaymentModel = model("payments", PaymentSchema);
 
-export default PaymentModel;
+
+export default models.payments || model("payments", PaymentSchema);

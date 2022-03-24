@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Typography,
@@ -8,13 +9,12 @@ import {
   linearProgressClasses,
 } from "@mui/material";
 import { makeStyles, useTheme } from "@mui/styles";
-import Mapir from "mapir-react-component";
 import { LocationOn, Star } from "@mui/icons-material";
 import { range } from "lodash";
 import { MyDialog, RateBox } from "../";
 import { calculateRate } from "../../utils/rateCalculator";
 import { CommentBox } from "../";
-import { Map } from "../../utils/map";
+// import { Map } from "../../utils/map";
 
 const ShopInformationDialog = ({ open, handleClose }) => {
   // const shopDetails = useSelector((state) => state.shopDetails);
@@ -74,12 +74,12 @@ const ShopInformationDialog = ({ open, handleClose }) => {
             </Container>
           </Stack>
           <Stack className={mapBox}>
-            <Mapir center={[51.42047, 35.729054]} Map={Map}>
+            {/* <Mapir center={[51.42047, 35.729054]} Map={Map}>
               <Mapir.Marker
                 coordinates={[longitude, latitude]}
                 anchor="bottom"
               />
-            </Mapir>
+            </Mapir> */}
           </Stack>
         </Stack>
       </Box>

@@ -7,8 +7,7 @@ import {
   ButtonBase,
   Grid,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { useDispatch, useSelector } from "react-redux";
+
 
 const CategoriesBox = ({ shopType }) => {
   const shopTypes = [];
@@ -27,22 +26,22 @@ const CategoriesBox = ({ shopType }) => {
     // dispatch(filterShopByShopType(shopType));
   };
 
-  const { root, img, titleBox, categoryItem } = useStyles();
+  const { root, img, titleBox, categoryItem } = styles;
   return (
-    <Grid item className={root} p={2}>
+    <Grid item sx={root} p={2}>
       <Paper sx={{ padding: 2 }}>
         <ButtonBase sx={{ width: "100%" }} onClick={handlePressAllCategory}>
-          <Container className={titleBox}>همه دسته بندی ها</Container>
+          <Container sx={titleBox}>همه دسته بندی ها</Container>
         </ButtonBase>
         {categories.map((category, index) => (
           <ButtonBase
             key={index}
-            className={categoryItem}
+            sx={categoryItem}
             onClick={() => handlePressCategory(category)}
           >
             <Avatar
               alt="food category"
-              className={img}
+              sx={img}
               src={`http://192.168.43.209:4000/${category}.jpg`}
             />
             <Typography color="GrayText">{category}</Typography>
@@ -55,22 +54,22 @@ const CategoriesBox = ({ shopType }) => {
 
 export default memo(CategoriesBox);
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     width: "100%",
   },
   img: {
-    marginLeft: 14,
-    width: 34,
-    height: 34,
-    boxShadow: theme.shadows[2],
+    marginLeft: "14px",
+    width: "34px",
+    height: "34px",
+    boxShadow: 2,
   },
   titleBox: {
-    borderRadius: 10,
-    backgroundColor: theme.palette.secondary.dark,
+    borderRadius: "10px",
+    backgroundColor:" secondary.dark",
     padding: "1rem !important",
-    fontSize: 17,
-    marginBottom: 17,
+    fontSize: "17px",
+    marginBottom: "17px",
     fontWeight: "bold",
   },
 
@@ -78,6 +77,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 14,
+    marginBottom: "14px",
   },
-}));
+};

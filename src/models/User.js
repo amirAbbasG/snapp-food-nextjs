@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 import AddressSchema from "./Address";
 import jwt from "@tsndr/cloudflare-worker-jwt";
 
@@ -25,6 +25,5 @@ UserSchema.methods.genAuthToken = function () {
   });
 };
 
-const UserModel = model("users", UserSchema);
 
-export default UserModel;
+export default models.users || model("users", UserSchema);

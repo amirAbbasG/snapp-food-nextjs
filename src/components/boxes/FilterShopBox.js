@@ -1,10 +1,9 @@
 import { useContext, memo, useState } from "react";
 import { Paper, Grid } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { FilterItem } from "../";
 
 const FilterShopBox = () => {
-  const { root } = useStyles();
+
   const [priceRange, setPriceRange] = useState({
     title: "همه",
     minPrice: 0,
@@ -17,7 +16,7 @@ const FilterShopBox = () => {
   //   useContext(shopsContext);
 
   return (
-    <Grid item className={root} p={2}>
+    <Grid item sx={{width: "100%"}} p={2}>
       <Paper sx={{ padding: 2 }}>
         <FilterItem
           title="دارای کوپن"
@@ -35,9 +34,3 @@ const FilterShopBox = () => {
 };
 
 export default memo(FilterShopBox);
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-}));

@@ -11,33 +11,10 @@ const GlobalContextProvider = ({ children }) => {
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
   const [openAuth, setOpenAuth] = useState(false);
 
-  // //#region check is user connected to internet
-  // const needNetAlert = () => {
-  //   Alert.alert(
-  //     'اتصال اینترنت',
-  //     'برای ادامه کار نیاز به اتصال به اینترنت است',
-  //     [
-  //       {
-  //         text: 'باشه',
-  //         onPress: BackHandler.exitApp,
-  //       },
-  //     ],
-  //     {cancelable: false},
-  //   );
-  // };
-  //
-  // const chekNet = async () => {
-  //   const state = await NetInfo.fetch();
-  //   if (!state.isConnected) {
-  //     needNetAlert();
-  //   }
-  // };
-  // //#endregion
 
   return (
     <globalContext.Provider
       value={{
-        // chekNet,
         isLg,
         isMd,
         isSm,

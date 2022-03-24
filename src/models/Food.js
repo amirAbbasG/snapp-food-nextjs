@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const FoodSchema = new Schema({
   name: { type: String, required: true, min: 3 },
@@ -12,6 +12,5 @@ const FoodSchema = new Schema({
   totalOrdered: { type: Number, default: 0 },
 });
 
-const FoodModel = model("foods", FoodSchema);
 
-export default FoodModel;
+export default models.foods || model("foods", FoodSchema);

@@ -70,7 +70,7 @@ let theme = createTheme({
         fontFamily: "irsans",
       },
       body1: {
-        fontSize: 13,
+        fontSize: 14,
       },
     },
     MuiTextField: {
@@ -102,7 +102,7 @@ let theme = createTheme({
   typography: {
     fontFamily: "irsans",
     body1: {
-      fontSize: 13,
+      fontSize: 14,
     },
     h6: {
       fontWeight: "bold",

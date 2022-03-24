@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const CommentSchema = new Schema({
   sender: { type: String, required: true },
@@ -9,6 +9,5 @@ const CommentSchema = new Schema({
   replay: String,
 });
 
-const CommentModel = model("comments", CommentSchema);
 
-export default CommentModel;
+export default models.comments || model("comments", CommentSchema);
