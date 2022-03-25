@@ -21,7 +21,7 @@ const ShopTypesBox = () => {
       {(data && data.shopTypes) &&
         data.shopTypes.map((item) => (
           <Grid xs={2} lg={1} md={1} key={item._id} item className={itemBox}>
-            <Link href={`/shops?category=${item.type}`}>
+            <Link href={`/shops?filter=category&category=${item.type}`}>
               <a>
                 <IconButton>
                   <Image

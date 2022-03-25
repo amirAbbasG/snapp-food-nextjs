@@ -94,11 +94,9 @@ let theme = createTheme({
       },
     },
   },
-  shadows: {
-    1: " 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.07)",
-    2: " 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.12)",
-    3: " 0 3px 6px 0 rgba(0, 0, 0, 0.15), 0 3px 6px 0 rgba(0, 0, 0, 0.15)",
-  },
+
+
+
   typography: {
     fontFamily: "irsans",
     body1: {
@@ -110,6 +108,10 @@ let theme = createTheme({
     },
   },
 });
+
+theme.shadows[1] = "0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.07)"
+theme.shadows[2] = "0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.12)"
+  theme.shadows[3]  = " 0 3px 6px 0 rgba(0, 0, 0, 0.15), 0 3px 6px 0 rgba(0, 0, 0, 0.15)"
 
 theme = responsiveFontSizes(theme);
 

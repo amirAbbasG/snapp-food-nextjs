@@ -1,8 +1,7 @@
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import { Grid, Typography } from "@mui/material";
 import { CategoryCard } from "../";
 import { makeStyles } from "@mui/styles";
-import { isEmpty } from "lodash";
 
 const RestaurantCategoriesBox = ({ categories }) => {
   const { root, item } = useStyles();

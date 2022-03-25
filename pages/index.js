@@ -2,11 +2,11 @@ import Image from "next/image";
 
 import {makeStyles} from "@mui/styles";
 
-import {getShopTypeByIdApi} from "../src/services/shopServices";
+
 import styles from "../styles/Home.module.css";
 import {MyHead, RestaurantCategoriesBox, ShopsShowCasesBox} from "../src/components";
 import {getMeal} from "../src/utils/mealCalculator";
-import {getTopRatedShops, getDiscountedShops, getShopsWithCoupon, getShopByCategory} from "../src/services/shopServices"
+import {getTopRatedShopsApi, getDiscountedShopsApi, getShopsWithCouponApi, getShopByCategoryApi, getShopTypeByNameApi} from "../src/services/shopServices"
 
 
 // export async function getStaticProps() {
@@ -20,11 +20,12 @@ import {getTopRatedShops, getDiscountedShops, getShopsWithCoupon, getShopByCateg
 // }
 
 export async function getServerSideProps() {
-    const {data: {discountedShops}} = await getDiscountedShops(7)
-    const {data: {topRatedShops}} = await getTopRatedShops(7)
-    const {data: {shopsWithCoupon}} = await getShopsWithCoupon(7)
-    const {data: {shopType}} = await getShopTypeByIdApi("616c684f4307800a96a20261")
-    const {data: {shops}} = await getShopByCategory("رستوران", 7)
+    const {data: {discountedShops}} = await getDiscountedShopsApi(7)
+    const {data: {topRatedShops}} = await getTopRatedShopsApi(7)
+    const {data: {shopsWithCoupon}} = await getShopsWithCouponApi(7)
+    const {data: {shops}} = await getShopByCategoryApi("رستوران", 7)
+    const {data: {shopType}} = await getShopTypeByNameApi("رستوران")
+
 
     return {
         props: {
@@ -51,19 +52,23 @@ export default function Home({restaurantCategories, discountedShops, topRatedSho
 
             <RestaurantCategoriesBox categories={restaurantCategories}/>
             <ShopsShowCasesBox
+                url="/shops?filter=category&category=رستوران"
                 data={restaurants}
                 title={` ${getMeal()} در اسنپ فود`}
             />
             <ShopsShowCasesBox
+                url="/shops?filter=discounted"
                 data={discountedShops}
                 title="دارای تخفیف"
             />
             <ShopsShowCasesBox
-                data={topRatedShops}
+                url="/shops?filter=coupon"
+                data={shopsWithCoupon}
                 title="دارای کوپن"
             />
             <ShopsShowCasesBox
-                data={shopsWithCoupon}
+                url="/shops?filter=topRated"
+                data={topRatedShops}
                 title="بهترین ها در اسنپ فود"
             />
 

@@ -10,7 +10,7 @@ const CategoryCard = ({category}) => {
     const {root, title, titleGrid} = styles
 
     return (
-        <Link href={`/shops?category=${category}`}>
+        <Link href={`/shops?filter=category&category=${category}`}>
             <a>
 
                 <Card

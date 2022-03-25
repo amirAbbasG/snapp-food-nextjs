@@ -6,7 +6,7 @@ import Carousel from "react-elastic-carousel";
 import { ShopCard } from "../";
 import { globalContext } from "../../Contexts";
 
-const ShopsShowCasesBox = ({ data, title }) => {
+const ShopsShowCasesBox = ({ data, title, url }) => {
   const { isLg, isMd, isSm, isXs } = useContext(globalContext);
   let showCount = 4;
 
@@ -24,7 +24,7 @@ const ShopsShowCasesBox = ({ data, title }) => {
     <>
       <Stack direction="row" justifyContent="space-between" py={2} mt={4}>
         <Typography variant="h6">{title}</Typography>
-        <Link href="/shops" scroll={false}>
+        <Link href={url} scroll={false}>
           <a>
             <Stack direction="row" alignItems="center">
               <Typography color="textSecondary" variant="h6">

@@ -1,8 +1,8 @@
-
 import mongoDb from "../../../src/lib/mongoDb";
 import ShopModel from "../../../src/models/Shop";
 import CommentModel from "../../../src/models/Comment"
 import { calculateRate } from "../../../src/utils/rateCalculator";
+
 
 const topRatedShops = async (req, res) => {
   try {

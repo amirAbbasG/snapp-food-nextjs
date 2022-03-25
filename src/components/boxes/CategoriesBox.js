@@ -1,4 +1,7 @@
 import { memo } from "react";
+
+import {useRouter} from "next/router"
+
 import {
   Avatar,
   Paper,
@@ -10,27 +13,24 @@ import {
 
 
 const CategoriesBox = ({ shopType }) => {
-  const shopTypes = [];
-  let type = shopTypes.find((s) => s.type === shopType);
-  if (!type) {
-    type = shopTypes.find((s) => s.type === "رستوران");
-  }
 
-  const categories = type.categories;
+  const {categories} = shopType
+
+  const router = useRouter()
 
   const handlePressCategory = (category) => {
-    // dispatch(filterShopByShopType(category));
+      router.push(`/shops?filter=category&category=${category}`)
   };
 
   const handlePressAllCategory = () => {
-    // dispatch(filterShopByShopType(shopType));
+    router.push(`/shops?filter=category&category=${shopType.type}`)
   };
 
   const { root, img, titleBox, categoryItem } = styles;
   return (
     <Grid item sx={root} p={2}>
       <Paper sx={{ padding: 2 }}>
-        <ButtonBase sx={{ width: "100%" }} onClick={handlePressAllCategory}>
+        <ButtonBase sx={{ width: "100%", borderRadius: "10px" }} onClick={handlePressAllCategory}>
           <Container sx={titleBox}>همه دسته بندی ها</Container>
         </ButtonBase>
         {categories.map((category, index) => (
@@ -42,7 +42,10 @@ const CategoriesBox = ({ shopType }) => {
             <Avatar
               alt="food category"
               sx={img}
-              src={`http://192.168.43.209:4000/${category}.jpg`}
+              src={`/images/categories/${category.replace(
+                  " ",
+                  "-"
+              )}.jpg`}
             />
             <Typography color="GrayText">{category}</Typography>
           </ButtonBase>

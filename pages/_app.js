@@ -6,7 +6,8 @@ import PropTypes from "prop-types";
 import {CacheProvider} from "@emotion/react";
 import {ToastContainer} from "react-toastify";
 import axios from "axios";
-import {ThemeProvider, CssBaseline} from "@mui/material";
+import {CssBaseline} from "@mui/material";
+import {ThemeProvider} from "@mui/material/styles"
 import {SWRConfig} from 'swr'
 
 import ErrorBoundary from "../src/components/layout/ErrorBoundary";
@@ -28,22 +29,22 @@ function MyApp({
             <Head>
                 <meta name="viewport" content="initial-scale=1, width=device-width"/>
             </Head>
-            <ThemeProvider theme={theme}>
 
-                <ErrorBoundary>
-                    <SWRConfig value={{fetcher: (url) => axios(url).then(res => res.data)}}>
+            <ErrorBoundary>
+                <SWRConfig value={{fetcher: (url) => axios(url).then(res => res.data)}}>
+
+                    <ThemeProvider theme={theme}>
                         <CssBaseline/>
-
                         <GlobalContextProvider>
                             <DefaultLayout>
                                 <Component {...pageProps} />
                             </DefaultLayout>
                         </GlobalContextProvider>
-                    </SWRConfig>
-                </ErrorBoundary>
-                <ToastContainer/>
 
-            </ThemeProvider>
+                        <ToastContainer/>
+                    </ThemeProvider>
+                </SWRConfig>
+            </ErrorBoundary>
         </CacheProvider>
     );
 }

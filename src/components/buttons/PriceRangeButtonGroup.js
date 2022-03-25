@@ -22,19 +22,22 @@ const PriceRangeButtonGroup = () => {
           variant="contained"
         >
           {priceRanges.map((item, index) => (
+          <Grid key={index}>
             <Button
-              sx={{
-                borderRadius: "px",
-                color: priceRange === item ? "#00B862" : "black",
-                backgroundColor: priceRange === item ? "white" : "#EBEDF0",
-              }}
-              onClick={() => {
-                setPriceRange(item);
-              }}
-              key={index}
+                sx={{
+                  width: "90%",
+                  borderRadius: 2,
+                  color: priceRange === item ? "#00B862" : "black",
+                  backgroundColor: priceRange === item ? "white" : "#EBEDF0",
+                }}
+                onClick={() => {
+                  setPriceRange(item);
+                }}
+
             >
               {item.title}
             </Button>
+          </Grid>
           ))}
         </ButtonGroup>
       </Paper>
@@ -52,8 +55,7 @@ const styles = {
     width: "100%",
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
-    borderRadius: 10,
-    marginTop: 17,
-    backgroundColor: " secondary.dark",
+    borderRadius: "10px",
+    marginTop: "17px",
   },
 };

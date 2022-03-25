@@ -1,12 +1,13 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import ShopTypesModel from "../../../src/models/ShopTypes";
 
-const shopTypeById = async (req, res) => {
+const shopTypeByName = async (req, res) => {
   try {
     await mongoDb();
-    const { id } = req.query;
-    console.log({id})
-    const shopType = await ShopTypesModel.findById(id)
+    const { name } = req.query;
+    const shopType = await ShopTypesModel.findOne({
+     $or: [{type: name}, {categories: name}]
+    })
     res.status(200).send({ shopType });
   } catch (error) {
     const err = new Error("مشکلی پیش آمده : ", error);
@@ -15,4 +16,4 @@ const shopTypeById = async (req, res) => {
   }
 };
 
-export default shopTypeById;
+export default shopTypeByName;
