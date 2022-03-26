@@ -4,7 +4,7 @@ const ActionButton = ({ icon, onClick }) => (
   <IconButton onClick={onClick}>
     <Card
       elevation={2}
-      style={{
+      sx={{
         borderRadius: "50%",
         width: "1.8rem",
         height: "1.8rem",

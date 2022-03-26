@@ -1,5 +1,6 @@
+import Image from "next/image"
+
 import { Grid, Typography, Container } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 
 import {
   MyDialog,
@@ -10,25 +11,27 @@ import {
 } from "../";
 import { calculateRate } from "../../utils/rateCalculator";
 
-const FoodDetailsDialog = ({ foodId, open, handleClose }) => {
-  // const shopDetails = useSelector((state) => state.shopDetails);
-  const shopDetails = { foods: [] };
-  const food = shopDetails.foods.find((f) => f._id === foodId);
+const FoodDetailsDialog = ({ food, open, handleClose }) => {
+
   const rate = calculateRate(food.comments);
 
-  const { img, detailBox } = useStyles();
+  const { img, detailBox } = styles;
 
   return (
     <MyDialog width="70%" onClose={handleClose} open={open}>
       <Grid container p={1}>
         <Grid item xs={5}>
-          <img
+          <Grid sx={img}>
+
+          <Image
+              width={400}
+              height={400}
             alt="food"
-            className={img}
-            src={`http://192.168.43.209:4000/${food.foodImage}`}
+            src={`/images/food/${food.foodImage}`}
           />
+          </Grid>
         </Grid>
-        <Grid item xs={7} className={detailBox}>
+        <Grid item xs={7} sx={detailBox}>
           <Container sx={{ width: "100%", justifyContent: "space-between" }}>
             <Typography variant="h6">{food.name}</Typography>
             <RateBox rate={rate === 0 ? "جدید" : rate} />
@@ -45,27 +48,27 @@ const FoodDetailsDialog = ({ foodId, open, handleClose }) => {
             }}
           >
             <FoodPriceBox price={food.price} discount={food.discount} />
-            <FoodOrderButtons foodId={foodId} />
+            <FoodOrderButtons foodId={food._id} />
           </Container>
         </Grid>
       </Grid>
-      <CommentBox comments={food.comments} id={foodId} />
+      <CommentBox comments={food.comments} id={food._id} />
     </MyDialog>
   );
 };
 
 export default FoodDetailsDialog;
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   img: {
     width: "100%",
-    height: "15rem",
-    borderRadius: 10,
-    boxShadow: theme.shadows[2],
+    borderRadius: "10px",
+    boxShadow: 2,
+    overflow: "hidden"
   },
   detailBox: {
     display: "flex",
     flexDirection: "column",
-    padding: 14,
+    padding: "14px",
   },
-}));
+};

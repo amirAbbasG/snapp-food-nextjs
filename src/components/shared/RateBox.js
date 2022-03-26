@@ -1,22 +1,21 @@
 import { Stack, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { Star } from "@mui/icons-material";
 
 const RateBox = ({ rate = 2.3, fontSize, ...props }) => {
-  const { root, icon } = useStyles(props);
+  const { root, icon } = styles;
   return (
-    <Stack className={root}>
+    <Stack sx={root}>
       <Typography color="textSecondary" fontSize={fontSize || 11}>
         {rate}
       </Typography>
-      <Star className={icon} />
+      <Star sx={icon} />
     </Stack>
   );
 };
 
 export default RateBox;
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     display: "flex",
     flexDirection: "row",
@@ -25,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     width: "3rem",
     height: "1.4rem",
     justifyContent: "center",
-    backgroundColor: (props) => props.backgroundColor || "#eafcf4",
-    borderRadius: 10,
+    backgroundColor: "#eafcf4",
+    borderRadius: "px",
   },
   icon: {
-    fontSize: 13,
+    fontSize: "13px",
     marginRight: "3px",
-    color: (props) => props.color || theme.palette.text.secondary,
+    color: "text.secondary"
   },
-}));
+};

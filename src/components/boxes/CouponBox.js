@@ -23,10 +23,10 @@ const CouponBox = ({ shopId, coupons }) => {
     showCount = 1;
   }
 
-  const { couponBox, root } = useStyles();
+  const { couponBox, root } = styles;
 
   return (
-    <Stack className={root}>
+    <Stack sx={root}>
       <Typography textAlign="center">کوپن ها</Typography>
       <Carousel
         itemsToShow={coupons.length < showCount ? coupons.length : showCount}
@@ -38,7 +38,7 @@ const CouponBox = ({ shopId, coupons }) => {
         {coupons.map((coupon) => (
           <ButtonBase
             key={coupon._id}
-            className={couponBox}
+            sx={couponBox}
             onClick={() => setCouponId(coupon._id)}
             style={{
               borderColor: coupon._id === couponId && "#00B862",
@@ -57,21 +57,21 @@ const CouponBox = ({ shopId, coupons }) => {
 
 export default CouponBox;
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     borderBottom: "1px #e3e3e4 solid",
-    padding: 10,
+    padding: "10px",
   },
   couponBox: {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
     border: "1px solid",
-    borderColor: theme.palette.secondary.dark,
-    backgroundColor: theme.palette.secondary.main,
-    borderRadius: 10,
-    padding: 7,
-    marginTop: 10,
+    borderColor: "secondary.dark",
+    backgroundColor: "secondary.main",
+    borderRadius: "10px",
+    padding: "7px",
+    marginTop: "10px",
     width: "100%",
   },
-}));
+};

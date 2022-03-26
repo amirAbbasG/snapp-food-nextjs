@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 import {
   Box,
   Typography,
@@ -7,7 +9,7 @@ import {
   Grid,
   linearProgressClasses,
 } from "@mui/material";
-import { makeStyles, useTheme } from "@mui/styles";
+import {  useTheme } from "@mui/styles";
 import { LocationOn, Star } from "@mui/icons-material";
 import { range } from "lodash";
 
@@ -16,11 +18,9 @@ import { calculateRate } from "../../utils/rateCalculator";
 import { CommentBox } from "../";
 // import { Map } from "../../utils/map";
 
-const ShopInformationDialog = ({ open, handleClose }) => {
+const ShopInformationDialog = ({ open, handleClose, shopDetails }) => {
   // const shopDetails = useSelector((state) => state.shopDetails);
-  const shopDetails = {
-    comments: [],
-  };
+
   const comments = shopDetails.comments;
   const { city, exactAddress, longitude, latitude } = shopDetails.address;
   const commentsCount = comments.length;
@@ -46,17 +46,22 @@ const ShopInformationDialog = ({ open, handleClose }) => {
     return Math.floor(scorePercentage);
   };
 
-  const { informationBox, shopLogo, scoreRow, starBox, mapBox } = useStyles();
+  const { informationBox, shopLogo, scoreRow, starBox, mapBox } = styles;
 
   return (
     <MyDialog width="100%" onClose={handleClose} open={open}>
-      <Box className={informationBox}>
+      <Box sx={informationBox}>
         <Stack direction="row" justifyContent="space-between">
-          <img
+          <Stack sx={shopLogo}>
+
+          <Image
+              height={80}
+              width={80}
             alt="shop logo"
-            className={shopLogo}
-            src={`http://192.168.43.209:4000/${shopDetails.shopLogo}`}
+
+            src={`images/logo/${shopDetails.shopLogo}`}
           />
+          </Stack>
           <Stack p={1}>
             <Typography
               fontSize={17}
@@ -67,13 +72,13 @@ const ShopInformationDialog = ({ open, handleClose }) => {
               {shopDetails.shopType} ، {shopDetails.category}
             </Typography>
             <Container>
-              <LocationOn style={{ color: "gray" }} />
+              <LocationOn sx={{ color: "gray" }} />
               <Typography mr={0.3}>
                 {exactAddress && exactAddress.slice(0, 34)}....
               </Typography>
             </Container>
           </Stack>
-          <Stack className={mapBox}>
+          <Stack sx={mapBox}>
             {/* <Mapir center={[51.42047, 35.729054]} Map={Map}>
               <Mapir.Marker
                 coordinates={[longitude, latitude]}
@@ -83,7 +88,7 @@ const ShopInformationDialog = ({ open, handleClose }) => {
           </Stack>
         </Stack>
       </Box>
-      <Box className={scoreRow} sx={{ marginTop: 5 }}>
+      <Box sx={{...scoreRow, marginTop: 5 }}>
         <Stack>
           <RateBox fontSize={14}>{calculateRate(comments)}</RateBox>
           <Typography
@@ -93,7 +98,7 @@ const ShopInformationDialog = ({ open, handleClose }) => {
         <Stack sx={{ flex: 1 }}>
           {scoreRanges.map(({ color, value }) => (
             <Grid container alignItems="center" spacing={1} key={value}>
-              <Grid item xs={3} className={starBox}>
+              <Grid item xs={3} sx={starBox}>
                 {range(0, value).map((val) => (
                   <Star
                     key={val}
@@ -126,26 +131,25 @@ const ShopInformationDialog = ({ open, handleClose }) => {
 
 export default ShopInformationDialog;
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   informationBox: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 10,
+    padding: "10px",
   },
   shopLogo: {
-    width: "6rem",
-    height: "6rem",
-    borderRadius: 10,
-    boxShadow: theme.shadows[3],
-    marginLeft: 10,
+    borderRadius: "10px",
+    boxShadow: 3,
+    marginLeft: "10px",
+    overflow: "hidden"
   },
   scoreRow: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: 7,
+    paddingLeft: "7px",
   },
   starBox: {
     direction: "ltr",
@@ -156,8 +160,8 @@ const useStyles = makeStyles((theme) => ({
     width: "200px",
     height: "120px",
     overflow: "hidden",
-    borderRadius: 10,
+    borderRadius: "10px",
     position: "absolute",
     left: "2.4rem",
   },
-}));
+};

@@ -44,18 +44,18 @@ const FoodOrderButtons = ({ foodId }) => {
     // }
   };
 
-  const { orderButtonBox, button } = useStyles();
+  const { orderButtonBox, button } = styles;
 
   return (
     <>
       {foodCountInOrder > 0 ? (
-        <Box className={orderButtonBox}>
+        <Box sx={orderButtonBox}>
           <ActionButton icon="-" onClick={handleMinus} />
           <Typography fontSize={10}>{foodCountInOrder}</Typography>
           <ActionButton icon="+" onClick={handleAdd} />
         </Box>
       ) : (
-        <Button onClick={handleAdd} className={button}>
+        <Button onClick={handleAdd} sx={button}>
           افزودن
         </Button>
       )}
@@ -65,15 +65,15 @@ const FoodOrderButtons = ({ foodId }) => {
 
 export default FoodOrderButtons;
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   button: {
     padding: "0.4rem 2rem",
     borderRadius: 20,
-    boxShadow: theme.shadows[2],
+    boxShadow: 2,
   },
   orderButtonBox: {
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
   },
-}));
+};
