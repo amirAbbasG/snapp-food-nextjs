@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
+
 import Link from "next/link";
 import { validateAction } from "../../utils/validators";
 import { AuthTextField, VerificationCodeInput, MyForm } from "../";

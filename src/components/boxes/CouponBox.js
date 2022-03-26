@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
+
 import { Stack, Typography, ButtonBase } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Carousel from "react-elastic-carousel";
-import { globalContext, shopsContext } from "../../Contexts";
+
+import { globalContext } from "../../contexts/globalContext";
 
 const CouponBox = ({ shopId, coupons }) => {
   const [couponId, setCouponId] = useState();

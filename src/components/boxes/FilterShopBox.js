@@ -1,19 +1,12 @@
-import { useContext, memo, useState } from "react";
+import { memo } from "react";
+
 import { Paper, Grid } from "@mui/material";
+
 import { FilterItem } from "../";
 
-const FilterShopBox = () => {
+const FilterShopBox = ({ setIsFreeExpress, isFreeExpress, haveCoupon, setHaveCoupon }) => {
 
-  const [priceRange, setPriceRange] = useState({
-    title: "همه",
-    minPrice: 0,
-    maxPrice: 1000000,
-  });
-  const [isFreeExpress, setIsFreeExpress] = useState(false);
-  const [haveCoupon, setHaveCoupon] = useState(false);
 
-  // const { setIsFreeExpress, isFreeExpress, haveCoupon, setHaveCoupon } =
-  //   useContext(shopsContext);
 
   return (
     <Grid item sx={{width: "100%"}} p={2}>

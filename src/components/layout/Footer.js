@@ -1,9 +1,10 @@
-import Link from "next/link";
 import Image from "next/image";
+
 import { Grid, Typography, Stack } from "@mui/material";
 import { useTheme } from "@mui/styles";
 import {styled} from "@mui/system";
 
+import {Link} from "../";
 import { SocialMediaButton, SnappFoodLogo } from "../";
 import { socialMedias, links } from "../../utils/values";
 
@@ -68,13 +69,11 @@ const Footer = () => {
         container
         display="grid"
         gridTemplateColumns="repeat(2, 1fr)"
-        className={linkBox}
+        sx={linkBox}
       >
         {links.map((item, index) => (
           <Link href="#" key={index}>
-            <a>
               <FooterText>{item}</FooterText>
-            </a>
           </Link>
         ))}
       </Grid>

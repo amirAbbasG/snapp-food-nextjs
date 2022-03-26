@@ -1,7 +1,8 @@
-import Link from "next/link";
 
 import {Grid, Typography, Card} from "@mui/material";
 import {KeyboardArrowLeft} from "@mui/icons-material";
+
+import {Link} from "../";
 
 
 const CategoryCard = ({category}) => {
@@ -11,8 +12,6 @@ const CategoryCard = ({category}) => {
 
     return (
         <Link href={`/shops?filter=category&category=${category}`}>
-            <a>
-
                 <Card
                     elevation={2}
                     sx={{
@@ -32,7 +31,6 @@ const CategoryCard = ({category}) => {
                         <KeyboardArrowLeft color="primary"/>
                     </Grid>
                 </Card>
-            </a>
         </Link>
     );
 };

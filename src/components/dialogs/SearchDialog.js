@@ -1,4 +1,5 @@
 import React, { useState, memo } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -8,9 +9,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 import { Search, StorefrontTwoTone } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
+
+import {Link} from "../";
 
 const SearchDialog = ({ open, handleClose }) => {
   const { dialog, helpText, textField, shopsBox } = useStyles();
@@ -71,7 +73,8 @@ const SearchDialog = ({ open, handleClose }) => {
               </a>
             </Link>
             {searchShop.slice(0, 9).map((shop) => (
-              <Link to={`/shops/${shop._id}`}>
+
+              <Link to={`/shops/${shop._id}`} key={shop._id} >
                 <a onClick={handleReset}>
                   <Stack direction="row">
                     <StorefrontTwoTone />

@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import {
   Menu,
   MenuItem,
@@ -6,7 +8,6 @@ import {
   ListItemIcon,
   Stack,
 } from "@mui/material";
-import { useRouter } from "next/router";
 import { PersonOutline, Logout } from "@mui/icons-material";
 
 const ProfileMenu = ({ onClose, anchorEl }) => {

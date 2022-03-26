@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { Grid, Typography } from "@mui/material";
+
 import { RateBox, DateTimeBox } from "../";
 
 const CommentCard = ({ comment }) => {

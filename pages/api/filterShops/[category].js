@@ -1,5 +1,6 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import ShopModel from "../../../src/models/Shop";
+import FoodModel from "../../../src/models/Food";
 
 const shopsByCategory = async (req, res) => {
   try {
@@ -12,6 +13,7 @@ const shopsByCategory = async (req, res) => {
       $or: [{ shopType: category }, { category}],
     })
       .populate({ path: "comments", select: "score -_id" })
+        .populate({ path: "foods", select: "price discount -_id", model: FoodModel })
       .select("-userNumber -userPassword -ownerFullName")
       .limit(limit);
 

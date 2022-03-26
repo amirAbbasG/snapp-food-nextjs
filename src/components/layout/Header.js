@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+
 import { Grid, Paper, Button, Typography, IconButton } from "@mui/material";
 import {
   AddBusiness,
@@ -8,9 +9,12 @@ import {
   PersonOutline,
   ListAlt,
 } from "@mui/icons-material";
-import Link from "next/link";
 import { useTheme } from "@mui/styles";
 import {styled} from "@mui/system";
+import { isEmpty } from "lodash";
+
+import Link from "next/link";
+
 import {
   ShopTypesBox,
   SnappFoodLogo,
@@ -21,8 +25,7 @@ import {
   AddressDialog,
   OrdersDrawer,
 } from "../";
-import { isEmpty } from "lodash";
-import { globalContext } from "../../contexts";
+import { globalContext } from "../../contexts/globalContext";
 
 const Header = ({ shouldShowShopTypes = true }) => {
 

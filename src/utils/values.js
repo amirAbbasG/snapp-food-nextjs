@@ -5,7 +5,7 @@ export const sortTypes = [
   },
   {
     title: "ارزان ترین",
-    type: "Sort_By_Chipe_Price",
+    type: "Sort_By_Cheap_Price",
   },
   {
     title: "بهترین کوپن",

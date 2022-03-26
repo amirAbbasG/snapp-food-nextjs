@@ -1,11 +1,13 @@
-import Link from "next/link";
 import Image from "next/image"
+
+import {Link} from "../";
 
 const SnappFoodLogo = ({ className }) => {
   return (
     <Link href="/"
+
     >
-      <a style={{
+      <div style={{
           marginLeft: "1rem",
       }}>
         <Image
@@ -16,7 +18,7 @@ const SnappFoodLogo = ({ className }) => {
           src="/images/logo-name.png"
           alt="snapp food logo"
         />
-      </a>
+      </div>
     </Link>
   );
 };

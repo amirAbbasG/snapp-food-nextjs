@@ -1,5 +1,6 @@
 import { makeStyles, styled } from "@mui/styles";
 import { Typography, Stack, Container } from "@mui/material";
+
 import { MyDialog } from "../";
 import { separatePrice } from "../../utils/priceSeparator";
 

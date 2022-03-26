@@ -1,6 +1,7 @@
 import { Typography, Stack, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { CheckCircle, Cancel } from "@mui/icons-material";
+
 import { separatePrice } from "../../utils/priceSeparator";
 import { DateTimeBox } from "../";
 

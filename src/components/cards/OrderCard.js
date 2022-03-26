@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-import Link from "next/link";
 import Image from "next/image"
 
 import { Badge, Button, Stack, Typography, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { InfoOutlined, Autorenew, LocationOn } from "@mui/icons-material";
+
+import {Link} from "../";
 import { DateTimeBox } from "../";
 import { separatePrice } from "../../utils/priceSeparator";
 import { FactorDialog } from "../";
@@ -20,15 +21,14 @@ const OrderCard = ({ order }) => {
       <Stack spacing={2} className={root}>
         <Stack spacing={3}>
           <Container>
-            <Link href="#">
-              <a>
+            <Link href={`/shops/${order.shopId}`}>
                 <Image
                 width
                   className={shopImage}
                   alt="shop-logo"
                   src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
                 />
-              </a>
+
             </Link>
             <Stack spacing={1}>
               <Typography mr={1} fontWeight="bold">

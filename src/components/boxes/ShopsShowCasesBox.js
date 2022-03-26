@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import Link from "next/link";
+
 import { Typography, Stack } from "@mui/material";
 import { ChevronLeft } from "@mui/icons-material";
 import Carousel from "react-elastic-carousel";
+
+import {Link} from "../";
 import { ShopCard } from "../";
-import { globalContext } from "../../Contexts";
+import { globalContext } from "../../contexts/globalContext";
 
 const ShopsShowCasesBox = ({ data, title, url }) => {
   const { isLg, isMd, isSm, isXs } = useContext(globalContext);
@@ -25,7 +27,6 @@ const ShopsShowCasesBox = ({ data, title, url }) => {
       <Stack direction="row" justifyContent="space-between" py={2} mt={4}>
         <Typography variant="h6">{title}</Typography>
         <Link href={url} scroll={false}>
-          <a>
             <Stack direction="row" alignItems="center">
               <Typography color="textSecondary" variant="h6">
                 مشاهده همه
@@ -39,7 +40,6 @@ const ShopsShowCasesBox = ({ data, title, url }) => {
                 }}
               />
             </Stack>
-          </a>
         </Link>
       </Stack>
       <Carousel

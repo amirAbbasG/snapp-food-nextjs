@@ -1,5 +1,5 @@
-import React, { memo, useState } from "react";
-import { globalContext } from "..";
+import { memo, useState } from "react";
+import { globalContext } from "./globalContext";
 import { useTheme } from "@mui/styles";
 import { useMediaQuery } from "@mui/material";
 

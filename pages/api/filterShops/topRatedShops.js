@@ -2,6 +2,7 @@ import mongoDb from "../../../src/lib/mongoDb";
 import ShopModel from "../../../src/models/Shop";
 import CommentModel from "../../../src/models/Comment"
 import { calculateRate } from "../../../src/utils/rateCalculator";
+import FoodModel from "../../../src/models/Food";
 
 
 const topRatedShops = async (req, res) => {
@@ -12,6 +13,7 @@ const topRatedShops = async (req, res) => {
 
     const shops = await ShopModel.find()
       .populate({ path: "comments", select: "score -_id", model: CommentModel })
+        .populate({ path: "foods", select: "price discount -_id", model: FoodModel })
       .select("-userNumber -userPassword -ownerFullName");
 
     const topRatedShops = [...shops]

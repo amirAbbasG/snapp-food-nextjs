@@ -1,7 +1,8 @@
 import { Drawer, Typography, Button, Stack } from "@mui/material";
 import { Restore } from "@mui/icons-material";
-import { DrawerOrderCard } from "../";
 import { makeStyles } from "@mui/styles";
+
+import { DrawerOrderCard } from "../";
 
 const OrdersDrawer = ({ open, handleClose }) => {
   const { drawer, ordersBox } = useStyles();

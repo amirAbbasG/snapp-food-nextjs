@@ -1,20 +1,22 @@
 import { memo } from "react";
+
 import { Grid, Typography } from "@mui/material";
+
 import { CategoryCard } from "../";
-import { makeStyles } from "@mui/styles";
+
 
 const RestaurantCategoriesBox = ({ categories }) => {
-  const { root, item } = useStyles();
+  const { root, item } = styles
 
   return (
     <>
       <Typography mb={3} mr={"2%"} variant="h6">
         دسته بندی ها
       </Typography>
-      <Grid container rowSpacing={4} columns={10} className={root}>
+      <Grid container rowSpacing={4} columns={10} sx={root}>
         {categories.map((category, index) => (
           <Grid
-            className={item}
+            sx={item}
             item
             key={index}
             lg={2}
@@ -32,7 +34,7 @@ const RestaurantCategoriesBox = ({ categories }) => {
 
 export default memo(RestaurantCategoriesBox);
 
-const useStyles = makeStyles({
+const styles = {
   root: {
     width: "100%",
     marginBottom: "4rem",
@@ -43,4 +45,4 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-});
+};

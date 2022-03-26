@@ -1,7 +1,10 @@
 import { memo } from "react";
+
+import Link from "next/link";
+
 import { Card, CardContent, CardMedia, Box, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import Link from "next/link";
+
 import { FoodPriceBox, FoodOrderButtons } from "../";
 
 const FoodCard = ({ food, onClick }) => {

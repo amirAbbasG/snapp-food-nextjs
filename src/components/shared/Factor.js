@@ -1,5 +1,6 @@
 import { Typography, Stack } from "@mui/material";
 import { styled } from "@mui/styles";
+
 import { separatePrice } from "../../utils/priceSeparator";
 
 const Factor = ({ orderId, couponDiscount = 0 }) => {

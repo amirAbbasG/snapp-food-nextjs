@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const globalContext = createContext({
+export const globalContext = createContext({
   isLg: false,
   isMd: false,
   isSm: false,
@@ -9,4 +9,4 @@ const globalContext = createContext({
   setOpenAuth: () => {},
 });
 
-export default globalContext;
+

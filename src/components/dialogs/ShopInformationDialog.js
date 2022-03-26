@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Typography,
@@ -11,6 +10,7 @@ import {
 import { makeStyles, useTheme } from "@mui/styles";
 import { LocationOn, Star } from "@mui/icons-material";
 import { range } from "lodash";
+
 import { MyDialog, RateBox } from "../";
 import { calculateRate } from "../../utils/rateCalculator";
 import { CommentBox } from "../";

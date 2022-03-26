@@ -1,7 +1,8 @@
 import { Button, Stack, Typography, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import Link from "next/link";
 import { Autorenew } from "@mui/icons-material";
+
+import {Link} from "../";
 import { DateTimeBox } from "../";
 
 const DrawerOrderCard = ({ order }) => {
@@ -12,13 +13,11 @@ const DrawerOrderCard = ({ order }) => {
     <Stack className={root}>
       <Container>
         <Link href="/">
-          <a>
             <img
               className={shopImage}
               alt="shop-logo"
               src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
             />
-          </a>
         </Link>
         <Stack spacing={1}>
           <Typography mr={1} fontWeight="bold">

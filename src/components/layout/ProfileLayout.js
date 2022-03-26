@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Stack, Paper, Typography, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { KeyboardArrowLeft } from "@mui/icons-material";
-import { DefaultLayout } from "../";
 import { isEmpty } from "lodash";
+
+import { DefaultLayout } from "../";
 import ShouldLoginPage from "../../../pages/profile/should-login";
 
 const ProfileLayout = ({ children }) => {

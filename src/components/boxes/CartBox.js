@@ -1,9 +1,12 @@
 import { useState } from "react";
+
+import { useRouter } from "next/router";
+
 import { Button, Typography, Paper, Stack, IconButton } from "@mui/material";
 import { styled } from "@mui/styles";
 import { DeleteForeverOutlined } from "@mui/icons-material";
-import { useRouter } from "next/router";
 import { isEmpty } from "lodash";
+
 import { RemoveOrderDialog, FoodPriceBox, FoodOrderButtons, Factor } from "../";
 
 const CartBox = ({ shopId }) => {

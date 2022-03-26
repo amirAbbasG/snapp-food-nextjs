@@ -9,15 +9,6 @@ import {getMeal} from "../src/utils/mealCalculator";
 import {getTopRatedShopsApi, getDiscountedShopsApi, getShopsWithCouponApi, getShopByCategoryApi, getShopTypeByNameApi} from "../src/services/shopServices"
 
 
-// export async function getStaticProps() {
-//     const {data: {shopType}} = await getShopTypeByIdApi("616c684f4307800a96a20261")
-//     const restaurantCategories = shopType.categories || []
-//     return {
-//         props: {
-//             restaurantCategories
-//         }
-//     }
-// }
 
 export async function getServerSideProps() {
     const {data: {discountedShops}} = await getDiscountedShopsApi(7)

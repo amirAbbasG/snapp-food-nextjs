@@ -6,7 +6,7 @@ const SocialMediaButton = ({ name, href }) => {
     <IconButton href={href}>
       <Card
         elevation={2}
-        style={{
+        sx={{
           borderRadius: "50%",
           width: "2.5rem",
           height: "2.5rem",

@@ -13,7 +13,7 @@ import {SWRConfig} from 'swr'
 import ErrorBoundary from "../src/components/layout/ErrorBoundary";
 import theme from "../styles/theme";
 import createEmotionCache from "../src/utils/createEmotionCache";
-import {GlobalContextProvider} from "../src/contexts";
+import GlobalContextProvider from "../src/contexts/GlobalContextProvider";
 import {DefaultLayout} from "../src/components";
 import "../styles/globals.css";
 
