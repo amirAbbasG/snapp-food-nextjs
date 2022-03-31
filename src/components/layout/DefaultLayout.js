@@ -1,10 +1,20 @@
+import {useEffect, useContext} from "react";
+
 import { Grid } from "@mui/material";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import {accountContext} from "../../contexts/account/accountContext";
 
 const DefaultLayout = ({  children }) => {
-  return (
+
+    const {checkToken} = useContext(accountContext)
+
+    useEffect(() => {
+        checkToken()
+    }, [])
+
+    return (
     <Grid sx={{width: "100%", flex: 1}}>
       <Header  />
       <Grid
@@ -18,15 +28,15 @@ const DefaultLayout = ({  children }) => {
 
         }}
       >
-        <Grid
-          sx={{
+        <main
+          style={{
             maxWidth: "85.4rem",
             padding: "2.5rem",
             width: "100%",
           }}
         >
           {children}
-        </Grid>
+        </main>
         <Footer />
       </Grid>
     </Grid>

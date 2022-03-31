@@ -1,13 +1,8 @@
-import Image from "next/image";
 
-import {makeStyles} from "@mui/styles";
-
-
-import styles from "../styles/Home.module.css";
 import {MyHead, RestaurantCategoriesBox, ShopsShowCasesBox} from "../src/components";
 import {getMeal} from "../src/utils/mealCalculator";
 import {getTopRatedShopsApi, getDiscountedShopsApi, getShopsWithCouponApi, getShopByCategoryApi, getShopTypeByNameApi} from "../src/services/shopServices"
-
+import styles from "../styles/Home.module.css"
 
 
 export async function getServerSideProps() {

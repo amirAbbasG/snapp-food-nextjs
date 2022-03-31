@@ -4,7 +4,7 @@ import { Stack, Typography, ButtonBase } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Carousel from "react-elastic-carousel";
 
-import { globalContext } from "../../contexts/globalContext";
+import { globalContext } from "../../contexts/global/globalContext";
 
 const CouponBox = ({ shopId, coupons }) => {
   const [couponId, setCouponId] = useState();
@@ -35,9 +35,9 @@ const CouponBox = ({ shopId, coupons }) => {
         itemsToScroll={coupons.length < showCount ? coupons.length : showCount}
         itemPadding={[9, 9, 9, 9]}
       >
-        {coupons.map((coupon) => (
+        {coupons.map((coupon, index) => (
           <ButtonBase
-            key={coupon._id}
+            key={coupon._id + index}
             sx={couponBox}
             onClick={() => setCouponId(coupon._id)}
             style={{

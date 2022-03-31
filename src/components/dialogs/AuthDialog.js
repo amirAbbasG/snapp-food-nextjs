@@ -1,5 +1,8 @@
 import React, { useState, useContext } from "react";
 
+import Link from "next/link";
+import Image from "next/image"
+
 import {
   Dialog,
   DialogContent,
@@ -11,28 +14,29 @@ import {
 import { Close } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 
-import Link from "next/link";
-import { validateAction } from "../../utils/validators";
+import { validateAction } from "../../validators/clientValidators";
+import {accountContext} from "../../contexts/account/accountContext";
 import { AuthTextField, VerificationCodeInput, MyForm } from "../";
 
 const AuthDialog = ({ open, handleClose }) => {
-  const { dialog, logo, titleBox } = useStyles();
   const [number, setNumber] = useState("");
-  const action = "";
 
-  // const {
-  //   action,
-  //   handleUserAuthSubmit,
-  //   setAction,
-  //   setIsLoadingButton,
-  //   forgotPassword,
-  // } = useContext(accountContext);
+
+  const {
+    action,
+    handleUserAuthSubmit,
+    setAction,
+    setIsLoadingButton,
+    forgotPassword,
+  } = useContext(accountContext);
 
   const onClose = () => {
-    // setAction("");
-    // setIsLoadingButton(false);
+    setAction("");
+    setIsLoadingButton(false);
     handleClose();
   };
+
+  const { dialog } = useStyles();
 
   return (
     <Dialog
@@ -43,11 +47,16 @@ const AuthDialog = ({ open, handleClose }) => {
       }}
     >
       <DialogTitle>
-        <Stack className={titleBox}>
+        <Stack sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
           <IconButton onClick={onClose}>
             <Close />
           </IconButton>
-          <img src="/images/logo-name.png" alt="food logo" className={logo} />
+          <Image src="/images/logo-name.png" alt="food logo" width={50} height={50} />
         </Stack>
       </DialogTitle>
       <Typography mr={3} variant="h6">
@@ -64,7 +73,7 @@ const AuthDialog = ({ open, handleClose }) => {
 
       <DialogContent>
         <MyForm
-          // onSubmit={(user) => handleUserAuthSubmit(user)}
+          onSubmit={(user) => handleUserAuthSubmit(user)}
           validationSchema={validateAction(action)}
           initialValues={{
             number: number,
@@ -106,7 +115,7 @@ const AuthDialog = ({ open, handleClose }) => {
           {action === "login" && (
             <Link href="#">
               <a
-              // onClick={() => forgotPassword(number)}
+              onClick={() => forgotPassword(number)}
               >
                 <Typography size="xs" color="textSecondary" mt={2}>
                   رمز عبور خود را فراموش کردید؟
@@ -126,15 +135,5 @@ const useStyles = makeStyles({
   dialog: {
     width: "33%",
     borderRadius: 14,
-  },
-  titleBox: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  logo: {
-    width: 49,
-    height: 49,
-  },
+  }
 });

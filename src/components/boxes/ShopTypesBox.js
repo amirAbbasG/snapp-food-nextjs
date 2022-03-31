@@ -28,7 +28,7 @@ const ShopTypesBox = () => {
     },
   };
 
-  const { data, error } = useSWR('/api/shopTypes')
+  const { data, error } = useSWR('/shopTypes')
 
 
   const { root, itemBox } = styles;

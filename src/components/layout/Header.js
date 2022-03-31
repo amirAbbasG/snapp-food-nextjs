@@ -25,11 +25,12 @@ import {
   AddressDialog,
   OrdersDrawer,
 } from "../";
-import { globalContext } from "../../contexts/globalContext";
+import { globalContext } from "../../contexts/global/globalContext";
+import {useSelector} from "react-redux";
 
 const Header = ({ shouldShowShopTypes = true }) => {
 
-  const theme = useTheme()
+  const {breakpoints} = useTheme()
 
   const styles = {
     root: {
@@ -40,18 +41,18 @@ const Header = ({ shouldShowShopTypes = true }) => {
       zIndex: 999,
     },
     logo: {
-      [theme.breakpoints.down("sm")]: {
+      [breakpoints.down("sm")]: {
         display: "none",
       },
     },
     SearchBox: {
-      backgroundColor: theme.palette.secondary.dark,
+      backgroundColor: "secondary.dark",
       borderRadius: "8px",
       alignItems: "center",
       display: "flex",
       width: "27%",
       padding: "10px",
-      [theme.breakpoints.down("md")]: {
+      [breakpoints.down("md")]: {
         display: "none",
       },
     },
@@ -64,7 +65,7 @@ const Header = ({ shouldShowShopTypes = true }) => {
     buttonBox: {
       display: "flex",
       justifyContent: "flex-end",
-      [theme.breakpoints.down("md")]: {
+      [breakpoints.down("md")]: {
         display: "none",
       },
     },
@@ -76,7 +77,7 @@ const Header = ({ shouldShowShopTypes = true }) => {
       display: "flex",
       justifyContent: "flex-end",
       alignItems: "center",
-      [theme.breakpoints.up("md")]: {
+      [breakpoints.up("md")]: {
         display: "none",
       },
     },
@@ -101,12 +102,24 @@ const Header = ({ shouldShowShopTypes = true }) => {
     height: "3rem",    marginRight: "4px",
   }));
 
-  // const account = useSelector((state) => state.account);
-  const account = {};
+  const account = useSelector((state) => state.account);
+
 
   const handleOpenProfileMenu = (event) => {
     setprofileAnchorEl(event.currentTarget);
   };
+
+
+  const handleCloseAddress = (event) => {
+    event.preventDefault()
+   setOpenAddress(false)
+  };
+
+  const handleOpenAddress = (event) => {
+    event.preventDefault()
+   setOpenAddress(true)
+  };
+
 
   return (
     <>
@@ -119,7 +132,7 @@ const Header = ({ shouldShowShopTypes = true }) => {
 
             {isEmpty(account) ? (
               <Link href="#">
-                <a onClick={() => setOpenAddress(false)}>
+                <a onClick={handleCloseAddress}>
                   <Grid pt={1} item sx={styles.addressButton}>
                     <AddressButton />
                   </Grid>
@@ -132,7 +145,7 @@ const Header = ({ shouldShowShopTypes = true }) => {
                 </Grid>
                 <Grid item>
                   <Link href="#">
-                    <a onClick={() => setOpenAddress(true)}>
+                    <a onClick={handleOpenAddress}>
                       <Typography lineHeight={0.7}>آدرس انتخابی</Typography>
                       <Typography
                         lineHeight={0.7}

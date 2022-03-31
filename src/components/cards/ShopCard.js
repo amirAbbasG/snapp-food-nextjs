@@ -7,7 +7,6 @@ import Image from "next/image"
 import {
   Card,
   CardContent,
-  CardMedia,
   Paper,
   Stack,
   Typography,
@@ -21,29 +20,35 @@ import { RateBox } from "../";
 const ShopCard = ({ shop }) => {
 
 
-  const { root, contentBox, logo, deliveryBox } = styles;
-
   const cost = separatePrice(shop.deliveryCost);
   const rate = calculateRate(shop.comments);
   const router = useRouter();
 
+
+  const { root, contentBox, logo, deliveryBox } = styles;
+
   return (
     <Card sx={root} onClick={() => router.push(`/shops/${shop._id}`, null, {scroll: false})}>
-      <CardMedia
-        component="img"
-        height="160"
-        image={`/images/shop/${shop.shopImage}`}
-        alt="food shop"
-      />
+      <Stack sx={{width: "100%", position:"relative", height: "160px"}}>
+        <Image
+            src={`/images/shop/${shop.shopImage}`}
+            layout="fill"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
+            alt="shop image"
+        />
+      </Stack>
+
       <CardContent sx={contentBox}>
         <Stack sx={logo}>
 
         <Image
-            height={80}
-            width={80}
+            height={75}
+            width={75}
           src={`/images/logo/${shop.shopLogo}`}
           alt="shop logo"
-
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
         />
         </Stack>
         <Typography gutterBottom variant="h6" mt={1} component="div">
@@ -88,6 +93,7 @@ const styles = {
     alignItems: "center",
     display: "flex",
     flexDirection: "column",
+    width: "100%"
   },
   deliveryBox: {
     display: "flex",
@@ -97,10 +103,10 @@ const styles = {
   },
   logo: {
     position: "absolute",
-    top: "97px",
     boxShadow: 3,
     borderRadius: "10px",
-    overflow: "hidden"
+    overflow: "hidden",
+    top: "100px"
   },
 };
 

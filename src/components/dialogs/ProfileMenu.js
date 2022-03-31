@@ -1,3 +1,5 @@
+import {useContext} from "react";
+
 import { useRouter } from "next/router";
 
 import {
@@ -9,18 +11,17 @@ import {
   Stack,
 } from "@mui/material";
 import { PersonOutline, Logout } from "@mui/icons-material";
+import {useSelector} from "react-redux";
+
+import {accountContext} from "../../contexts/account/accountContext";
 
 const ProfileMenu = ({ onClose, anchorEl }) => {
   const open = Boolean(anchorEl);
-  // const { exitAccount } = useContext(accountContext);
+  const { exitAccount } = useContext(accountContext);
   const router = useRouter();
 
-  // const account = useSelector((state) => state.account);
-   const account = {
-     fullname: "",
-     email: "dd",
-     number:1
-   }
+  const account = useSelector((state) => state.account);
+
   return (
     <Menu anchorEl={anchorEl} onClose={onClose} open={open}>
       <MenuList>
@@ -37,7 +38,7 @@ const ProfileMenu = ({ onClose, anchorEl }) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            // exitAccount();
+            exitAccount();
             onClose();
           }}
         >

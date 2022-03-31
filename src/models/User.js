@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 import AddressSchema from "./Address";
-import jwt from "@tsndr/cloudflare-worker-jwt";
+import jwt from "jsonwebtoken";
 
 const UserSchema = new Schema({
   number: { type: String, required: true, max: 11, min: 11, unique: true },

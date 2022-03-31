@@ -19,9 +19,8 @@ import { CommentBox } from "../";
 // import { Map } from "../../utils/map";
 
 const ShopInformationDialog = ({ open, handleClose, shopDetails }) => {
-  // const shopDetails = useSelector((state) => state.shopDetails);
 
-  const comments = shopDetails.comments;
+  const {comments} = shopDetails;
   const { city, exactAddress, longitude, latitude } = shopDetails.address;
   const commentsCount = comments.length;
   const nonZeroScoreCommentsCount = [...comments].filter(
@@ -58,8 +57,9 @@ const ShopInformationDialog = ({ open, handleClose, shopDetails }) => {
               height={80}
               width={80}
             alt="shop logo"
-
-            src={`images/logo/${shopDetails.shopLogo}`}
+            src={`/images/logo/${shopDetails.shopLogo}`}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
           />
           </Stack>
           <Stack p={1}>
@@ -141,6 +141,7 @@ const styles = {
   },
   shopLogo: {
     borderRadius: "10px",
+    maxHeight: "90px",
     boxShadow: 3,
     marginLeft: "10px",
     overflow: "hidden"

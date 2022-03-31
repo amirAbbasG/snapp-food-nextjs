@@ -26,7 +26,8 @@ const SearchDialog = ({ open, handleClose }) => {
       s.shopType.includes(searchText) ||
       s.category.includes(searchText)
   );
-  const handleReset = () => {
+  const handleReset = (e) => {
+    e.preventDefault()
     setSearchText("");
     handleClose();
   };

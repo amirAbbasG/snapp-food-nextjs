@@ -1,5 +1,6 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const reorder = async (req, res) => {
   if (req.method === "POST") {
@@ -7,6 +8,7 @@ const reorder = async (req, res) => {
       await mongoDb();
 
       const { orderId } = req.query;
+      const {_id} = getUser(req.headers.authorization)
 
       if (!orderId) {
         const err = new Error("سفارش مورد نطر پیدا نشد");
@@ -14,7 +16,7 @@ const reorder = async (req, res) => {
         throw err;
       }
       const PrvOrder = await OrderModel.findById(orderId);
-      const user = await UserModel.findById(req.user._id);
+      const user = await UserModel.findById(_id);
 
       const newOrder = new OrderModel(
         _.pick(PrvOrder, ["shopId", "userId", "foods"])

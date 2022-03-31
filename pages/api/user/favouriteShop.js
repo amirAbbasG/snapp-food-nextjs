@@ -1,11 +1,15 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import UserModel from "../../../src/models/User";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const favouriteOrUnfavouriteShop = async (req, res) => {
+  console.log("requested")
   try {
     await mongoDb();
 
-    const user = await UserModel.findOne({ _id: req.user._id });
+    const {_id} = getUser(req.headers.authorization)
+
+    const user = await UserModel.findOne({ _id });
 
     if (!user) {
       const error = new Error("کاربری با ای مشخصات پیدا نشد");
@@ -18,10 +22,10 @@ const favouriteOrUnfavouriteShop = async (req, res) => {
 
     if (foundIndex === -1) {
       user.favoriteShop.push(shopId);
-      res.status(200).send({ message: "done" });
+      res.status(200).send({ message: "done", favourite: true });
     } else {
       user.favoriteShop.splice(foundIndex, 1);
-      res.status(200).send({ message: "done" });
+      res.status(200).send({ message: "done", favourite: false });
     }
 
     await user.save();

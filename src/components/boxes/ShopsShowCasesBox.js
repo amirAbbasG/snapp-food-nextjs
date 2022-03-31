@@ -6,7 +6,7 @@ import Carousel from "react-elastic-carousel";
 
 import {Link} from "../";
 import { ShopCard } from "../";
-import { globalContext } from "../../contexts/globalContext";
+import { globalContext } from "../../contexts/global/globalContext";
 
 const ShopsShowCasesBox = ({ data, title, url }) => {
   const { isLg, isMd, isSm, isXs } = useContext(globalContext);

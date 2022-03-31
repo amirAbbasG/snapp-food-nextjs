@@ -2,12 +2,14 @@ import bcrypt from "bcrypt";
 
 import mongoDb from "../../../src/lib/mongoDb";
 import UserModel from "../../../src/models/User";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const changeAuthenticatedUserPassword = async (req, res) => {
   try {
     await mongoDb();
+    const {_id} = getUser(req.headers.authorization)
 
-    const user = await UserModel.findOne({ _id: req.user._id });
+    const user = await UserModel.findOne({ _id });
     if (!user) {
       const error = new Error("کاربری با ای مشخصات پیدا نشد");
       error.statusCode = 404;

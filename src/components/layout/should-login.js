@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { InfoTwoTone } from "@mui/icons-material";
-import { MyHead} from "../../src/components";
+import { MyHead} from "../";
 
 const ShouldLogin = () => {
     return (

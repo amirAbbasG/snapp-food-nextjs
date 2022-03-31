@@ -1,5 +1,4 @@
 import { Typography, Container, Stack } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 
 import { separatePrice } from "../../utils/priceSeparator";
 

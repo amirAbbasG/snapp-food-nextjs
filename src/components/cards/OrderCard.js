@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image"
 
 import { Badge, Button, Stack, Typography, Container } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/styles";
 import { InfoOutlined, Autorenew, LocationOn } from "@mui/icons-material";
 
 import {Link} from "../";
@@ -12,21 +12,51 @@ import { separatePrice } from "../../utils/priceSeparator";
 import { FactorDialog } from "../";
 
 const OrderCard = ({ order }) => {
-  const { root, shopImage, foodBox } = useStyles();
   // const dispatch = useDispatch();
   const [openFactor, setOpenFactor] = useState(false);
 
+  const {breakpoints} = useTheme()
+
+  const styles = {
+    root: {
+      display: "felx",
+      alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      borderBottom: "1px #e3e3e4 solid",
+      padding: "14px",
+      [breakpoints.down("md")]: {
+        flexDirection: "column",
+        alignItems: "center",
+      },
+    },
+
+    shopImage: {
+      borderRadius: "7px",
+      marginLeft: "7px",
+      boxShadow: 1,
+      overflow: "hidden"
+    },
+    foodBox: {
+      backgroundColor: "secondary.dark",
+      borderRadius: "10px",
+      padding: "4px",
+    },
+  };
+
+  const { root, shopImage, foodBox } = styles;
+
   return (
     <>
-      <Stack spacing={2} className={root}>
+      <Stack spacing={2} sx={root}>
         <Stack spacing={3}>
           <Container>
-            <Link href={`/shops/${order.shopId}`}>
+            <Link href={`/shops/${order.shopId}`} sx={shopImage}>
                 <Image
-                width
-                  className={shopImage}
+                width={80}
+                height={80}
                   alt="shop-logo"
-                  src={`http://192.168.43.209:4000/${order.shopId.shopLogo}`}
+                  src={`/images/logo/${order.shopId.shopLogo}`}
                 />
 
             </Link>
@@ -36,7 +66,7 @@ const OrderCard = ({ order }) => {
               </Typography>
               <DateTimeBox dateTime={order.createDate} />
               <Container>
-                <LocationOn style={{ color: "gray" }} />
+                <LocationOn sx={{ color: "gray" }} />
                 <Typography mr={0.3}>
                   {order.address.exactAddress.slice(0, 28)}....
                 </Typography>
@@ -46,12 +76,12 @@ const OrderCard = ({ order }) => {
           <Stack pr={2} direction="row">
             {order.foods.map((food) => (
               <Badge
-                style={{ marginLeft: 12 }}
+                sx={{ marginLeft: "12px" }}
                 color="primary"
                 badgeContent={food.count}
                 key={food._id}
               >
-                <Stack className={foodBox}>
+                <Stack sx={foodBox}>
                   <Typography>{food.name}</Typography>
                 </Stack>
               </Badge>
@@ -94,28 +124,3 @@ const OrderCard = ({ order }) => {
 
 export default OrderCard;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "felx",
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderBottom: "1px #e3e3e4 solid",
-    padding: 14,
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      alignItems: "center",
-    },
-  },
-
-  shopImage: {
-    borderRadius: 7,
-    marginLeft: 7,
-    boxShadow: theme.shadows[1],
-  },
-  foodBox: {
-    backgroundColor: theme.palette.secondary.dark,
-    borderRadius: 10,
-    padding: 4,
-  },
-}));

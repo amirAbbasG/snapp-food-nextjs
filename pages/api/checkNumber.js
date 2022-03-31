@@ -7,17 +7,18 @@ const checkNumber = async (req, res) => {
   if (req.method === "POST") {
     try {
       await mongoDb();
-
+      // res.send("ok")
       const { error } = numberValidator(req.body);
       if (error) {
         const err = new Error(error.message);
         err.statusCode = 400;
         throw err;
       }
-      const user = await UserModel.findOne({ number: req.body.number });
+      const {number} = req.body;
+      const user = await UserModel.findOne({ number });
       if (user)
         return res.status(200).send({ message: "done", action: "login" });
-      sendCode(req.body.number, (response, status) => {
+      sendCode(number, (response, status) => {
         if (status === 200) {
           res.status(200).send({ message: "done", action: "sendCode" });
         } else {

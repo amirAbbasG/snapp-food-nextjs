@@ -1,5 +1,9 @@
 import http from "./";
 
+export const getAccountInformationApi = async () => {
+  return await http.get("user" );
+};
+
 export const checkNumberApi = (number) => {
   return http.post("checkNumber", { number });
 };

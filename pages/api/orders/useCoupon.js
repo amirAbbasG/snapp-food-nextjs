@@ -1,6 +1,7 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import ShopModel from "../../../src/models/Shop";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const useCoupon = async (req, res) => {
   if (req.method === "POST") {
@@ -8,6 +9,7 @@ const useCoupon = async (req, res) => {
       await mongoDb();
 
       const { shopId, couponId } = req.body;
+      const {_id} = getUser(req.headers.authorization)
 
       if (!shopId) {
         const err = new Error("فروشگاه مورد نطر پیدا نشد");
@@ -16,7 +18,7 @@ const useCoupon = async (req, res) => {
       }
       const shop = await ShopModel.findById(shopId);
       const order = await OrderModel.findOne({
-        userId: req.user._id,
+        userId: _id,
         shopId: shop._id,
         isPaid: false,
       });

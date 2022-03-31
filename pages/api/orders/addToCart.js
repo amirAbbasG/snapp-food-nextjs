@@ -4,21 +4,23 @@ import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import FoodModel from "../../../src/models/Food";
 import UserModel from "../../../src/models/User";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const addToCart = async (req, res) => {
   if (req.method === "POST") {
     try {
       await mongoDb();
+      const {_id} = getUser(req.headers.authorization)
       const { foodId } = req.query;
       const food = await FoodModel.findById(foodId);
-      const user = await UserModel.findOne({ _id: req.user._id });
+      const user = await UserModel.findOne({ _id });
       if (!user) {
         const error = new Error("کاربری با ای مشخصات پیدا نشد");
         error.statusCode = 404;
         throw error;
       }
       let order = await OrderModel.findOne({
-        userId: req.user._id,
+        userId: _id,
         isPaid: false,
         shopId: food.shopId,
       });
@@ -43,7 +45,7 @@ const addToCart = async (req, res) => {
       } else {
         order = new OrderModel({
           shopId: food.shopId,
-          userId: req.user._id,
+          userId: _id,
           address: user.addresses[0],
           createDate: Date.now(),
           foods: [

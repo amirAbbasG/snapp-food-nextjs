@@ -53,7 +53,7 @@ const CartBox = ({ shopId }) => {
                         price={food.price}
                         discount={food.discount}
                       />
-                      <FoodOrderButtons foodId={food._id} />
+                      <FoodOrderButtons foodId={food} />
                     </ItemStack>
                   </Stack>
                 ))}

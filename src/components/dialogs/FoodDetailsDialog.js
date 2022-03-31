@@ -13,6 +13,7 @@ import { calculateRate } from "../../utils/rateCalculator";
 
 const FoodDetailsDialog = ({ food, open, handleClose }) => {
 
+
   const rate = calculateRate(food.comments);
 
   const { img, detailBox } = styles;
@@ -22,10 +23,11 @@ const FoodDetailsDialog = ({ food, open, handleClose }) => {
       <Grid container p={1}>
         <Grid item xs={5}>
           <Grid sx={img}>
-
           <Image
               width={400}
               height={400}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
             alt="food"
             src={`/images/food/${food.foodImage}`}
           />
@@ -48,7 +50,7 @@ const FoodDetailsDialog = ({ food, open, handleClose }) => {
             }}
           >
             <FoodPriceBox price={food.price} discount={food.discount} />
-            <FoodOrderButtons foodId={food._id} />
+            <FoodOrderButtons foodId={food} />
           </Container>
         </Grid>
       </Grid>
@@ -61,10 +63,11 @@ export default FoodDetailsDialog;
 
 const styles = {
   img: {
-    width: "100%",
+    width: "17rem",
+    height: "17rem",
     borderRadius: "10px",
     boxShadow: 2,
-    overflow: "hidden"
+    overflow: "hidden",
   },
   detailBox: {
     display: "flex",

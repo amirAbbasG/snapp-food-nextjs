@@ -1,11 +1,14 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import UserModel from "../../../src/models/User";
 import { userEditValidator } from "../../../src/validators/UserValidator";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const editProfile = async (req, res) => {
   if (req.method === "PUT") {
     try {
       await mongoDb();
+
+      const {_id} = getUser(req.headers.authorization)
 
       const { error } = userEditValidator(req.body);
       if (error) {
@@ -13,7 +16,7 @@ const editProfile = async (req, res) => {
         err.statusCode = 400;
         throw err;
       }
-      const user = await UserModel.findOne({ _id: req.user._id });
+      const user = await UserModel.findOne({ _id });
       if (!user) {
         const error = new Error("کاربری با ای مشخصات پیدا نشد");
         error.statusCode = 404;

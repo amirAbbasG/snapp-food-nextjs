@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Image from "next/image";
 import {useRouter} from "next/router";
@@ -18,6 +18,7 @@ import {
     FavoriteBorderOutlined,
 } from "@mui/icons-material";
 import { isEmpty } from "lodash";
+import {useDispatch, useSelector} from "react-redux";
 
 import {
     FoodCard,
@@ -28,26 +29,16 @@ import {
     CartBox,
     MyHead,
 } from "../../src/components";
+import {getShopDetailsApi} from "../../src/services/shopServices";
 import { separatePrice } from "../../src/utils/priceSeparator";
 import { calculateRate } from "../../src/utils/rateCalculator";
+import {addOrRemoveFavoriteShopApi} from "../../src/services/shopServices"
+import {successMessage, errorMessage} from "../../src/utils/toast";
+import {getAccountInformation} from "../../src/recux/actions/account";
 
 export async function getServerSideProps(context){
     const {shopId} = context.query;
-    const shopDetails = {
-        _id: shopId,
-        deliveryCost: 22222,
-        comments: [],
-        foods: [],
-        shopName: "test",
-        address: {
-            city: "city",
-            exactAddress: "test address",
-            longitude: 1,
-            latitude: 1
-        },
-        coupons: []
-
-    }
+    const {data: {shopDetails}} = await getShopDetailsApi(shopId)
     return {
         props: {
             shopDetails
@@ -57,6 +48,7 @@ export async function getServerSideProps(context){
 
 
 const ShopDetails = ({shopDetails}) => {
+    const dispatch = useDispatch()
     const router = useRouter();
     const {shopId} = router.query
 
@@ -64,26 +56,35 @@ const ShopDetails = ({shopDetails}) => {
     const [openFoodDetails, setOpenFoodDetails] = useState(false);
     const [food, setFood] = useState({});
 
-    // const account = useSelector((state) => state.account);
-    const account = {}
+    const account = useSelector((state) => state.account);
+
+    let isFavouriteShop = false
+    if (!isEmpty(account)){
+        isFavouriteShop = account.favoriteShop.some((s) => s._id === shopId)
+    }
+
 
 
 
     const cost = separatePrice(shopDetails.deliveryCost);
     const rate = calculateRate(shopDetails.comments);
 
-    let isShopFavorite = false;
-    if (!isEmpty(account)) {
-        isShopFavorite = account.favoriteShop.some((s) => s._id === shopId);
-    }
 
 
-    const handlePressFavorite = () => {
-        // if (isShopFavorite) {
-        //     removeShopFromFavorite(shopId);
-        // } else {
-        //     addShopToFavorite(shopId);
-        // }
+    const handlePressFavorite = async () => {
+      try {
+          const {data: {favourite}} = await addOrRemoveFavoriteShopApi(shopId);
+          dispatch(getAccountInformation());
+
+          if (favourite){
+          successMessage("فروشگاه در لیست مورد علاقه قرار گرفت")
+          }else {
+              successMessage("فروشگاه از لیست مورد علاقه خارج گردید")
+          }
+      }catch (error){
+          errorMessage("مشکلی پیش آمده", error.response.data.message)
+          console.error(error.response.data.message)
+      }
     };
 
     const handleClickFood = (food) => {
@@ -129,7 +130,7 @@ const ShopDetails = ({shopDetails}) => {
                             </Stack>
                             <IconButton onClick={handlePressFavorite} sx={{ marginRight: 1 }}>
                                 <FavoriteBorderOutlined
-                                    color={isShopFavorite ? "primary" : "#80808"}
+                                    color={isFavouriteShop ? "primary" : "#80808"}
                                 />
                             </IconButton>
                         </Stack>
@@ -149,9 +150,9 @@ const ShopDetails = ({shopDetails}) => {
                                 منو غذایی
                             </Typography>
                             <Grid container item width="100%">
-                                {shopDetails.foods.map((f) => (
+                                {shopDetails.foods.map((f, index) => (
                                     <Grid
-                                        key={f._id}
+                                        key={f._id + index}
                                         item
                                         sm={12}
                                         xs={12}
@@ -179,7 +180,7 @@ const ShopDetails = ({shopDetails}) => {
                         open={openInformation}
                         handleClose={() => setOpenInformation(false)}
                     />
-                    {food !== {} && (
+                    {!isEmpty(food) && (
                         <FoodDetailsDialog
                             food={food}
                             open={openFoodDetails}
@@ -201,13 +202,14 @@ const styles = {
         justifyContent: "center",
     },
     shopLogo: {
-        borderRadius: 10,
+        borderRadius: "10px",
+        maxHeight: "80px",
         boxShadow: 3,
-        marginLeft: 10,
+        marginLeft: "10px",
         overflow: "hidden"
     },
     informationBtn: {
-        borderRadius: 20,
+        borderRadius: "20px",
         boxShadow: 3,
         color: "text.secondary",
         margin: "30px 8px",

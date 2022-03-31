@@ -10,11 +10,11 @@ import { socialMedias, links } from "../../utils/values";
 
 const Footer = () => {
 
-  const theme = useTheme()
+  const {breakpoints} = useTheme()
 
   const styles =  {
     root: {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: "secondary.main",
       padding: "1rem",
       display: "flex",
       justifyContent: "space-between",
@@ -28,14 +28,14 @@ const Footer = () => {
     },
 
     linkBox: {
-      [theme.breakpoints.down("md")]: {
+      [breakpoints.down("md")]: {
         marginBottom: "2rem",
         textAlign: "center",
       },
     },
 
     logoBox: {
-      [theme.breakpoints.down("md")]: {
+      [breakpoints.down("md")]: {
         justifyContent: "space-around",
         marginBottom: "2rem",
       },

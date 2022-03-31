@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
           ></link>
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" href="favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           {this.props.emotionStyleTags}
         </Head>
         <body>

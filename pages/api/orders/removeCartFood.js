@@ -1,6 +1,7 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import FoodModel from "../../../src/models/Food";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const removeCartFood = async (req, res) => {
   if (req.method === "DELETE") {
@@ -15,9 +16,11 @@ const removeCartFood = async (req, res) => {
         throw err;
       }
 
+      const {_id} = getUser(req.headers.authorization)
+
       const food = await FoodModel.findOne({ _id: foodId });
       let order = await OrderModel.findOne({
-        userId: req.user._id,
+        userId: _id,
         isPaid: false,
         shopId: food.shopId,
       });

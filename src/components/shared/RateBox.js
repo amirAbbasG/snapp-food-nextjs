@@ -25,7 +25,7 @@ const styles = {
     height: "1.4rem",
     justifyContent: "center",
     backgroundColor: "#eafcf4",
-    borderRadius: "px",
+    borderRadius: "7px",
   },
   icon: {
     fontSize: "13px",

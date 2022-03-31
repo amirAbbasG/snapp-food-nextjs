@@ -1,13 +1,17 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
+import ShopModel from "../../../src/models/Shop";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const getOrders = async (req, res) => {
   try {
     await mongoDb();
-    const userOrders = await OrderModel.find({ userId: req.user._id }).populate(
+    const {_id} = getUser(req.headers.authorization)
+    const userOrders = await OrderModel.find({ userId: _id }).populate(
       {
         path: "shopId",
         select: "shopName shopLogo deliveryCost ",
+        model: ShopModel
       }
     );
     res.status(200).send({ userOrders, message: true });

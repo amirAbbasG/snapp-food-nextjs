@@ -10,11 +10,11 @@ export const getShopTypeByNameApi = (name) => {
 };
 
 export const getShopDetailsApi = (shopId) => {
-  return http.get(`shops/shopDetail/${shopId}`);
+  return http.get(`shops/${shopId}`);
 };
 
 export const addOrRemoveFavoriteShopApi = (shopId) => {
-  return http.post(`user/addShopToFavorites?shopId=${shopId}`);
+  return http.post(`user/favouriteShop?shopId=${shopId}`);
 };
 
 export const getShopByCategoryApi = (category, limit) => {

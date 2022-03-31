@@ -1,26 +1,26 @@
 import { Box, Button, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import {useDispatch, useSelector} from "react-redux";
 
 import { ActionButton } from "../";
 import { isEmpty } from "lodash";
 import { errorMessage } from "../../utils/toast";
 
-const FoodOrderButtons = ({ foodId }) => {
-  // const dispatch = useDispatch();
+const FoodOrderButtons = ({ food }) => {
+  const dispatch = useDispatch();
 
-  // const shopDetails = useSelector((state) => state.shopDetails);
-  // const orders = useSelector((state) => state.orders);
-  // const account = useSelector((state) => state.account);
-  // const food = shopDetails.foods.find((f) => f._id === foodId);
+  const orders = useSelector((state) => state.orders);
+  const account = useSelector((state) => state.account);
 
-  const orders = [];
+
 
   const shopOrders = orders.find(
     (o) => o.shopId._id === food.shopId && !o.isPaid
   );
+
   let foodCountInOrder = 0;
   if (shopOrders) {
-    const foodInOrder = shopOrders.foods.find((f) => f._id === foodId);
+    const foodInOrder = shopOrders.foods.find((f) => f._id === food._id);
+
     if (foodInOrder) {
       foodCountInOrder = foodInOrder.count;
     }

@@ -1,9 +1,9 @@
-const Kavenegar = require('kavenegar');
-const NodeCache = require( "node-cache" );
+import Kavenegar from "kavenegar"
+import NodeCache from "node-cache";
 const myCache = new NodeCache( { stdTTL: 120, checkperiod: 121 } );
 const api = Kavenegar.KavenegarApi({
     //تو کاوه نگار به صورت انلاین ثبت نام کن و کد رو تو صفحه حساب کاربری بگیر
-    apikey: '62366C433378414E546272657758764C486646363030343168736E6A7A49315543636B47763361326D636F3D'
+    apikey: process.env.KAVENEGAR_API_KEY
 });
 
 

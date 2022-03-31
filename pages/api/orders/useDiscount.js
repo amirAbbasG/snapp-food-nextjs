@@ -1,12 +1,13 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import DiscountModel from "../../../src/models/Discount";
+import {getUser} from "../../../src/utils/apiHelprs";
 
 const useDiscount = async (req, res) => {
   if (req.method === "POST") {
     try {
       await mongoDb();
-
+      const {_id} = getUser(req.headers.authorization)
       const { orderId, discountCode } = req.body;
       const order = await OrderModel.findById(orderId);
 
@@ -34,7 +35,7 @@ const useDiscount = async (req, res) => {
 
       if (targetDiscount.count > 1) {
         targetDiscount.count -= 1;
-        targetDiscount.userUsed.push(req.user._id);
+        targetDiscount.userUsed.push(_id);
       } else {
         await DiscountModel.findByIdAndDelete(targetDiscount._id);
       }

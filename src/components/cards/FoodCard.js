@@ -1,21 +1,29 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 
 import Link from "next/link";
-import Image from "next/image"
 
-import { Card, CardContent, CardMedia, Box, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Card, CardContent, Typography } from "@mui/material";
+import {Box} from "@mui/system"
 
 import { FoodPriceBox, FoodOrderButtons } from "../";
+import Image from "next/image";
 
 const FoodCard = ({ food, onClick }) => {
+
+
+  const [imageUrl, setImageUrl] = useState(food.foodImage)
+
+  const handleError = () => {
+    setImageUrl("/images/food/8103658_food-icon.png")
+  }
+
   const { root, img, actionBox, contentBox } = styles;
 
   return (
     <Card sx={root}>
       <Box width="100%">
         <Link href="#">
-          <a onClick={onClick}>
+          <a onClick={(e) => {e.preventDefault(); onClick()}}>
             <Box sx={contentBox}>
               <CardContent
                 sx={{ flexWrap: "wrap", padding: "10px 2px !important" }}
@@ -27,18 +35,23 @@ const FoodCard = ({ food, onClick }) => {
                   {food.description}
                 </Typography>
               </CardContent>
-              <CardMedia
-                component="img"
-                sx={img}
-                image={`/images/foods/${food.foodImage}`}
-                alt="food"
+              <Box sx={img} >
+              <Image
+                  src={`/images/food/${imageUrl}`}
+                  onError={handleError}
+                  width={94}
+                  height={94}
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
+                  alt="food"
               />
+              </Box>
             </Box>
           </a>
         </Link>
         <Box sx={actionBox}>
           <FoodPriceBox price={food.price} discount={food.discount} />
-          <FoodOrderButtons foodId={food._id} />
+          <FoodOrderButtons foodId={food} />
         </Box>
       </Box>
     </Card>
@@ -67,7 +80,9 @@ const styles = {
     padding: "12px",
     boxShadow: 1,
     borderRadius: "10px",
-    overflow: "hidden"
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   actionBox: {
     display: "flex",

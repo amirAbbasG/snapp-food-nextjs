@@ -1,18 +1,20 @@
-import { makeStyles, styled } from "@mui/styles";
+import { styled } from "@mui/system";
 import { Typography, Stack, Container } from "@mui/material";
+import {useSelector} from "react-redux";
 
 import { MyDialog } from "../";
 import { separatePrice } from "../../utils/priceSeparator";
 
 const FactorDialog = ({ open, handleClose, orderId }) => {
-  const { priceItem } = useStyles();
 
-  // const orders = useSelector((state) => state.orders);
-  const orders = [];
+  const orders = useSelector((state) => state.orders);
   const order = orders.find((o) => o._id === orderId);
 
   const PriceItem = ({ title, price, color }) => (
-    <Container className={priceItem}>
+    <Container sx={{
+      justifyContent: "space-between",
+      padding: "7px !important",
+    }}>
       <Typography color={color && color}>{title}</Typography>
       <Typography color={color && color}>
         {separatePrice(price)} تومان
@@ -60,9 +62,3 @@ const FactorDialog = ({ open, handleClose, orderId }) => {
 
 export default FactorDialog;
 
-const useStyles = makeStyles({
-  priceItem: {
-    justifyContent: "space-between",
-    padding: "7px !important",
-  },
-});
