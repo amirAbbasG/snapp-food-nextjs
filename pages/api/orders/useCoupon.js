@@ -19,7 +19,7 @@ const useCoupon = async (req, res) => {
       const shop = await ShopModel.findById(shopId);
       const order = await OrderModel.findOne({
         userId: _id,
-        shopId: shop._id,
+        shopId,
         isPaid: false,
       });
       const coupon = shop.coupons.find((c) => c._id == couponId);
@@ -33,7 +33,7 @@ const useCoupon = async (req, res) => {
         error.statusCode = 404;
         throw error;
       }
-      if (coupon.usersUsed.includes(req.user._id)) {
+      if (coupon.usersUsed.includes(_id)) {
         const error = new Error("قبلا از این کوپن استفاده کردید");
         error.statusCode = 400;
         throw error;
@@ -44,6 +44,7 @@ const useCoupon = async (req, res) => {
       const newOrder = await OrderModel.findOne({ _id: order._id }).populate({
         path: "shopId",
         select: "shopName shopLogo deliveryCost ",
+        model: ShopModel
       });
       return res.status(200).send({ order: newOrder });
     } catch (error) {

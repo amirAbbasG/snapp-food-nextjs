@@ -1,62 +1,63 @@
-import { makeStyles } from "@mui/styles";
-import { Dialog, DialogContent, Button, DialogTitle } from "@mui/material";
+import {makeStyles} from "@mui/styles";
+import {styled} from "@mui/system"
+import {Dialog, DialogContent, Button, DialogTitle} from "@mui/material";
+import {useDispatch} from "react-redux";
 
-const RemoveOrderDialog = ({ open, onClose, orderId }) => {
-  // const dispatch = useDispatch();
-  const handleYes = () => {
-    // dispatch(removeCart(orderId));
-    onClose();
-  };
+const RemoveOrderDialog = ({open, onClose, orderId}) => {
+    const dispatch = useDispatch();
 
-  const { dialog, content, button } = useStyles();
+    const handleYes = () => {
+        // dispatch(removeCart(orderId));
+        onClose();
+    };
 
-  return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      classes={{
-        paper: dialog,
-      }}
-    >
-      <DialogTitle>آیا از حذف سبد خرید مطمئن هستید ؟</DialogTitle>
-      <DialogContent className={content}>
-        <Button
-          className={button}
-          variant="contained"
-          color="secondary"
-          onClick={onClose}
+    const MyButton = styled(Button)({
+        width: "44%",
+        padding: "14px",
+        margin: "14px",
+    })
+
+    const {dialog} = useStyles();
+
+    return (
+        <Dialog
+            open={open}
+            onClose={onClose}
+            classes={{
+                paper: dialog,
+            }}
         >
-          انصراف
-        </Button>
-        <Button
-          className={button}
-          variant="contained"
-          color="primary"
-          onClick={handleYes}
-        >
-          حذف سبد
-        </Button>
-      </DialogContent>
-    </Dialog>
-  );
+            <DialogTitle>آیا از حذف سبد خرید مطمئن هستید ؟</DialogTitle>
+            <DialogContent sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+            }}>
+                <MyButton
+                    variant="contained"
+                    color="secondary"
+                    onClick={onClose}
+                >
+                    انصراف
+                </MyButton>
+                <MyButton
+                    variant="contained"
+                    color="primary"
+                    onClick={handleYes}
+                >
+                    حذف سبد
+                </MyButton>
+            </DialogContent>
+        </Dialog>
+    );
 };
 
 export default RemoveOrderDialog;
 
 const useStyles = makeStyles({
-  dialog: {
-    borderRadius: 14,
-    width: "30%",
-  },
-  button: {
-    width: "44%",
-    padding: 14,
-    margin: 14,
-  },
-  content: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
+    dialog: {
+        borderRadius: 14,
+        width: "30%",
+    }
 });

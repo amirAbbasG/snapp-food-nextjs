@@ -5,7 +5,7 @@ export const getOrdersApi = () => {
 };
 
 export const addToCartApi = (foodId) => {
-  return http.post(`orders/addToCart?foodId${foodId}`);
+  return http.post(`orders/addToCart?foodId=${foodId}`);
 };
 
 export const reOrderApi = (orderId) => {
@@ -25,5 +25,5 @@ export const setDiscountApi = (orderId, discountCode) => {
 };
 
 export const setCouponApi = (shopId, couponId) => {
-  return http.put(`orders/useCoupon`, { couponId, shopId });
+  return http.post(`orders/useCoupon`, { couponId, shopId });
 };

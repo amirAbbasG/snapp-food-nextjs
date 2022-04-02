@@ -51,7 +51,7 @@ const FoodCard = ({ food, onClick }) => {
         </Link>
         <Box sx={actionBox}>
           <FoodPriceBox price={food.price} discount={food.discount} />
-          <FoodOrderButtons foodId={food} />
+          <FoodOrderButtons food={food} />
         </Box>
       </Box>
     </Card>

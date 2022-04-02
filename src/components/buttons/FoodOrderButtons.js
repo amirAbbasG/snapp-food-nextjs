@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { ActionButton } from "../";
 import { isEmpty } from "lodash";
 import { errorMessage } from "../../utils/toast";
+import {addToCart} from "../../recux/actions/orders";
 
 const FoodOrderButtons = ({ food }) => {
   const dispatch = useDispatch();
@@ -37,11 +38,11 @@ const FoodOrderButtons = ({ food }) => {
   };
 
   const handleAdd = () => {
-    // if (isEmpty(account)) {
-    //   errorMessage("برای افزودن به سبد خرید وارد حسابد کاربری خود شوید");
-    // } else {
-    //   dispatch(addToCart(foodId));
-    // }
+    if (isEmpty(account)) {
+      errorMessage("برای افزودن به سبد خرید وارد حسابد کاربری خود شوید");
+    } else {
+      dispatch(addToCart(food._id));
+    }
   };
 
   const { orderButtonBox, button } = styles;

@@ -1,15 +1,22 @@
 import { useContext, useState } from "react";
 
 import { Stack, Typography, ButtonBase } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import Carousel from "react-elastic-carousel";
+import {useDispatch, useSelector} from "react-redux";
 
 import { globalContext } from "../../contexts/global/globalContext";
+import {errorMessage} from "../../utils/toast";
+import {getOrders} from "../../recux/actions/orders";
+import {setCouponApi} from "../../services/orderServices";
 
 const CouponBox = ({ shopId, coupons }) => {
+  const dispatch = useDispatch();
+
   const [couponId, setCouponId] = useState();
   const { isLg, isMd, isSm, isXs } = useContext(globalContext);
-  // const { couponId, setCoupon } = useContext(shopsContext);
+
+  const account = useSelector((state) => state.account);
+
 
   let showCount = 4;
 
@@ -22,6 +29,24 @@ const CouponBox = ({ shopId, coupons }) => {
   } else if (isXs) {
     showCount = 1;
   }
+
+  //#region use coupon
+  const setCoupon = async (coupon) => {
+    if (coupon.usersUsed && coupon.usersUsed.includes(account._id)) {
+      errorMessage("قبلا از این کوپن استفاده کرده اید");
+    } else {
+      try {
+        const { status } = await setCouponApi(shopId, coupon._id);
+        if (status === 200) {
+          setCouponId(coupon._id);
+          dispatch(getOrders());
+        }
+      } catch (error) {
+        errorMessage(error.response.data.message);
+      }
+    }
+  };
+  //#endregion
 
   const { couponBox, root } = styles;
 
@@ -38,11 +63,8 @@ const CouponBox = ({ shopId, coupons }) => {
         {coupons.map((coupon, index) => (
           <ButtonBase
             key={coupon._id + index}
-            sx={couponBox}
-            onClick={() => setCouponId(coupon._id)}
-            style={{
-              borderColor: coupon._id === couponId && "#00B862",
-            }}
+            sx={{...couponBox, borderColor: coupon._id === couponId ? "#00B862" : "secondary.dark"}}
+            onClick={() => setCoupon(coupon)}
           >
             <Typography>{coupon.description}</Typography>
             {coupon.discount > 0 && (
@@ -67,7 +89,6 @@ const styles = {
     flexDirection: "column",
     textAlign: "center",
     border: "1px solid",
-    borderColor: "secondary.dark",
     backgroundColor: "secondary.main",
     borderRadius: "10px",
     padding: "7px",

@@ -3,17 +3,18 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 import { Button, Typography, Paper, Stack, IconButton } from "@mui/material";
-import { styled } from "@mui/styles";
+import { styled } from "@mui/system";
 import { DeleteForeverOutlined } from "@mui/icons-material";
 import { isEmpty } from "lodash";
 
 import { RemoveOrderDialog, FoodPriceBox, FoodOrderButtons, Factor } from "../";
+import {useSelector} from "react-redux";
 
 const CartBox = ({ shopId }) => {
   const router = useRouter();
 
   const [openRemoveCart, setOpenRemoveCart] = useState(false);
-  const orders = [];
+  const orders = useSelector((state) => state.orders);
   const order = orders.find((o) => o.shopId._id === shopId && !o.isPaid);
 
   const UnderLinedStack = styled(Stack)(({ theme }) => ({
@@ -53,7 +54,7 @@ const CartBox = ({ shopId }) => {
                         price={food.price}
                         discount={food.discount}
                       />
-                      <FoodOrderButtons foodId={food} />
+                      <FoodOrderButtons food={food} />
                     </ItemStack>
                   </Stack>
                 ))}
@@ -61,7 +62,7 @@ const CartBox = ({ shopId }) => {
               <Factor orderId={order._id} />
               <Button
                 onClick={() =>
-                  router.push(`/orders/finalizeOrder?orderId=${order._id}`)
+                  router.push(`/orders/${order._id}`)
                 }
                 variant="contained"
                 sx={{ width: "100%", padding: 1, marginTop: 2 }}
