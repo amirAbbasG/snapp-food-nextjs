@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { ActionButton } from "../";
 import { isEmpty } from "lodash";
 import { errorMessage } from "../../utils/toast";
-import {addToCart} from "../../recux/actions/orders";
+import {addToCart, removeCartFood, removeCart} from "../../recux/actions/orders";
 
 const FoodOrderButtons = ({ food }) => {
   const dispatch = useDispatch();
@@ -28,13 +28,13 @@ const FoodOrderButtons = ({ food }) => {
   }
 
   const handleMinus = () => {
-    // if (foodCountInOrder !== 0) {
-    //   if (shopOrders.foods.length < 2 && shopOrders.foods[0].count < 2) {
-    //     dispatch(removeCart(shopOrders._id));
-    //   } else {
-    //     dispatch(removeFoodFromCart(foodId));
-    //   }
-    // }
+    if (foodCountInOrder !== 0) {
+      if (shopOrders.foods.length < 2 && shopOrders.foods[0].count < 2) {
+        dispatch(removeCart(shopOrders._id));
+      } else {
+        dispatch(removeCartFood(food._id));
+      }
+    }
   };
 
   const handleAdd = () => {

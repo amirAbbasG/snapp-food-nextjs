@@ -1,14 +1,19 @@
+import {useRouter} from "next/router";
+
 import { Drawer, Typography, Button, Stack } from "@mui/material";
 import { Restore } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
+import {useSelector} from "react-redux";
 
 import { DrawerOrderCard } from "../";
 
+
+
 const OrdersDrawer = ({ open, handleClose }) => {
-  const { drawer, ordersBox } = useStyles();
-  // const orders = useSelector((state) => state.orders);
-  const orders = [];
-  const deliverdOrders = [...orders].filter((o) => o.isPaid && o.isDelivered);
+  const router = useRouter()
+  const { drawer } = useStyles();
+  const orders = useSelector((state) => state.orders);
+  const deliveredOrders = [...orders].filter((o) => o.isPaid && o.isDelivered);
   return (
     <Drawer
       open={open}
@@ -21,12 +26,16 @@ const OrdersDrawer = ({ open, handleClose }) => {
       <Typography m={2} fontWeight="bold">
         سفارش های پیشین
       </Typography>
-      <Stack className={ordersBox}>
-        {deliverdOrders.map((order) => (
+      <Stack sx={{
+        margin: "10px",
+        borderRadius: "10px",
+        border: "1px #e3e3e4 solid",
+      }}>
+        {deliveredOrders.map((order) => (
           <DrawerOrderCard key={order._id} order={order} />
         ))}
       </Stack>
-      <Button startIcon={<Restore color="success" />} color="success">
+      <Button onClick={() => router.push("/profile/user-orders")} startIcon={<Restore color="success" />} color="success" >
         مشاهده همه سفارش ها
       </Button>
     </Drawer>
@@ -38,10 +47,5 @@ export default OrdersDrawer;
 const useStyles = makeStyles({
   drawer: {
     width: "30%",
-  },
-  ordersBox: {
-    margin: 10,
-    borderRadius: 10,
-    border: "1px #e3e3e4 solid",
-  },
+  }
 });

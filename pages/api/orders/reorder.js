@@ -1,5 +1,10 @@
+import _ from "lodash"
+
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
+import ShopModel from "../../../src/models/Shop";
+import UserModel from "../../../src/models/User";
+import FoodModel from "../../../src/models/Food";
 import {getUser} from "../../../src/utils/apiHelprs";
 
 const reorder = async (req, res) => {
@@ -9,18 +14,19 @@ const reorder = async (req, res) => {
 
       const { orderId } = req.query;
       const {_id} = getUser(req.headers.authorization)
-
       if (!orderId) {
         const err = new Error("سفارش مورد نطر پیدا نشد");
         err.statusCode = 404;
         throw err;
       }
+
       const PrvOrder = await OrderModel.findById(orderId);
       const user = await UserModel.findById(_id);
 
       const newOrder = new OrderModel(
         _.pick(PrvOrder, ["shopId", "userId", "foods"])
       );
+      console.log("ok")
       newOrder.address = user.addresses[0];
       newOrder.createDate = Date.now();
       newOrder.foods.map(async (f) => {
@@ -38,11 +44,13 @@ const reorder = async (req, res) => {
           acc + (item.price - (item.price * item.discount) / 100) * item.count
         );
       }, 0);
+
       await newOrder.save();
 
-      const order = await OrderModel.findOne({ _id: newOrder._id }).populate({
+      const order = await OrderModel.findById( newOrder._id ).populate({
         path: "shopId",
         select: "shopName shopLogo deliveryCost ",
+        model: ShopModel
       });
       return res.status(201).send({ order });
     } catch (error) {

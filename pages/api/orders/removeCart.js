@@ -16,7 +16,7 @@ const removeCart = async (req, res) => {
 
       const result = await OrderModel.deleteOne({ _id: orderId });
       if (result.deletedCount != 0) {
-        res.status(200).send({ message: "done" });
+        res.status(200).send({ message: "deleted", done: true });
       } else {
         const error = new Error("حذف نشد");
         error.statusCode = 400;

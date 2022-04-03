@@ -13,7 +13,7 @@ export const reOrderApi = (orderId) => {
 };
 
 export const removeCartFoodApi = (foodId) => {
-  return http.delete(`user/removeFoodFromCart?foodId=${foodId}`);
+  return http.delete(`orders/removeCartFood?foodId=${foodId}`);
 };
 
 export const removeCartApi = (orderId) => {

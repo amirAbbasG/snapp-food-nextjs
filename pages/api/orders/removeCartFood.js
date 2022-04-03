@@ -1,6 +1,7 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import FoodModel from "../../../src/models/Food";
+import ShopModel from "../../../src/models/Shop";
 import {getUser} from "../../../src/utils/apiHelprs";
 
 const removeCartFood = async (req, res) => {
@@ -18,7 +19,7 @@ const removeCartFood = async (req, res) => {
 
       const {_id} = getUser(req.headers.authorization)
 
-      const food = await FoodModel.findOne({ _id: foodId });
+      const food = await FoodModel.findById(foodId );
       let order = await OrderModel.findOne({
         userId: _id,
         isPaid: false,
@@ -52,6 +53,7 @@ const removeCartFood = async (req, res) => {
       const newOrder = await OrderModel.findOne({ _id: order._id }).populate({
         path: "shopId",
         select: "shopName shopLogo deliveryCost",
+        model: ShopModel
       });
       res.status(200).send({ message: "done", order: newOrder });
     } catch (error) {
