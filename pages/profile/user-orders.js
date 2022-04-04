@@ -5,7 +5,7 @@ import { MyHead, OrderCard } from "../../src/components";
 
 const UserOrders = () => {
     const orders = useSelector((state) => state.orders);
-    const deliveredOrders = [...orders].filter((o) => o.isPaid && o.isDelivered);
+    const deliveredOrders = [...orders].filter((o) => o.isPaid);
 
     return (
         <Stack>

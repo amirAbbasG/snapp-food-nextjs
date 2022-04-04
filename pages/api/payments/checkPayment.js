@@ -1,6 +1,7 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import PaymentModel from "../../../src/models/Payment";
+import ShopModel from "../../../src/models/Shop";
 import { zarinpal } from "../../../src/lib/zarinpal";
 
 const checkPayment = async (req, res) => {
@@ -31,7 +32,7 @@ const checkPayment = async (req, res) => {
     });
     const response = await zarinpal.PaymentRequest({
       Amount: payment.amount,
-      CallbackURL: "http://localhost:3000/api/payments/verifyPayment",
+      CallbackURL: "http://localhost:3000/api/verifyPayment",
       Description: `خرید از رستوران ${shop.shopName}`,
     });
     payment.paymentCode = response.authority;

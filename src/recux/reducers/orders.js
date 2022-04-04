@@ -8,7 +8,10 @@ export const ordersReducer = (state = [], action) => {
             return []
         case orderActionType.ADD_TO_CART_RESULT:
             //payload : order : {}
-            return state.concat(action.payload)
+            const prvOrders = [...state].filter(
+                (o) => o._id !== action.payload._id
+            );
+            return [...prvOrders, action.payload]
         case orderActionType.RE_ORDER_RESULT:
             //payload : order : {}
             return state.concat(action.payload)

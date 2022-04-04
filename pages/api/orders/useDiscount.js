@@ -9,15 +9,18 @@ const useDiscount = async (req, res) => {
       await mongoDb();
       const {_id} = getUser(req.headers.authorization)
       const { orderId, discountCode } = req.body;
+
       const order = await OrderModel.findById(orderId);
 
       const targetDiscount = await DiscountModel.findOne({ discountCode });
+
       if (!targetDiscount) {
         const error = new Error("کد وارد شده درست نیست");
         error.statusCode = 404;
         throw error;
       }
-      if (targetDiscount.userUsed.includes(req.user._id)) {
+
+      if (targetDiscount.userUsed.includes(_id)) {
         const error = new Error("قبلا از این کد استفاده کردید");
         error.statusCode = 400;
         throw error;

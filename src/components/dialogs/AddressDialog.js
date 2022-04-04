@@ -1,19 +1,19 @@
 import React, { useState, memo, useContext } from "react";
 
-import { makeStyles } from "@mui/styles";
 import { Button, Grid, TextField } from "@mui/material";
 
 import { MyDialog } from "../";
 // import { Map } from "../../utils/map";
 import { getAddress } from "../../services/addressServices";
+import {accountContext} from "../../contexts/account/accountContext";
 
-const AddressDialog = memo(({ open, handleClose }) => {
+const AddressDialog = ({ open, handleClose }) => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [city, setCity] = useState("");
   const [exactAddress, setExactAddress] = useState("");
 
-  // const { addAddress } = useContext(accountContext);
+  const { addAddress } = useContext(accountContext);
 
   const handleClickMarker = () => {
     setCity("");
@@ -30,23 +30,23 @@ const AddressDialog = memo(({ open, handleClose }) => {
     setLongitude(e.lngLat.lng);
   };
 
-  const hanldeSubmit = () => {
-    // addAddress({
-    //   city,
-    //   exactAddress,
-    //   latitude,
-    //   longitude,
-    //   title: "آدرس من",
-    // });
+  const handleSubmit = () => {
+    addAddress({
+      city,
+      exactAddress,
+      latitude,
+      longitude,
+      title: "آدرس من",
+    });
     handleClose();
     handleClickMarker();
   };
 
-  const { mapBox } = useStyles();
+  const { mapBox } = styles;
 
   return (
     <MyDialog open={open} onClose={handleClose} title="آدرس جدید" width="80%">
-      <Grid className={mapBox}>
+      <Grid sx={mapBox}>
         {/* <Mapir
           userLocation
           onClick={handleClickMap}
@@ -79,18 +79,18 @@ const AddressDialog = memo(({ open, handleClose }) => {
         <Button
           sx={{ width: "100%" }}
           variant="contained"
-          onClick={hanldeSubmit}
+          onClick={handleSubmit}
         >
           ثبت آدرس
         </Button>
       </Grid>
     </MyDialog>
   );
-});
+};
 
-export default AddressDialog;
+export default memo(AddressDialog);
 
-const useStyles = makeStyles({
+const styles = {
   mapBox: {
     display: "flex",
     alignItems: "center",
@@ -101,4 +101,4 @@ const useStyles = makeStyles({
     maxWidth: "740px",
     overflow: "hidden",
   },
-});
+};

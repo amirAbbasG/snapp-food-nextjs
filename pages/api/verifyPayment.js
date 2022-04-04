@@ -1,8 +1,9 @@
-import mongoDb from "../../../src/lib/mongoDb";
-import OrderModel from "../../../src/models/Order";
-import PaymentModel from "../../../src/models/Payment";
-import ShopModel from "../../../src/models/Shop";
-import { zarinpal } from "../../../src/lib/zarinpal";
+import mongoDb from "../../src/lib/mongoDb";
+import OrderModel from "../../src/models/Order";
+import PaymentModel from "../../src/models/Payment";
+import FoodModel from "../../src/models/Food";
+import ShopModel from "../../src/models/Shop";
+import { zarinpal } from "../../src/lib/zarinpal";
 
 const verifyPayment = async (req, res) => {
   try {
@@ -29,7 +30,7 @@ const verifyPayment = async (req, res) => {
         Authority: paymentCode,
       });
       if (response.status === -21) {
-        res.status(400).send("<p>filad</p>");
+        res.status(400).send("<p>failed</p>");
       } else {
         payment.refId = response.RefID;
         payment.success = true;
@@ -42,10 +43,13 @@ const verifyPayment = async (req, res) => {
         });
         await order.save();
         await payment.save();
-        res.status(200).send(successPayment(payment));
+        res.status(200).send("<div>" +
+            "<h1>success</h1>" +
+            "<a href='/'>back</a>" +
+            "</div>");
       }
     } else {
-      res.status(400).send("<p>filad</p>");
+      res.status(400).send("<p>failed</p>");
     }
   } catch (error) {
     const err = new Error("مشکلی پیش آمده : ", error);
