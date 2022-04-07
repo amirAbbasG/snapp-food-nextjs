@@ -2,7 +2,8 @@ import mongoDb from "../../../src/lib/mongoDb";
 import CommentModel from "../../../src/models/Comment";
 import FoodModel from "../../../src/models/Food";
 import { commentValidator } from "../../../src/validators/UserValidator";
-import {getUser} from "../../../src/utils/apiHelprs";
+
+import jwt_decode from "jwt-decode"
 
 const addComment = async (req, res) => {
   if (req.method === "POST") {
@@ -14,7 +15,7 @@ const addComment = async (req, res) => {
         throw err;
       }
       const { text, score, id } = req.body;
-      const userInfo = getUser(req.headers.authorization)
+      const userInfo = jwt_decode(req.headers.authorization)
       const newComment = {
         sender: userInfo.fullName,
         text,

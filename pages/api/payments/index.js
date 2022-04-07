@@ -1,12 +1,13 @@
+import jwt_decode from "jwt-decode"
+
 import mongoDb from "../../../src/lib/mongoDb";
 import PaymentModel from "../../../src/models/Payment";
 import ShopModel from "../../../src/models/Shop";
-import {getUser} from "../../../src/utils/apiHelprs";
 
 const getPayments = async (req, res) => {
   try {
     await mongoDb();
-    const {_id} = getUser(req.headers.authorization)
+    const {_id} = jwt_decode(req.headers.authorization)
 
     const userPayments = await PaymentModel.find({
       userId: _id,

@@ -1,7 +1,7 @@
 import http from "./";
 
 export const getAccountInformationApi = async () => {
-  return await http.get("user" );
+  return await http.get("user");
 };
 
 export const checkNumberApi = (number) => {

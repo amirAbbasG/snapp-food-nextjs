@@ -1,7 +1,8 @@
 import http from "./";
 
 export const getOrdersApi = () => {
-  return http.get("order");
+
+  return http.get("orders");
 };
 
 export const addToCartApi = (foodId) => {

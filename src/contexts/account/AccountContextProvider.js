@@ -199,7 +199,7 @@ const AccountContextProvider = ({ children }) => {
   };
   //#endregion
 
-  //#region check if token exist and isvalid
+  //#region check if token exist and isValid
   const checkToken = () => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
@@ -209,8 +209,11 @@ const AccountContextProvider = ({ children }) => {
       if (nowDate < decodedToken.exp) {
         if (decodedToken["_id"] === userId) {
           http.defaults.headers.common["Authorization"] = token;
-          dispatch(getAccountInformation());
-          dispatch(getOrders());
+          if (typeof window !== 'undefined') {
+            dispatch(getAccountInformation());
+            dispatch(getOrders());
+          }
+
         } else {
           exitAccount();
         }

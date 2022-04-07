@@ -1,14 +1,15 @@
+import jwt_decode from "jwt-decode"
+
 import mongoDb from "../../../src/lib/mongoDb";
 import UserModel from "../../../src/models/User";
 import { userEditValidator } from "../../../src/validators/UserValidator";
-import {getUser} from "../../../src/utils/apiHelprs";
 
 const editProfile = async (req, res) => {
   if (req.method === "PUT") {
     try {
       await mongoDb();
 
-      const {_id} = getUser(req.headers.authorization)
+      const {_id} = jwt_decode(req.headers.authorization)
 
       const { error } = userEditValidator(req.body);
       if (error) {

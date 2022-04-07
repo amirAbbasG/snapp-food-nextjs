@@ -1,13 +1,15 @@
+import jwt_decode from "jwt-decode"
+
 import mongoDb from "../../../src/lib/mongoDb";
 import UserModel from "../../../src/models/User";
-import {getUser} from "../../../src/utils/apiHelprs";
+
 
 const favouriteOrUnfavouriteShop = async (req, res) => {
   console.log("requested")
   try {
     await mongoDb();
 
-    const {_id} = getUser(req.headers.authorization)
+    const {_id} = jwt_decode(req.headers.authorization)
 
     const user = await UserModel.findOne({ _id });
 

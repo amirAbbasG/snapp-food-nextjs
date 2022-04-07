@@ -1,11 +1,11 @@
 import _ from "lodash"
+import jwt_decode from "jwt-decode"
 
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import ShopModel from "../../../src/models/Shop";
 import UserModel from "../../../src/models/User";
 import FoodModel from "../../../src/models/Food";
-import {getUser} from "../../../src/utils/apiHelprs";
 
 const reorder = async (req, res) => {
   if (req.method === "POST") {
@@ -13,7 +13,7 @@ const reorder = async (req, res) => {
       await mongoDb();
 
       const { orderId } = req.query;
-      const {_id} = getUser(req.headers.authorization)
+      const {_id} = jwt_decode(req.headers.authorization)
       if (!orderId) {
         const err = new Error("سفارش مورد نطر پیدا نشد");
         err.statusCode = 404;

@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-
-import {getUser} from "../../../src/utils/apiHelprs";
+import jwt_decode from "jwt-decode"
 
 export async function middleware(req) {
   const token = req.headers.get('authorization')
-  const user = getUser(token)
+  const user = jwt_decode(token)
 
   if (!user) {
     return new Response(

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 import Head from "next/head";
 import {useRouter} from "next/router";
@@ -19,6 +19,8 @@ import GlobalContextProvider from "../src/contexts/global/GlobalContextProvider"
 import AccountContextProvider from "../src/contexts/account/AccountContextProvider";
 import {DefaultLayout, ProfileLayout} from "../src/components";
 import storeConfig from "../src/recux/store"
+
+//styles
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css"
 

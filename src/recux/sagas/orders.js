@@ -1,7 +1,6 @@
 import {put, call, takeEvery, takeLatest, take} from "redux-saga/effects"
 import {orderActionType, setOrders} from "../actions/orders";
-import http from "../../services";
-import {addToCartApi, reOrderApi, removeCartFoodApi, removeCartApi} from "../../services/orderServices";
+import {addToCartApi, reOrderApi, removeCartFoodApi, removeCartApi, getOrdersApi} from "../../services/orderServices";
 
 
 //#region get orders
@@ -10,8 +9,10 @@ export function* getOrders() {
 }
 
 export function* fetchOrders() {
-    const {data: {userOrders}} = yield call(http, "orders")
-    yield put(setOrders(userOrders))
+    if (typeof window !== 'undefined') {
+        const {data: {userOrders}} = yield call(getOrdersApi)
+        yield put(setOrders(userOrders))
+    }
 }
 
 //#endregion

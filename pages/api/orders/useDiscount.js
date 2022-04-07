@@ -1,13 +1,14 @@
+import jwt_decode from "jwt-decode"
+
 import mongoDb from "../../../src/lib/mongoDb";
 import OrderModel from "../../../src/models/Order";
 import DiscountModel from "../../../src/models/Discount";
-import {getUser} from "../../../src/utils/apiHelprs";
 
 const useDiscount = async (req, res) => {
   if (req.method === "POST") {
     try {
       await mongoDb();
-      const {_id} = getUser(req.headers.authorization)
+      const {_id} = jwt_decode(req.headers.authorization)
       const { orderId, discountCode } = req.body;
 
       const order = await OrderModel.findById(orderId);

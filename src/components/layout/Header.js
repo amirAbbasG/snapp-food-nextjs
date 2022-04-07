@@ -1,5 +1,8 @@
 import { useState, useContext } from "react";
 
+import Link from "next/link";
+import dynamic from "next/dynamic"
+
 import { Grid, Paper, Button, Typography, IconButton } from "@mui/material";
 import {
   AddBusiness,
@@ -12,8 +15,7 @@ import {
 import { useTheme } from "@mui/styles";
 import {styled} from "@mui/system";
 import { isEmpty } from "lodash";
-
-import Link from "next/link";
+import {useSelector} from "react-redux";
 
 import {
   ShopTypesBox,
@@ -22,11 +24,13 @@ import {
   AuthDialog,
   ProfileMenu,
   AddressButton,
-  AddressDialog,
   OrdersDrawer,
 } from "../";
 import { globalContext } from "../../contexts/global/globalContext";
-import {useSelector} from "react-redux";
+const AddressDialog = dynamic(() => import('../dialogs/AddressDialog'), {
+  ssr: false
+});
+
 
 const Header = ({ shouldShowShopTypes = true }) => {
 
