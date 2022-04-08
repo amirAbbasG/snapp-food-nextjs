@@ -1,3 +1,4 @@
+
 import Image from "next/image"
 
 import {
@@ -12,11 +13,12 @@ import {
 import {  useTheme } from "@mui/styles";
 import { LocationOn, Star } from "@mui/icons-material";
 import { range } from "lodash";
+import GoogleMapReact from 'google-map-react';
 
 import { MyDialog, RateBox } from "../";
 import { calculateRate } from "../../utils/rateCalculator";
 import { CommentBox } from "../";
-// import { Map } from "../../utils/map";
+import React from "react";
 
 const ShopInformationDialog = ({ open, handleClose, shopDetails }) => {
 
@@ -79,12 +81,21 @@ const ShopInformationDialog = ({ open, handleClose, shopDetails }) => {
             </Container>
           </Stack>
           <Stack sx={mapBox}>
-            {/* <Mapir center={[51.42047, 35.729054]} Map={Map}>
-              <Mapir.Marker
-                coordinates={[longitude, latitude]}
-                anchor="bottom"
+            <GoogleMapReact
+                defaultCenter={{
+                  lat: latitude,
+                  lng:longitude
+                }}
+                defaultZoom={11}
+            >
+              <img
+                  lat={latitude}
+                  lng={longitude}
+                  alt="location marker"
+                  style={{height: "40px", width: "40px"}}
+                  src="/images/marker.png"
               />
-            </Mapir> */}
+            </GoogleMapReact>
           </Stack>
         </Stack>
       </Box>
@@ -124,7 +135,7 @@ const ShopInformationDialog = ({ open, handleClose, shopDetails }) => {
           ))}
         </Stack>
       </Box>
-      <CommentBox comments={comments} id={shopDetails._id} />
+      <CommentBox comments={comments} id={shopDetails._id}/>
     </MyDialog>
   );
 };

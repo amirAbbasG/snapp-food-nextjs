@@ -27,6 +27,7 @@ const CategoryCard = ({category}) => {
                     >
                         <Typography
                             sx={title}
+                            component="h6"
                         >{category}</Typography>
                         <KeyboardArrowLeft color="primary"/>
                     </Grid>

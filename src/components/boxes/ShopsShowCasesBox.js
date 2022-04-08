@@ -25,7 +25,7 @@ const ShopsShowCasesBox = ({ data, title, url }) => {
   return (
     <>
       <Stack direction="row" justifyContent="space-between" py={2} mt={4}>
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant="h6" component="h2">{title}</Typography>
         <Link href={url} scroll={false}>
             <Stack direction="row" alignItems="center">
               <Typography color="textSecondary" variant="h6">

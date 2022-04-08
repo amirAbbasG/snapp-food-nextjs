@@ -41,6 +41,7 @@ const Footer = () => {
       },
     },
   };
+
   const { root, logoBox, socialsMediaBox, linkBox } = styles;
 
   const FooterText = styled(Typography)({
@@ -49,7 +50,7 @@ const Footer = () => {
   });
 
   return (
-    <Stack direction={{ xs: "column", md: "row" }} sx={root}>
+    <Stack direction={{ xs: "column", md: "row" }} sx={root} component="footer">
       <Grid container sx={logoBox}>
         <SnappFoodLogo />
         <Grid item sx={socialsMediaBox}>

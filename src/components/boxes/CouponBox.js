@@ -52,7 +52,7 @@ const CouponBox = ({ shopId, coupons }) => {
 
   return (
     <Stack sx={root}>
-      <Typography textAlign="center">کوپن ها</Typography>
+      <Typography textAlign="center" component="h2">کوپن ها</Typography>
       <Carousel
         itemsToShow={coupons.length < showCount ? coupons.length : showCount}
         isRTL

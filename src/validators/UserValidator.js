@@ -54,6 +54,7 @@ const commentValidator = (data) => {
   const schema = joi.object({
     text: joi.string().min(1),
     score: joi.number().min(0).max(5),
+    id: joi.string().required()
   });
   return schema.validate(data);
 };

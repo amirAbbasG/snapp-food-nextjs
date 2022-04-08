@@ -28,10 +28,10 @@ const FoodCard = ({ food, onClick }) => {
               <CardContent
                 sx={{ flexWrap: "wrap", padding: "10px 2px !important" }}
               >
-                <Typography fontSize={16} fontWeight="bold">
+                <Typography fontSize={16} fontWeight="bold" component="h2">
                   {food.name}
                 </Typography>
-                <Typography fontSize={11} color="GrayText">
+                <Typography fontSize={11} color="GrayText" component="h4">
                   {food.description}
                 </Typography>
               </CardContent>

@@ -50,7 +50,7 @@ const FoodDetailsDialog = ({ food, open, handleClose }) => {
             }}
           >
             <FoodPriceBox price={food.price} discount={food.discount} />
-            <FoodOrderButtons foodId={food} />
+            <FoodOrderButtons food={food} />
           </Container>
         </Grid>
       </Grid>

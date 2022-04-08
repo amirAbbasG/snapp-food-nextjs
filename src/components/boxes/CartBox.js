@@ -47,6 +47,7 @@ const CartBox = ({ shopId }) => {
                 {order.foods.map((food) => (
                   <Stack key={food._id}>
                     <Typography
+                        component="h2"
                       my={1}
                     >{`${food.name} (${food.count})`}</Typography>
                     <ItemStack>

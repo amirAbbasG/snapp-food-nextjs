@@ -10,7 +10,7 @@ const RestaurantCategoriesBox = ({ categories }) => {
 
   return (
     <>
-      <Typography mb={3} mr={"2%"} variant="h6">
+      <Typography mb={3} mr={"2%"} variant="h6" component="h1">
         دسته بندی ها
       </Typography>
       <Grid container rowSpacing={4} columns={10} sx={root}>

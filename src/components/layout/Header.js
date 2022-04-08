@@ -127,7 +127,7 @@ const Header = ({ shouldShowShopTypes = true }) => {
 
   return (
     <>
-      <Paper sx={styles.root}>
+      <Paper sx={styles.root} component="header">
         <Grid container justifyContent="space-between" alignItems="center">
           <Grid xs={6} md={4} item container>
             <Grid item xs={3}>

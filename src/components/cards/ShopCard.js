@@ -51,12 +51,12 @@ const ShopCard = ({ shop }) => {
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
         />
         </Stack>
-        <Typography gutterBottom variant="h6" mt={1} component="div">
+        <Typography gutterBottom variant="h6" mt={1} component="h1">
           {shop.shopName}
         </Typography>
         <Stack direction="row" alignItems="center">
           <RateBox rate={rate === 0 ? "جدید" : rate} />
-          <Typography color="gray" mr={1}>
+          <Typography color="gray" mr={1} component="h3">
             ({shop.comments.length})
           </Typography>
         </Stack>

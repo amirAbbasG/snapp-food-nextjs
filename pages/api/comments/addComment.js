@@ -1,6 +1,7 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import CommentModel from "../../../src/models/Comment";
 import FoodModel from "../../../src/models/Food";
+import ShopModel from "../../../src/models/Shop";
 import { commentValidator } from "../../../src/validators/UserValidator";
 
 import jwt_decode from "jwt-decode"
@@ -9,6 +10,7 @@ const addComment = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { error } = commentValidator(req.body);
+
       if (error) {
         const err = new Error(error.message);
         err.statusCode = 400;
@@ -16,6 +18,7 @@ const addComment = async (req, res) => {
       }
       const { text, score, id } = req.body;
       const userInfo = jwt_decode(req.headers.authorization)
+
       const newComment = {
         sender: userInfo.fullName,
         text,

@@ -11,12 +11,12 @@ import {Link} from "../"
 
 const ShopTypesBox = () => {
 
-  const theme = useTheme()
+  const {breakpoints} = useTheme()
 
   const styles = {
     root: {
       width: "100%",
-      [theme.breakpoints.down("md")]: {
+      [breakpoints.down("md")]: {
         overflowX: "scroll",
       },
       alignItems: "center",
@@ -28,7 +28,7 @@ const ShopTypesBox = () => {
     },
   };
 
-  const { data, error } = useSWR('/shopTypes')
+  const { data } = useSWR('/shopTypes')
 
 
   const { root, itemBox } = styles;

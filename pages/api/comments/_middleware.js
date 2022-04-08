@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode"
 
 export async function middleware(req) {
   const token = req.headers.get('authorization')
-  const user = jwt_decode(token)
+  const user = token? jwt_decode(token) : null
 
   if (!user) {
     return new Response(

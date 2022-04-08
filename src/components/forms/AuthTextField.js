@@ -20,7 +20,7 @@ const AuthTextField = ({
 
   return (
     <Stack style={{ display: isDisabled && "none", marginTop: 10 }}>
-      <Typography my={1}>{title}</Typography>
+      <Typography my={1} component="h4">{title}</Typography>
       <TextField
         disabled={isDisabled}
         {...otherProps}

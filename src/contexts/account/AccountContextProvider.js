@@ -116,7 +116,6 @@ const AccountContextProvider = ({ children }) => {
         setToken(data);
         setIsLoadingButton(false);
         successMessage("خوش آمدید");
-        dispatch(getAccountInformation());
         dispatch(getOrders());
         setOpenAuth(false);
       } else {
