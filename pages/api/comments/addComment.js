@@ -4,7 +4,7 @@ import FoodModel from "../../../src/models/Food";
 import ShopModel from "../../../src/models/Shop";
 import { commentValidator } from "../../../src/validators/UserValidator";
 
-import jwt_decode from "jwt-decode"
+import {getUser} from "../../../src/utils/apiHelper";
 
 const addComment = async (req, res) => {
   if (req.method === "POST") {
@@ -17,7 +17,7 @@ const addComment = async (req, res) => {
         throw err;
       }
       const { text, score, id } = req.body;
-      const userInfo = jwt_decode(req.headers.authorization)
+      const userInfo = getUser(req)
 
       const newComment = {
         sender: userInfo.fullName,

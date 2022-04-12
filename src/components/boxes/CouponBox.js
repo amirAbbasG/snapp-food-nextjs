@@ -5,7 +5,7 @@ import Carousel from "react-elastic-carousel";
 import {useDispatch, useSelector} from "react-redux";
 
 import { globalContext } from "../../contexts/global/globalContext";
-import {errorMessage} from "../../utils/toast";
+import {errorMessage} from "../../lib/toast";
 import {getOrders} from "../../recux/actions/orders";
 import {setCouponApi} from "../../services/orderServices";
 

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import { ActionButton } from "../";
 import { isEmpty } from "lodash";
-import { errorMessage } from "../../utils/toast";
+import { errorMessage } from "../../lib/toast";
 import {addToCart, removeCartFood, removeCart} from "../../recux/actions/orders";
 
 const FoodOrderButtons = ({ food }) => {

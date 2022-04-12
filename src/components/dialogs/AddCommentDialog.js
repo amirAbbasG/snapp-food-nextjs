@@ -4,7 +4,7 @@ import {Stack, TextField, Button, Rating, Typography} from "@mui/material";
 
 import {MyDialog} from "../";
 import {addCommentApi} from "../../services/commentServices"
-import {successMessage, errorMessage} from "../../utils/toast";
+import {successMessage, errorMessage} from "../../lib/toast";
 
 const AddCommentDialog = ({open, handleClose, id, handleSetNewComment}) => {
     const [commentText, setCommentText] = useState("");

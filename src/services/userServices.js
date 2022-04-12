@@ -20,6 +20,10 @@ export const loginUserApi = (user) => {
   return http.post("login", user);
 };
 
+export const logoutUserApi = () => {
+  return http.post("user/logout");
+};
+
 export const editProfileApi = (editData) => {
   return http.put("user/editProfile", editData);
 };
@@ -34,8 +38,4 @@ export const changePasswordApi = (data) => {
 
 export const changeAuthenticatedUserPasswordApi = (data) => {
   return http.put("user/changeAuthenticatedUserPassword", data);
-};
-
-export const userInformationApi = () => {
-  return http.get("user");
 };

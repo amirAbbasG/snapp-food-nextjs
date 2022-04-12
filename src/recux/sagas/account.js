@@ -3,12 +3,16 @@ import {accountActionType, setAccount} from "../actions/account";
 import {getAccountInformationApi} from "../../services/userServices";
 
 export function* getAccountInformation() {
-        yield takeEvery(accountActionType.GET_ACCOUNT, fetchAccountInformation)
+    yield takeEvery(accountActionType.GET_ACCOUNT, fetchAccountInformation)
 }
 
-export function* fetchAccountInformation(){
-        if (typeof window !== 'undefined') {
-                const {data: {user}} = yield call(getAccountInformationApi)
-                yield put(setAccount(user))
+export function* fetchAccountInformation() {
+
+    if (typeof window !== "undefined") {
+        const {data: {user}, status} = yield call(getAccountInformationApi)
+        if (status === 200) {
+
+            yield put(setAccount(user))
         }
+    }
 }

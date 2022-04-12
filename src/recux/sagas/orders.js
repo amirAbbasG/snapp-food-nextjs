@@ -9,10 +9,14 @@ export function* getOrders() {
 }
 
 export function* fetchOrders() {
-    if (typeof window !== 'undefined') {
-        const {data: {userOrders}} = yield call(getOrdersApi)
+    if (typeof window !== "undefined"){
+
+    const {data: {userOrders}, status} = yield call(getOrdersApi)
+    if (status === 200) {
         yield put(setOrders(userOrders))
     }
+    }
+
 }
 
 //#endregion

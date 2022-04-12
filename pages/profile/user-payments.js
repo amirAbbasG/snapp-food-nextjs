@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, CircularProgress } from "@mui/material";
 
 import { MyHead, PaymentCard } from "../../src/components";
 import {getPaymentsApi} from "../../src/services/paymentsServices";
@@ -8,11 +8,14 @@ import {getPaymentsApi} from "../../src/services/paymentsServices";
 const UserPayments = () => {
 
     const [payments, setPayments] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         const setData = async () => {
+            setIsLoading(true)
             const { status, data } = await getPaymentsApi();
             if (status === 200) {
                 setPayments(data.userPayments);
+                setIsLoading(false)
             }
         };
         setData();
@@ -33,9 +36,18 @@ const UserPayments = () => {
                 در پرداخت‌های ناموفق بانکی اگر مبلغ از حسابتان کسر شود، معمولاً در کمتر
                 از یک ساعت و نهایتاً تا ۷۲ ساعت به حساب شما برگردانده خواهد شد.
             </Typography>
-            {payments.map((payment) => (
-                <PaymentCard key={payment._id} payment={payment} />
-            ))}
+            {
+                isLoading ? (
+                    <CircularProgress sx={{alignSelf: "center", m: 1}}/>
+                ): (
+                    <>
+                        {payments.map((payment) => (
+                        <PaymentCard key={payment._id} payment={payment} />
+                    ))}
+                    </>
+                )
+            }
+
         </Stack>
     );
 };

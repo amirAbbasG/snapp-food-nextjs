@@ -1,7 +1,6 @@
 import React from "react";
 
 import Head from "next/head";
-import {useRouter} from "next/router";
 
 import {Provider} from "react-redux";
 import PropTypes from "prop-types";
@@ -17,8 +16,9 @@ import theme from "../styles/theme";
 import createEmotionCache from "../src/utils/createEmotionCache";
 import GlobalContextProvider from "../src/contexts/global/GlobalContextProvider";
 import AccountContextProvider from "../src/contexts/account/AccountContextProvider";
-import {DefaultLayout, ProfileLayout} from "../src/components";
+import {DefaultLayout} from "../src/components";
 import storeConfig from "../src/recux/store"
+import {combineProviders} from "../src/utils/combineProviders";
 
 //styles
 import "../styles/globals.css";
@@ -35,23 +35,12 @@ function MyApp({
                    pageProps,
                }) {
 
-        const router = useRouter()
 
-    const Layout = ({children}) => (
-        <>
-        {
-            router.pathname.includes("/profile") ? (
-                <ProfileLayout>
-                    {children}
-                </ProfileLayout>
-            ): (
-                <DefaultLayout>
-                    {children}
-                </DefaultLayout>
-            )
-        }
-        </>
-    )
+    const Providers = combineProviders([
+        GlobalContextProvider,
+        AccountContextProvider,
+        DefaultLayout
+    ])
 
 
     return (
@@ -68,13 +57,10 @@ function MyApp({
                     <ThemeProvider theme={theme}>
                         <CssBaseline/>
                         <Provider store={store}>
-                            <GlobalContextProvider>
-                                <AccountContextProvider>
-                                    <Layout>
-                                        <Component {...pageProps} />
-                                    </Layout>
-                                </AccountContextProvider>
-                            </GlobalContextProvider>
+                            <Providers>
+
+                                <Component {...pageProps} />
+                            </Providers>
                         </Provider>
 
                         <ToastContainer/>

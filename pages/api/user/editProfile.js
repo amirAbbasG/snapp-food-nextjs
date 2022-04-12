@@ -1,15 +1,16 @@
-import jwt_decode from "jwt-decode"
 
 import mongoDb from "../../../src/lib/mongoDb";
 import UserModel from "../../../src/models/User";
 import { userEditValidator } from "../../../src/validators/UserValidator";
+import {setTokenCookie} from "src/lib/cookie";
+import {getUser} from "../../../src/utils/apiHelper";
 
 const editProfile = async (req, res) => {
   if (req.method === "PUT") {
     try {
       await mongoDb();
 
-      const {_id} = jwt_decode(req.headers.authorization)
+      const {_id} = getUser(req)
 
       const { error } = userEditValidator(req.body);
       if (error) {
@@ -37,7 +38,8 @@ const editProfile = async (req, res) => {
       }
       await user.save();
       const token = user.genAuthToken();
-      res.status(200).send({ message: "done", token, userId: user._id });
+      setTokenCookie(token, res)
+      res.status(200).send({ message: "edit successfully", done: true });
     } catch (error) {
       const err = new Error("مشکلی پیش آمده : ", error);
       err.statusCode = 500;

@@ -19,7 +19,7 @@ import {
 
 import { Factor, MyHead } from "../../src/components";
 import { separatePrice } from "../../src/utils/priceSeparator";
-import { errorMessage, successMessage } from "../../src/utils/toast";
+import { errorMessage, successMessage } from "../../src/lib/toast";
 import { checkPaymentApi } from "../../src/services/paymentsServices";
 import { setDiscountApi } from "../../src/services/orderServices";
 import {getOrders} from "../../src/recux/actions/orders";

@@ -15,10 +15,10 @@ import {
     getShopByCategoryApi,
     getShopsWithCouponApi,
     getTopRatedShopsApi,
-    getShopTypeByNameApi
+    getShopTypeByNameApi,
+    searchShopsApi
 } from "../../src/services/shopServices"
 import {calculateRate, getBestCoupone, getPriceAverage} from "../../src/utils/rateCalculator";
-
 
 
 export async function getServerSideProps(context) {
@@ -38,7 +38,12 @@ export async function getServerSideProps(context) {
 
             const {data: {shopType}} = await getShopTypeByNameApi(category)
             type = shopType
+            break;
 
+        case "search":
+            const {term} = context.query
+            const {data} = await searchShopsApi(term, 20)
+            filteredShops = data.shops
             break;
         case "discounted":
             const {data: {discountedShops}} = await getDiscountedShopsApi(20)
@@ -78,7 +83,7 @@ const Shops = ({filteredShops, type}) => {
     const [sortType, setSortType] = useState("");
 
 
-    const filterShops =[...filteredShops].filter((s) =>
+    const filterShops = [...filteredShops].filter((s) =>
         isFreeExpress
             ? s.deliveryCost === 0
             : s.deliveryCost >= 0 && haveCoupon
@@ -117,7 +122,7 @@ const Shops = ({filteredShops, type}) => {
         <Grid container direction="column">
             <MyHead
                 description="فیلتر فروشگاه براساس نظرهای شما"
-                title= "فروشگاها"
+                title="فروشگاها"
                 keywords="test"
             />
             <Grid container item justifyContent="flex-end">

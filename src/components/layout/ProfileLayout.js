@@ -8,7 +8,6 @@ import { KeyboardArrowLeft } from "@mui/icons-material";
 import { isEmpty } from "lodash";
 import {useSelector} from "react-redux";
 
-import { DefaultLayout } from "../";
 import ShouldLoginPage from "./should-login";
 import {accountContext} from "../..//contexts/account/accountContext";
 
@@ -73,7 +72,7 @@ const ProfileLayout = ({ children }) => {
   );
 
   return (
-    <DefaultLayout showShopTypes={false} useDefaultOutlet={false}>
+      <>
       {isEmpty(account) ? (
         <ShouldLoginPage />
       ) : (
@@ -124,7 +123,7 @@ const ProfileLayout = ({ children }) => {
           </Grid>
         </Grid>
       )}
-    </DefaultLayout>
+      </>
   );
 };
 

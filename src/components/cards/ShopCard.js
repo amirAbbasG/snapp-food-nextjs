@@ -34,6 +34,7 @@ const ShopCard = ({ shop }) => {
             src={`/images/shop/${shop.shopImage}`}
             layout="fill"
             placeholder="blur"
+            className="cardImg"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
             alt="shop image"
         />

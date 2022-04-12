@@ -73,3 +73,8 @@ a {
 .rec.rec-carousel {
   position: relative;
 }
+
+.cardImg{
+  object-position: center;
+  object-fit: cover;
+}

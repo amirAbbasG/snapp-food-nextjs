@@ -1,6 +1,7 @@
 import mongoDb from "../../../src/lib/mongoDb";
 import ShopModel from "../../../src/models/Shop";
 import FoodModel from "../../../src/models/Food";
+import CommentModel from "../../../src/models/Comment";
 
 const shopsByCategory = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ const shopsByCategory = async (req, res) => {
     const shops = await ShopModel.find({
       $or: [{ shopType: category }, { category}],
     })
-      .populate({ path: "comments", select: "score -_id" })
+      .populate({ path: "comments", select: "score -_id", model: CommentModel})
         .populate({ path: "foods", select: "price discount -_id", model: FoodModel })
       .select("-userNumber -userPassword -ownerFullName")
       .limit(limit);

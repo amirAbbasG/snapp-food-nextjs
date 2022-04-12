@@ -33,3 +33,7 @@ export const getShopsWithCouponApi = (limit) => {
 export const getTopRatedShopsApi = (limit) => {
   return http.get(`filterShops/topRatedShops?limit=${limit}`);
 };
+
+export const searchShopsApi = (filter, limit) => {
+  return http.get(encodeURI(`shops/searchShops?filter=${filter}&limit=${limit}`));
+};

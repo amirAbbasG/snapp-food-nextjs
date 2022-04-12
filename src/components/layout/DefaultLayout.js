@@ -1,21 +1,20 @@
-import {useEffect, useContext} from "react";
+
+import {useRouter} from "next/router";
 
 import { Grid } from "@mui/material";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import {accountContext} from "../../contexts/account/accountContext";
+import ProfileLayout from "./ProfileLayout"
+
 
 const DefaultLayout = ({  children }) => {
 
-    const {checkToken} = useContext(accountContext)
-
-    useEffect(() => {
-        checkToken()
-    }, [])
+    const router = useRouter()
 
     return (
     <Grid sx={{width: "100%", flex: 1}}>
+
       <Header  />
       <Grid
         sx={{
@@ -35,7 +34,18 @@ const DefaultLayout = ({  children }) => {
             width: "100%",
           }}
         >
-          {children}
+            {
+                router.pathname.includes("/profile") ? (
+                    <ProfileLayout>
+                        {children}
+                    </ProfileLayout>
+                ) : (
+                    <>
+                    {children}
+                    </>
+                )
+
+            }
         </main>
         <Footer />
       </Grid>

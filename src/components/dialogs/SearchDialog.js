@@ -1,4 +1,6 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
+
+import Link from "next/link"
 
 import {
   Dialog,
@@ -12,32 +14,39 @@ import {
 import { Search, StorefrontTwoTone } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 
-import {Link} from "../";
+import {searchShopsApi} from "../../services/shopServices";
 
 const SearchDialog = ({ open, handleClose }) => {
-  const { dialog, helpText, textField, shopsBox } = useStyles();
   const [searchText, setSearchText] = useState("");
-  // const shops = useSelector((state) => state.shops);
-  const shops = [];
+  const [searchShop, setSearchShop] = useState([]);
 
-  const searchShop = [...shops].filter(
-    (s) =>
-      s.shopName.includes(searchText) ||
-      s.shopType.includes(searchText) ||
-      s.category.includes(searchText)
-  );
-  const handleReset = (e) => {
-    e.preventDefault()
+  useEffect(() => {
+    const fetchDate = async () => {
+      if (searchText.length > 1) {
+        const {data: {shops}} = await searchShopsApi(searchText, 7)
+        setSearchShop(shops)
+      }
+    }
+
+    fetchDate()
+  }, [searchText])
+
+
+
+  const handleReset = () => {
     setSearchText("");
     handleClose();
   };
+
+  const { helpText, textField, shopsBox } = styles;
+  const classes = useStyles()
 
   return (
     <Dialog
       open={open}
       onClose={handleClose}
       classes={{
-        paper: dialog,
+        paper: classes.dialog,
       }}
     >
       <DialogContent>
@@ -48,7 +57,7 @@ const SearchDialog = ({ open, handleClose }) => {
           fullWidth
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className={textField}
+          sx={textField}
           variant="outlined"
           InputProps={{
             startAdornment: (
@@ -59,23 +68,22 @@ const SearchDialog = ({ open, handleClose }) => {
           }}
         />
         {searchText.length === 0 ? (
-          <DialogContentText className={helpText}>
+          <DialogContentText sx={helpText}>
             عبارت مورد نظر خود را وارد کنید
           </DialogContentText>
         ) : (
-          <Stack spacing={3} className={shopsBox}>
+          <Stack spacing={3} sx={shopsBox}>
             <Link
-              to="/shops"
-              // state={{ data: searchShop }}
-              onClick={handleReset}
+              href={`/shops?filter=search&term=${searchText}`}
+
             >
-              <a>
+              <a  onClick={handleReset}>
                 <Typography color="textSecondary">{`مشاهده همه (${searchShop.length}) >`}</Typography>
               </a>
             </Link>
             {searchShop.slice(0, 9).map((shop) => (
 
-              <Link to={`/shops/${shop._id}`} key={shop._id} >
+              <Link href={`/shops/${shop._id}`} key={shop._id} >
                 <a onClick={handleReset}>
                   <Stack direction="row">
                     <StorefrontTwoTone />
@@ -93,19 +101,15 @@ const SearchDialog = ({ open, handleClose }) => {
 
 export default memo(SearchDialog);
 
-const useStyles = makeStyles({
-  dialog: {
-    position: "absolute",
-    top: 0,
-    backgroundColor: "inherit",
-  },
+const styles = {
+
   textField: {
     backgroundColor: "#FFFFFF",
     borderRadius: 7,
   },
   helpText: {
     backgroundColor: "#FFFFFF",
-    borderRadius: 7,
+    borderRadius: "7px",
     padding: "1.2rem",
     borderBlockColor: "#FFFFFF",
     width: "27rem",
@@ -115,7 +119,15 @@ const useStyles = makeStyles({
   shopsBox: {
     width: "27rem",
     backgroundColor: "#FFFFFF",
-    borderRadius: 7,
-    padding: 10,
+    borderRadius: "7px",
+    padding: "10px",
   },
-});
+};
+
+const useStyles = makeStyles({
+  dialog: {
+    position: "absolute",
+    top: 0,
+    backgroundColor: "inherit",
+  },
+})

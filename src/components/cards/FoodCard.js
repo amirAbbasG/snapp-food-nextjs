@@ -44,6 +44,7 @@ const FoodCard = ({ food, onClick }) => {
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcuHTiMQAGJQKP0kkd/QAAAABJRU5ErkJggg=="
                   alt="food"
+                  className="cardImg"
               />
               </Box>
             </Box>

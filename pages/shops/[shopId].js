@@ -33,7 +33,7 @@ import {getShopDetailsApi} from "../../src/services/shopServices";
 import { separatePrice } from "../../src/utils/priceSeparator";
 import { calculateRate } from "../../src/utils/rateCalculator";
 import {addOrRemoveFavoriteShopApi} from "../../src/services/shopServices"
-import {successMessage, errorMessage} from "../../src/utils/toast";
+import {successMessage, errorMessage} from "../../src/lib/toast";
 import {getAccountInformation} from "../../src/recux/actions/account";
 
 export async function getServerSideProps(context){

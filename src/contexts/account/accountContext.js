@@ -6,7 +6,6 @@ export const accountContext = createContext({
   handleUserAuthSubmit: () => {},
   isLoadingButton: false,
   setIsLoadingButton: () => {},
-  checkToken: () => {},
   editProfile: () => {},
   addAddress: () => {},
   exitAccount: () => {},

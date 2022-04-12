@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import mongoDb from "../../src/lib/mongoDb";
 import UserModel from "../../src/models/User";
 import { userLoginValidator } from "../../src/validators/UserValidator";
+import {setTokenCookie} from "../../src/lib/cookie";
 
 const login = async (req, res) => {
   if (req.method === "POST") {
@@ -29,7 +30,8 @@ const login = async (req, res) => {
         throw error;
       }
       const token = user.genAuthToken();
-      res.status(200).send({ message: "done", token, userId: user._id });
+      setTokenCookie(token, res)
+      res.status(200).send({ message: "login successfully", done: true });
     } catch (error) {
       const err = new Error("مشکلی پیش آمده : ", error);
       err.statusCode = 500;

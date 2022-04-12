@@ -5,6 +5,7 @@ import mongoDb from "../../src/lib/mongoDb";
 import UserModel from "../../src/models/User";
 import ActiveNumberModel from "../../src/models/ActiveNumber";
 import { userRegisterValidator } from "../../src/validators/UserValidator";
+import {setTokenCookie} from "../../src/lib/cookie";
 
 const register = async (req, res) => {
   if (req.method === "POST") {
@@ -24,7 +25,7 @@ const register = async (req, res) => {
       if (!activeNumber) {
         const error = new Error("شماره فعال نشده");
         error.statusCode = 400;
-        throw error;
+        throw error;t
       }
       const user = await new UserModel(
         _.pick(req.body, ["number", "fullName"])
@@ -34,7 +35,8 @@ const register = async (req, res) => {
       user.password = hashedPassword;
       await user.save();
       const token = user.genAuthToken();
-      res.status(201).send({ message: "done", token, userId: user._id });
+      setTokenCookie(token, res)
+      res.status(201).send({ message: "register successfully", done: true });
     } catch (error) {
       const err = new Error("مشکلی پیش آمده : ", error);
       err.statusCode = 500;

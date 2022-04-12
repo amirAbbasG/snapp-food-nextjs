@@ -2,7 +2,6 @@ import { useState, memo, useContext } from "react";
 import { globalContext } from "../global/globalContext";
 import { accountContext } from "../account/accountContext";
 import { useDispatch, useSelector } from "react-redux";
-import jwt from "jsonwebtoken";
 import {
   clearAccount,
   getAccountInformation,
@@ -16,9 +15,9 @@ import {
   forgotPasswordApi,
   changePasswordApi,
   changeAuthenticatedUserPasswordApi,
+    logoutUserApi
 } from "../../services/userServices";
-import http from "../../services";
-import { successMessage, errorMessage } from "../../utils/toast";
+import { successMessage, errorMessage } from "../../lib/toast";
 import { getOrders } from "../../recux/actions/orders";
 
 const AccountContextProvider = ({ children }) => {
@@ -89,9 +88,8 @@ const AccountContextProvider = ({ children }) => {
   const registerUser = async (user) => {
     try {
       setIsLoadingButton(true);
-      const { data, status } = await registerUserApi(user);
+      const { status } = await registerUserApi(user);
       if (status === 201) {
-        setToken(data);
         dispatch(getAccountInformation());
         setIsLoadingButton(false);
         successMessage("ثبت نام با موفقیت انجام شد");
@@ -111,11 +109,11 @@ const AccountContextProvider = ({ children }) => {
   const loginUser = async (user) => {
     try {
       setIsLoadingButton(true);
-      const { status, data } = await loginUserApi(user);
+      const { status } = await loginUserApi(user);
       if (status === 200) {
-        setToken(data);
         setIsLoadingButton(false);
         successMessage("خوش آمدید");
+        dispatch(getAccountInformation());
         dispatch(getOrders());
         setOpenAuth(false);
       } else {
@@ -182,56 +180,31 @@ const AccountContextProvider = ({ children }) => {
   //#endregion
 
   //#region exit account
-  const exitAccount = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    dispatch(clearAccount());
-  };
-  //#endregion
-
-  //#region set token and header
-  const setToken = (data) => {
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("userId", data.userId);
-    dispatch(getAccountInformation());
-    http.defaults.headers.common["Authorization"] = data.token;
-  };
-  //#endregion
-
-  //#region check if token exist and isValid
-  const checkToken = () => {
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
-    if (token != null && userId != null) {
-      const decodedToken = jwt.decode(token, process.env.JWT_SECRET);
-      const nowDate = Date.now() / 1000;
-      if (nowDate < decodedToken.exp) {
-        if (decodedToken["_id"] === userId) {
-          http.defaults.headers.common["Authorization"] = token;
-          if (typeof window !== 'undefined') {
-            dispatch(getAccountInformation());
-            dispatch(getOrders());
-          }
-
-        } else {
-          exitAccount();
-        }
-      } else {
-        exitAccount();
+  const exitAccount = async () => {
+    try {
+      const {status} = await logoutUserApi()
+      if (status === 200){
+        dispatch(clearAccount());
+        successMessage("از حساب کاربری خود خارج شدید")
+      }else{
+        errorMessage("مشکلی در خارج شدن از حساب کاربری پیش آمده")
       }
+
+    }catch (error){
+      errorMessage(error.response.data.message);
     }
   };
   //#endregion
+
 
   //#region edit profile
   const editProfile = async (userData) => {
     try {
       setIsLoadingButton(true);
       const editData = { fullName: account.fullName, ...userData };
-      const { status, data } = await editProfileApi(editData);
+      const { status } = await editProfileApi(editData);
       if (status === 200) {
         successMessage("اطلاعات کاربر با موفقیت ویرایش شد");
-        setToken(data);
         dispatch(getAccountInformation());
         setIsLoadingButton(false);
       }
@@ -244,8 +217,7 @@ const AccountContextProvider = ({ children }) => {
 
   //#region add address by user
   const addAddress = async (address) => {
-    editProfile({ address });
-    dispatch(getAccountInformation());
+    await editProfile({ address });
   };
   //#endregion
 
@@ -275,7 +247,6 @@ const AccountContextProvider = ({ children }) => {
         isLoadingButton,
         setAction,
         setIsLoadingButton,
-        checkToken,
         editProfile,
         addAddress,
         exitAccount,

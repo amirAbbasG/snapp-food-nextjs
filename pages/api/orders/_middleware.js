@@ -1,25 +1,25 @@
-import { NextResponse } from "next/server";
-import jwt_decode from "jwt-decode"
+import {NextResponse} from "next/server";
+import {getUser} from "../../../src/utils/apiHelper";
 
 export async function middleware(req) {
-  const token = req.headers.get('authorization')
-    const user = token? jwt_decode(token) : null
 
-  if (!user) {
-    return new Response(
-        JSON.stringify({
-          message: "برای دسترسی با این بخشن نیاز به حساب کاربری است",
+    const user = getUser(req)
 
-        }),
-        {
-          status: 401,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-    );
-  }
+    if (!user) {
+        return new Response(
+            JSON.stringify({
+                message: "برای دسترسی با این بخشن نیاز به حساب کاربری است",
+
+            }),
+            {
+                status: 401,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+    }
 
 
-  return NextResponse.next();
+    return NextResponse.next();
 }
