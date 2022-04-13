@@ -11,17 +11,16 @@ const searchShops = async (req, res) => {
         const {filter, limit} = req.query
 
 
-        const shops = await ShopModel
+        let shops = await ShopModel
             .find()
             .or([
                 {shopName: {$regex: filter}},
                 {category: {$regex: filter}},
                 {shopType: {$regex: filter}}
-            ])
-            .populate({ path: "comments", select: "score -_id", model: CommentModel})
-            .populate({ path: "foods", select: "price discount -_id", model: FoodModel })
-            .select("-userNumber -userPassword -ownerFullName")
-            .limit(limit)
+            ]).limit(limit).select( limit === "7" ? "shopName" : "-userNumber -userPassword -ownerFullName")
+            .populate(limit !== "7" && { path: "comments", select: "score -_id", model: CommentModel})
+            .populate(limit !== "7" && { path: "foods", select: "price discount -_id", model: FoodModel })
+
 
         res.status(200).send({ shops, done: true });
     } catch (error) {

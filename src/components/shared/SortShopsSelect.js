@@ -7,16 +7,17 @@ import {
     MenuItem,
     OutlinedInput,
 } from "@mui/material";
-
+import {makeStyles} from "@mui/styles";
 
 import {sortTypes} from "../../utils/values";
+
 
 
 const SortShopsSelect = ({handleChangeSort}) => {
 
     const [sortType, setSortType] = useState("پیش فرض");
     const [open, setOpen] = useState(false);
-    const {select, icon} = styles;
+    const {select, icon} = useStyles();
 
 
     const handleChange = (event) => {
@@ -27,6 +28,7 @@ const SortShopsSelect = ({handleChangeSort}) => {
         setSortType(value.title);
         setOpen(false);
     };
+
     return (
         <FormControl
             sx={{
@@ -62,7 +64,7 @@ const SortShopsSelect = ({handleChangeSort}) => {
 
 export default SortShopsSelect;
 
-const styles = {
+const useStyles = makeStyles({
     select: {
         display: "flex",
         justifyContent: "space-evenly",
@@ -70,4 +72,4 @@ const styles = {
     icon: {
         borderLeft: "1px #e3e3e4 solid",
     },
-};
+})

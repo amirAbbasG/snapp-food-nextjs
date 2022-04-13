@@ -86,7 +86,7 @@ const Link = React.forwardRef(function Link(props, ref) {
 
     return (
         <MuiLink
-            style={{textDecoration: "none"}}
+            style={{textDecoration: "none", color: "000"}}
             component={NextLinkComposed}
             className={className}
             ref={ref}

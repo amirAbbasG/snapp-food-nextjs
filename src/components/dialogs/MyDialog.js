@@ -10,7 +10,9 @@ import { Close } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 
 const MyDialog = ({ open, onClose, title, children, ...props }) => {
-  const { dialog, titleBox } = useStyles(props);
+
+  const { dialog } = useStyles(props);
+
   return (
     <Dialog
       open={open}
@@ -20,7 +22,12 @@ const MyDialog = ({ open, onClose, title, children, ...props }) => {
       }}
     >
       <DialogTitle>
-        <Stack className={titleBox}>
+        <Stack sx={ {
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
           <IconButton onClick={onClose}>
             <Close />
           </IconButton>
@@ -40,11 +47,5 @@ const useStyles = makeStyles({
     width: (props) => props.width,
     borderRadius: 14,
     maxWidth: "740px",
-  },
-  titleBox: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
 });
