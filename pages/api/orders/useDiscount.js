@@ -1,8 +1,7 @@
-
 import mongoDb from "../../../src/lib/mongoDb";
-import OrderModel from "../../../src/models/Order";
-import DiscountModel from "../../../src/models/Discount";
+import { DiscountModel, OrderModel} from "../../../src/models"
 import {getUser} from "../../../src/utils/apiHelper";
+
 
 const useDiscount = async (req, res) => {
   if (req.method === "POST") {

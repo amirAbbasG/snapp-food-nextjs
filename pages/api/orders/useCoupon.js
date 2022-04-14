@@ -1,7 +1,6 @@
 
 import mongoDb from "../../../src/lib/mongoDb";
-import OrderModel from "../../../src/models/Order";
-import ShopModel from "../../../src/models/Shop";
+import { ShopModel, OrderModel} from "../../../src/models"
 import {getUser} from "../../../src/utils/apiHelper";
 
 const useCoupon = async (req, res) => {

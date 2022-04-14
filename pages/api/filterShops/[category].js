@@ -1,7 +1,5 @@
 import mongoDb from "../../../src/lib/mongoDb";
-import ShopModel from "../../../src/models/Shop";
-import FoodModel from "../../../src/models/Food";
-import CommentModel from "../../../src/models/Comment";
+import {FoodModel, ShopModel, CommentModel} from "../../../src/models"
 
 const shopsByCategory = async (req, res) => {
   try {

@@ -1,5 +1,5 @@
 import mongoDb from "../../../src/lib/mongoDb";
-import OrderModel from "../../../src/models/Order";
+import { OrderModel} from "../../../src/models"
 
 const removeCart = async (req, res) => {
   if (req.method === "DELETE") {

@@ -1,7 +1,7 @@
-
 import mongoDb from "../../../src/lib/mongoDb";
-import UserModel from "../../../src/models/User";
+import {UserModel} from "../../../src/models";
 import {getUser} from "../../../src/utils/apiHelper";
+
 
 
 const favouriteOrUnfavouriteShop = async (req, res) => {

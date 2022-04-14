@@ -2,8 +2,7 @@ import _ from "lodash";
 import bcrypt from "bcrypt";
 
 import mongoDb from "../../src/lib/mongoDb";
-import UserModel from "../../src/models/User";
-import ActiveNumberModel from "../../src/models/ActiveNumber";
+import {UserModel, ActiveNumberModel} from "../../src/models";
 import { userRegisterValidator } from "../../src/validators/UserValidator";
 import {setTokenCookie} from "../../src/lib/cookie";
 

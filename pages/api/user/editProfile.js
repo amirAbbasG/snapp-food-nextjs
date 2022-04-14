@@ -1,9 +1,9 @@
-
 import mongoDb from "../../../src/lib/mongoDb";
-import UserModel from "../../../src/models/User";
+import {UserModel} from "../../../src/models";
 import { userEditValidator } from "../../../src/validators/UserValidator";
 import {setTokenCookie} from "src/lib/cookie";
 import {getUser} from "../../../src/utils/apiHelper";
+
 
 const editProfile = async (req, res) => {
   if (req.method === "PUT") {

@@ -1,5 +1,5 @@
 import mongoDb from "../../../src/lib/mongoDb";
-import FoodModel from "../../../src/models/Food";
+import {FoodModel, CommentModel} from "../../../src/models"
 
 const getFoods = async (req, res) => {
   try {
@@ -13,6 +13,7 @@ const getFoods = async (req, res) => {
     const foods = await FoodModel.find({ shopId }).populate({
       path: "comments",
       select: "score",
+      model: CommentModel
     });
 
     res.status(200).send({ foods, message: true });

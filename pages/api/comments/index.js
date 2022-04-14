@@ -1,6 +1,6 @@
 import {getUser} from "../../../src/utils/apiHelper";
 import mongoDb from "../../../src/lib/mongoDb";
-import CommentModel from "../../../src/models/Comment";
+import {CommentModel} from "../../../src/models"
 
 const userComment = async (req, res) => {
   try {

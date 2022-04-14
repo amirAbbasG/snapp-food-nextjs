@@ -1,8 +1,7 @@
-
 import mongoDb from "../../../src/lib/mongoDb";
-import PaymentModel from "../../../src/models/Payment";
-import ShopModel from "../../../src/models/Shop";
+import {PaymentModel, ShopModel} from "../../../src/models"
 import {getUser} from "../../../src/utils/apiHelper";
+
 
 const getPayments = async (req, res) => {
   try {

@@ -1,7 +1,5 @@
 import mongoDb from "../../../src/lib/mongoDb";
-import OrderModel from "../../../src/models/Order";
-import PaymentModel from "../../../src/models/Payment";
-import ShopModel from "../../../src/models/Shop";
+import {ShopModel, PaymentModel, OrderModel} from "../../../src/models"
 import { zarinpal } from "../../../src/lib/zarinpal";
 
 const checkPayment = async (req, res) => {

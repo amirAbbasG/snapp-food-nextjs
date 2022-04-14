@@ -1,5 +1,5 @@
 import mongoDb from "../../src/lib/mongoDb";
-import UserModel from "../../src/models/User";
+import {UserModel} from "../../src/models";
 import { numberValidator } from "../../src/validators/UserValidator";
 import { sendCode } from "../../src/lib/kavenegar";
 

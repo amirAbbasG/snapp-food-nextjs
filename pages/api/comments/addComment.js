@@ -1,8 +1,7 @@
 import mongoDb from "../../../src/lib/mongoDb";
-import CommentModel from "../../../src/models/Comment";
-import FoodModel from "../../../src/models/Food";
-import ShopModel from "../../../src/models/Shop";
 import { commentValidator } from "../../../src/validators/UserValidator";
+import {ShopModel, FoodModel, CommentModel} from "../../../src/models"
+
 
 import {getUser} from "../../../src/utils/apiHelper";
 

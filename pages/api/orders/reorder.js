@@ -1,10 +1,7 @@
 import _ from "lodash"
 
 import mongoDb from "../../../src/lib/mongoDb";
-import OrderModel from "../../../src/models/Order";
-import ShopModel from "../../../src/models/Shop";
-import UserModel from "../../../src/models/User";
-import FoodModel from "../../../src/models/Food";
+import {FoodModel, ShopModel, UserModel, OrderModel} from "../../../src/models"
 import {getUser} from "../../../src/utils/apiHelper";
 
 const reorder = async (req, res) => {

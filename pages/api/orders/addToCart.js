@@ -1,9 +1,7 @@
 import _ from "lodash";
 
 import mongoDb from "../../../src/lib/mongoDb";
-import OrderModel from "../../../src/models/Order";
-import FoodModel from "../../../src/models/Food";
-import UserModel from "../../../src/models/User";
+import {FoodModel, UserModel, OrderModel} from "../../../src/models"
 import {getUser} from "../../../src/utils/apiHelper";
 
 const addToCart = async (req, res) => {

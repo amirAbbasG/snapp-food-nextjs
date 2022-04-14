@@ -1,5 +1,5 @@
 import mongoDb from "../../src/lib/mongoDb";
-import ActiveNumberModel from "../../src/models/ActiveNumber";
+import {ActiveNumberModel} from "../../src/models";
 import { isValidCode } from "../../src/lib/kavenegar";
 
 const verifyNumber = async (req, res) => {

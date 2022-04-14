@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 import mongoDb from "../../src/lib/mongoDb";
-import UserModel from "../../src/models/User";
+import {UserModel} from "../../src/models";
 import { changePasswordValidator } from "../../src/validators/UserValidator";
 import { isValidCode } from "../../src/lib/kavenegar";
 

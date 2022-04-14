@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 import mongoDb from "../../src/lib/mongoDb";
-import UserModel from "../../src/models/User";
+import {UserModel} from "../../src/models";
 import { userLoginValidator } from "../../src/validators/UserValidator";
 import {setTokenCookie} from "../../src/lib/cookie";
 

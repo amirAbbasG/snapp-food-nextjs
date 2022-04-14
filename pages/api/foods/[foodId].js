@@ -1,5 +1,5 @@
 import mongoDb from "../../../src/lib/mongoDb";
-import FoodModel from "../../../src/models/Food";
+import {FoodModel,CommentModel} from "../../../src/models"
 
 const foodById = async (req, res) => {
   try {
@@ -12,7 +12,7 @@ const foodById = async (req, res) => {
       throw err;
     }
     const foodDetails = await FoodModel.findOne({ _id: foodId }).populate({
-      path: "comments",
+      path: "comments", model: CommentModel
     });
     res.status(200).send({ foodDetails, message: true });
   } catch (error) {

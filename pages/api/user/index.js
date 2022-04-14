@@ -1,9 +1,7 @@
-
 import mongoDb from "../../../src/lib/mongoDb";
-import UserModel from "../../../src/models/User";
-import ShopModel from "../../../src/models/Shop";
-import CommentModel from "../../../src/models/Comment";
+import {ShopModel, CommentModel, UserModel} from "../../../src/models"
 import {getUser} from "../../../src/utils/apiHelper";
+
 
 
 const userInformation = async (req, res) => {
