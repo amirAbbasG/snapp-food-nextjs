@@ -14,7 +14,7 @@ const DrawerOrderCard = ({ order }) => {
   const dispatch = useDispatch();
 
   return (
-    <Stack sx={root}>
+    <Stack sx={root}  component="article">
       <Container>
         <Link href={`/shops/${order.shopId._id}`}>
             <Stack sx={shopLogo}>

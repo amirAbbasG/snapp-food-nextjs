@@ -34,7 +34,7 @@ const ShopTypesBox = () => {
   const { root, itemBox } = styles;
 
   return (
-    <Grid wrap="nowrap" container columns={10} sx={root}>
+    <Grid wrap="nowrap" container columns={10} sx={root} component="nav">
       {(data && data.shopTypes) &&
         data.shopTypes.map((item) => (
           <Grid xs={2} lg={1} md={1} key={item._id} item sx={itemBox}>

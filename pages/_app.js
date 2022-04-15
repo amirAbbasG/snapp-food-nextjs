@@ -58,8 +58,7 @@ function MyApp({
                         <CssBaseline/>
                         <Provider store={store}>
                             <Providers>
-
-                                <Component {...pageProps} />
+                                <Component {...pageProps}/>
                             </Providers>
                         </Provider>
 

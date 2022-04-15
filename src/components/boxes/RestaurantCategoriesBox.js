@@ -9,11 +9,11 @@ const RestaurantCategoriesBox = ({ categories }) => {
   const { root, item } = styles
 
   return (
-    <>
+    <section>
       <Typography mb={3} mr={"2%"} variant="h6" component="h1">
         دسته بندی ها
       </Typography>
-      <Grid container rowSpacing={4} columns={10} sx={root}>
+      <Grid container rowSpacing={4} columns={10} sx={root} component="nav">
         {categories.map((category, index) => (
           <Grid
             sx={item}
@@ -28,7 +28,7 @@ const RestaurantCategoriesBox = ({ categories }) => {
           </Grid>
         ))}
       </Grid>
-    </>
+    </section>
   );
 };
 

@@ -104,7 +104,7 @@ const ShopDetails = ({shopDetails}) => {
             />
             {shopDetails.foods && (
                 <Grid container>
-                    <Grid container item xs={12} md={4} lg={3} sx={sideBox}>
+                    <Grid container item xs={12} md={4} lg={3} sx={sideBox} component="aside">
                         <Stack direction="row">
                             <Stack sx={shopLogo}>
                             <Image
@@ -143,10 +143,10 @@ const ShopDetails = ({shopDetails}) => {
                             اطلاعات و نظرات
                         </Button>
                     </Grid>
-                    <Grid container item xs={12} lg={6} md={8} mb={2}>
+                    <Grid container item xs={12} lg={6} md={8} mb={2} component="main">
                         <Paper sx={{ borderRadius: 2, overflowY: "scroll", width: "100%" }}>
                             <CouponBox coupons={shopDetails.coupons} shopId={shopId} />
-                            <Typography m={2} textAlign="center">
+                            <Typography m={2} textAlign="center" component="h1">
                                 منو غذایی
                             </Typography>
                             <Grid container item width="100%">
@@ -166,11 +166,11 @@ const ShopDetails = ({shopDetails}) => {
                             </Grid>
                         </Paper>
                     </Grid>
-                    <Grid sx={sideBox} container item xs={12} md={12} lg={3}>
+                    <Grid sx={sideBox} container item xs={12} md={12} lg={3} component="aside">
                         <Paper sx={{ padding: "10px 20px", borderRadius: 2 }}>
                             <Container>
                                 <DeliveryDiningTwoTone />
-                                <Typography mr={2}>{`پیک فروشنده ${cost} تومان`}</Typography>
+                                <Typography component="h3" mr={2}>{`پیک فروشنده ${cost} تومان`}</Typography>
                             </Container>
                         </Paper>
                         {!isEmpty(account) && <CartBox shopId={shopId} />}

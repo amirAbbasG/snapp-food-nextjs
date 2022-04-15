@@ -35,7 +35,7 @@ const CartBox = ({ shopId }) => {
     <>
       {!isEmpty(order) && (
         <>
-          <Paper sx={{ marginTop: 2 }}>
+          <Paper sx={{ marginTop: 2 }} component="aside">
             <Stack p={2}>
               <UnderLinedStack spacing={2}>
                 <ItemStack>

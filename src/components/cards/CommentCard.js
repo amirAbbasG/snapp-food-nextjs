@@ -6,7 +6,7 @@ import { RateBox, DateTimeBox } from "../";
 const CommentCard = ({ comment }) => {
   const { root, detailBox, replayBox } = useStyles();
   return (
-    <Grid container className={root} direction="column">
+    <Grid container className={root} direction="column"  component="article">
       <Grid item container>
         <Grid item xs={4} className={detailBox}>
           <Typography fontWeight="bold">{comment.sender}</Typography>

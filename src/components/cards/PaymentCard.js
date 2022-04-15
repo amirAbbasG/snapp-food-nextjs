@@ -8,7 +8,7 @@ import { DateTimeBox } from "../";
 const PaymentCard = ({ payment }) => {
   const { root, successBox } = useStyles();
   return (
-    <Stack className={root}>
+    <Stack className={root}  component="article">
       <Stack spacing={3}>
         <Typography fontWeight="bold">{payment.shopId.shopName}</Typography>
         <Container className={successBox}>

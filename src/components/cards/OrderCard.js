@@ -56,7 +56,7 @@ const OrderCard = ({order}) => {
 
     return (
         <>
-            <Stack spacing={2} sx={root}>
+            <Stack spacing={2} sx={root}  component="article">
                 <Stack spacing={3}>
                     <Container>
                         <Link href={`/shops/${order.shopId}`} sx={shopImage}>

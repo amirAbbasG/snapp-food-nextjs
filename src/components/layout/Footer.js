@@ -53,7 +53,7 @@ const Footer = () => {
     <Stack direction={{ xs: "column", md: "row" }} sx={root} component="footer">
       <Grid container sx={logoBox}>
         <SnappFoodLogo />
-        <Grid item sx={socialsMediaBox}>
+        <Grid item sx={socialsMediaBox} component="nav">
           <Typography variant="h6" fontWeight="bold" color="primary">
             اسنپ فود
           </Typography>

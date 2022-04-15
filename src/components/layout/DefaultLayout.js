@@ -2,7 +2,8 @@ import {useState, useEffect} from "react";
 
 import {useRouter} from "next/router";
 
-import { Grid, LinearProgress } from "@mui/material";
+import { LinearProgress } from "@mui/material";
+import {Box} from "@mui/system"
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -13,6 +14,7 @@ const DefaultLayout = ({  children }) => {
 
     const router = useRouter()
     const [isRoting, setIsRouting] = useState(false)
+    const isProfile = router.pathname.includes("/profile")
 
     useEffect(() => {
         router.events.on("routeChangeStart", () => setIsRouting(true))
@@ -20,34 +22,38 @@ const DefaultLayout = ({  children }) => {
         router.events.on("routeChangeComplete", () => setIsRouting(false))
     }, [router])
 
+    const styles = {
+        layout: {
+            width: "100%",
+            flex: "unset",
+            minHeight: "100vh",
+            flexFlow: "column nowrap",
+        },
+        main: {
+            flexGrow: 1,
+            width: "100%",
+            maxWidth: "85.4rem",
+            padding: "2.5rem",
+            margin: "0px auto",
+
+        }
+    }
+
     return (
-    <Grid sx={{width: "100%", flex: 1}}>
+    <Box sx={styles.layout}>
         {
             isRoting && (
                 <LinearProgress/>
             )
         }
-      <Header  />
-      <Grid
-        sx={{
-          overflowX: "hidden",
-          overflowY: "scroll",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-            width: "100%",
-
-        }}
+      <Header  shouldShowShopTypes={!isProfile}/>
+      <Box
+        sx={styles.main}
+        component="main"
       >
-        <main
-          style={{
-            maxWidth: "85.4rem",
-            padding: "2.5rem",
-            width: "100%",
-          }}
-        >
+
             {
-                router.pathname.includes("/profile") ? (
+                isProfile ? (
                     <ProfileLayout>
                         {children}
                     </ProfileLayout>
@@ -58,10 +64,9 @@ const DefaultLayout = ({  children }) => {
                 )
 
             }
-        </main>
+      </Box>
         <Footer />
-      </Grid>
-    </Grid>
+    </Box>
   );
 };
 

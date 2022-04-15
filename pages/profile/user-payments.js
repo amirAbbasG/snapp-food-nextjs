@@ -29,10 +29,10 @@ const UserPayments = () => {
                 title="پرداخت های شما"
                 keywords="test"
             />
-            <Typography m={2} variant="h6">
+            <Typography m={2} variant="h6"  component="h1">
                 لیست تراکنش‌ها
             </Typography>
-            <Typography m={2}>
+            <Typography m={2} component="h2">
                 در پرداخت‌های ناموفق بانکی اگر مبلغ از حسابتان کسر شود، معمولاً در کمتر
                 از یک ساعت و نهایتاً تا ۷۲ ساعت به حساب شما برگردانده خواهد شد.
             </Typography>

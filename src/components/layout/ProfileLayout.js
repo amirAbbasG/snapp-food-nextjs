@@ -32,6 +32,8 @@ const ProfileLayout = ({ children }) => {
     paper: {
       borderRadius: "14px",
       width: "100%",
+      position: "sticky",
+      top: 10,
     },
     paperBox: {
       [breakpoints.down("md")]: {
@@ -77,9 +79,9 @@ const ProfileLayout = ({ children }) => {
         <ShouldLoginPage />
       ) : (
         <Grid container spacing={6} columns={13} sx={root}>
-          <Grid item xs={12} md={4} sx={paperBox}>
-            <Paper elevation={2} sx={paper}>
-              <Stack>
+          <Grid item xs={12} md={4} sx={paperBox} component="aside">
+            <Paper elevation={2} sx={paper} >
+              <Stack component="nav">
                 <Link href="/profile">
                   <a>
                     <Stack p={3}>
@@ -113,12 +115,9 @@ const ProfileLayout = ({ children }) => {
               </Stack>
             </Paper>
           </Grid>
-          <Grid item md={9} xs={12} sx={paperBox}>
-            <Paper elevation={2} sx={paper}>
-              <main>
-
+          <Grid item md={9} xs={12} sx={paperBox} component="main">
+            <Paper elevation={2} sx={{paper, overflowY: "auto"}}>
               {children}
-              </main>
             </Paper>
           </Grid>
         </Grid>

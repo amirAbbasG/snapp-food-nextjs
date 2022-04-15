@@ -28,7 +28,7 @@ const CategoriesBox = ({ shopType }) => {
 
   const { root, img, titleBox, categoryItem } = styles;
   return (
-    <Grid item sx={root} p={2}>
+    <Grid item sx={root} p={2} component="aside">
       <Paper sx={{ padding: 2 }}>
         <ButtonBase sx={{ width: "100%", borderRadius: "10px" }} onClick={handlePressAllCategory}>
           <Container sx={titleBox}>همه دسته بندی ها</Container>

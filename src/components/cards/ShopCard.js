@@ -28,7 +28,7 @@ const ShopCard = ({ shop }) => {
   const { root, contentBox, logo, deliveryBox } = styles;
 
   return (
-    <Card sx={root} onClick={() => router.push(`/shops/${shop._id}`, null, {scroll: false})}>
+    <Card sx={root} onClick={() => router.push(`/shops/${shop._id}`, null, {scroll: false})} component="article">
       <Stack sx={{width: "100%", position:"relative", height: "160px"}}>
         <Image
             src={`/images/shop/${shop.shopImage}`}

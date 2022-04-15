@@ -29,7 +29,7 @@ const CommentBox = ({ comments, id}) => {
   }
 
   return (
-    <Stack mt={4}>
+    <Stack mt={4} component="section">
       <Stack
         sx={{
           display: "flex",

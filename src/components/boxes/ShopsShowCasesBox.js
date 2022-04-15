@@ -23,7 +23,7 @@ const ShopsShowCasesBox = ({ data, title, url }) => {
   }
 
   return (
-    <>
+    <section>
       <Stack direction="row" justifyContent="space-between" py={2} mt={4}>
         <Typography variant="h6" component="h2">{title}</Typography>
         <Link href={url} scroll={false}>
@@ -54,7 +54,7 @@ const ShopsShowCasesBox = ({ data, title, url }) => {
             .slice(0, 7)
             .map((item) => <ShopCard key={item._id} shop={item} />)}
       </Carousel>
-    </>
+    </section>
   );
 };
 

@@ -20,7 +20,7 @@ const FoodCard = ({ food, onClick }) => {
   const { root, img, actionBox, contentBox } = styles;
 
   return (
-    <Card sx={root}>
+    <Card sx={root}  component="article">
       <Box width="100%">
         <Link href="#">
           <a onClick={(e) => {e.preventDefault(); onClick()}}>

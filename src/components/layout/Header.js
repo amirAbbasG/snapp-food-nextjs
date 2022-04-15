@@ -13,7 +13,7 @@ import {
   ListAlt,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/styles";
-import {styled} from "@mui/system";
+import {styled, Box} from "@mui/system";
 import { isEmpty } from "lodash";
 import {useSelector} from "react-redux";
 
@@ -40,9 +40,11 @@ const Header = ({ shouldShowShopTypes = true }) => {
     root: {
       padding: "0 1rem 1rem 1rem",
       width: "100%",
-      top: 0,
       position: "sticky",
       zIndex: 999,
+      top: "0px",
+      right: "0px",
+      left: "0px"
     },
     logo: {
       [breakpoints.down("sm")]: {

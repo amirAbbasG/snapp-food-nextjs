@@ -20,6 +20,7 @@ const CategoryCard = ({category}) => {
                             "-"
                         )}.jpg)`,
                     }}
+                    component="article"
                 >
                     <Grid container spacing={2}
                           sx={titleGrid}

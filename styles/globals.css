@@ -1,80 +1,81 @@
 html,
 body {
-  padding: 0;
-  direction: rtl;
-  margin: 0;
-  font-family: irsans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    padding: 0;
+    direction: rtl;
+    margin: 0;
+    font-family: irsans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: unset;
 }
 
 
-
 @font-face {
-  font-family: 'irsans';
-  src: url('/fonts/irsans.ttf');
-  font-weight: 400;
-  font-style: normal;
+    font-family: 'irsans';
+    src: url('/fonts/irsans.ttf');
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 4px;
+    width: 8px;
+    height: 4px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 px grey;
-  border-radius: 10px;
+    box-shadow: inset 0 0px grey;
+    border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #cccdcf;
-  border-radius: 7px;
+    background: #cccdcf;
+    border-radius: 7px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a4a4;
+    background: #a8a4a4;
 }
 
 .rec.rec-arrow:hover {
-  background-color: #f700a2 !important;
+    background-color: #f700a2 !important;
 }
 
 .rec.rec-arrow:disabled {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .rec.rec-arrow {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .rec.rec-arrow.rec.rec-arrow-right {
-  position: absolute;
-  left: 0;
+    position: absolute;
+    left: 0;
 }
+
 .rec.rec-arrow.rec.rec-arrow-left {
-  position: absolute;
-  right: 0;
-  z-index: 1;
+    position: absolute;
+    right: 0;
+    z-index: 1;
 }
 
 .rec.rec-carousel {
-  position: relative;
+    position: relative;
 }
 
-.cardImg{
-  object-position: center;
-  object-fit: cover;
+.cardImg {
+    object-position: center;
+    object-fit: cover;
 }

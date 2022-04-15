@@ -9,7 +9,7 @@ const FilterShopBox = ({ setIsFreeExpress, isFreeExpress, haveCoupon, setHaveCou
 
 
   return (
-    <Grid item sx={{width: "100%"}} p={2}>
+    <Grid item sx={{width: "100%"}} p={2} component="aside">
       <Paper sx={{ padding: 2 }}>
         <FilterItem
           title="دارای کوپن"

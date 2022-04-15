@@ -24,6 +24,7 @@ const Factor = ({ orderId, couponDiscount = 0 }) => {
         alignItems: "center",
         justifyContent: "space-between",
       }}
+      component="article"
     >
       <Typography>{title}</Typography>
       <Typography>{separatePrice(price)} تومان</Typography>

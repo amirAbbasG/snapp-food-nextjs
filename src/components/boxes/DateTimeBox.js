@@ -16,7 +16,7 @@ const DateTimeBox = ({ dateTime }) => {
   const paymentDate = getPersianDate(dateTime);
   const paymentTime = getClock(dateTime);
   return (
-    <Container>
+    <Container component="time">
       <TimeBox
         icon={<CalendarToday sx={{ color: "gray", fontSize: 17 }} />}
         value={paymentDate}

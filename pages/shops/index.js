@@ -131,7 +131,7 @@ const Shops = ({filteredShops, type}) => {
                 </Grid>
             </Grid>
             <Grid container item direction={{sm: "column", md: "row"}}>
-                <Grid item container direction="column" md={3} sm={12}>
+                <Grid item container direction="column" md={3} sm={12} component="aside">
                     <CategoriesBox shopType={type}/>
                     <PriceRangeButtonGroup handleChange={setPriceRange} activeRange={priceRange}/>
                     <FilterShopBox
@@ -141,7 +141,7 @@ const Shops = ({filteredShops, type}) => {
                         setHaveCoupon={setHaveCoupon}
                     />
                 </Grid>
-                <Grid item container md={9} sm={12}>
+                <Grid item container md={9} sm={12} component="main">
                     {filterShops.map((shop) => (
                         <Grid item key={shop._id} sm={12} md={6} lg={4} p={2}>
                             <ShopCard shop={shop}/>

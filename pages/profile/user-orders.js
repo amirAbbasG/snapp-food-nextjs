@@ -14,7 +14,7 @@ const UserOrders = () => {
                 title="سفارش های شماs"
                 keywords="test"
             />
-            <Typography m={2} fontWeight="bold">
+            <Typography m={2} fontWeight="bold" component="h1">
                 سفارش های من
             </Typography>
             {deliveredOrders.map((order) => (

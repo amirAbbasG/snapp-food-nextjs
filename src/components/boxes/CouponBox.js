@@ -51,7 +51,7 @@ const CouponBox = ({ shopId, coupons }) => {
   const { couponBox, root } = styles;
 
   return (
-    <Stack sx={root}>
+    <Stack sx={root} component="section">
       <Typography textAlign="center" component="h2">کوپن ها</Typography>
       <Carousel
         itemsToShow={coupons.length < showCount ? coupons.length : showCount}

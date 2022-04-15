@@ -53,7 +53,7 @@ const Profile = () => {
                 keywords="test"
             />
 
-            <Typography variant="h6">حساب کاربری</Typography>
+            <Typography variant="h6" component="h1">حساب کاربری</Typography>
             <Grid sx={profileDetailBox}>
                 <DetailItem title="نام نام خانوادگی" value={account.fullName} />
                 <DetailItem title="ایمیل" value={account.email} />
