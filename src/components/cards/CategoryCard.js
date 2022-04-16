@@ -60,9 +60,10 @@ const styles = {
         paddingRight: "3px",
     },
     title: {
-        "&:hover": {
-            marginLeft: "4px",
-        },
         margin: "3px 8px 3px 0",
+        transition: "margin 0.25s ease-in-out",
+        "&:hover": {
+            marginLeft: "10px",
+        },
     },
 }

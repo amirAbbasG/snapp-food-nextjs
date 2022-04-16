@@ -64,6 +64,7 @@ const ProfileLayout = ({ children }) => {
           p={3}
           sx={{
             borderTop: "1px #e3e3e4 solid",
+            transition: "padding 0.25s ease-in-out",
             "&:hover": { paddingRight: 4 },
           }}
         >

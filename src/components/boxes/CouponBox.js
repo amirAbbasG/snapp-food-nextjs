@@ -60,9 +60,9 @@ const CouponBox = ({ shopId, coupons }) => {
         itemsToScroll={coupons.length < showCount ? coupons.length : showCount}
         itemPadding={[9, 9, 9, 9]}
       >
-        {coupons.map((coupon, index) => (
+        {coupons.map((coupon) => (
           <ButtonBase
-            key={coupon._id + index}
+            key={coupon._id}
             sx={{...couponBox, borderColor: coupon._id === couponId ? "#00B862" : "secondary.dark"}}
             onClick={() => setCoupon(coupon)}
           >

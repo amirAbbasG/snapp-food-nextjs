@@ -150,9 +150,9 @@ const ShopDetails = ({shopDetails}) => {
                                 منو غذایی
                             </Typography>
                             <Grid container item width="100%">
-                                {shopDetails.foods.map((f, index) => (
+                                {shopDetails.foods.map((f) => (
                                     <Grid
-                                        key={f._id + index}
+                                        key={f._id }
                                         item
                                         sm={12}
                                         xs={12}

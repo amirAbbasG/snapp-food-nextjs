@@ -18,21 +18,25 @@ export const sortTypes = [
 ];
 export const priceRanges = [
   {
+    id: "1",
     title: "همه",
     minPrice: 0,
     maxPrice: 1000000,
   },
   {
+    id: "2",
     title: "اقتصادی",
     minPrice: 0,
     maxPrice: 40000,
   },
   {
+    id: "3",
     title: "متوسط",
     minPrice: 40000,
     maxPrice: 80000,
   },
   {
+    id: "4",
     title: "گران",
     minPrice: 80000,
     maxPrice: 700000,

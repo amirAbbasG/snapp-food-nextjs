@@ -74,6 +74,7 @@ export async function getServerSideProps(context) {
 const Shops = ({filteredShops, type}) => {
 
     const [priceRange, setPriceRange] = useState({
+        id: "1",
         title: "همه",
         minPrice: 0,
         maxPrice: 100000000,

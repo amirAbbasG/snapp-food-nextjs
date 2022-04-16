@@ -59,8 +59,8 @@ const Footer = () => {
           </Typography>
           <FooterText>تجربه سفارش غذا، از زودفود تا اسنپ‌فود</FooterText>
           <Grid>
-            {socialMedias.map((item, index) => (
-              <SocialMediaButton name={item} href="#" key={index} />
+            {socialMedias.map((item) => (
+              <SocialMediaButton name={item} href="#" key={item} />
             ))}
           </Grid>
         </Grid>

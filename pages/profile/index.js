@@ -100,6 +100,7 @@ const styles = {
         alignItems: "center",
         padding: "0.4rem 1rem",
         cursor: "pointer",
+        transition: "margin 0.25s ease-in-out",
         "&:hover": {
             marginRight: "0.5rem",
         },

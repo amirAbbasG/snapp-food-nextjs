@@ -18,8 +18,8 @@ const PriceRangeButtonGroup = ({handleChange, activeRange}) => {
           color="secondary"
           variant="contained"
         >
-          {priceRanges.map((item, index) => (
-          <Grid key={index}>
+          {priceRanges.map((item) => (
+          <Grid key={item.id}>
             <Button
                 sx={{
                   width: "90%",
