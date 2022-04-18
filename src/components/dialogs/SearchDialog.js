@@ -93,7 +93,7 @@ const SearchDialog = ({open, handleClose}) => {
                         </Link>
                         {searchShop.slice(0, 9).map((shop) => (
 
-                            <Link href={`/shops/${shop._id}`} key={shop._id}  >
+                            <Link href={`/shops/${shop._id}`} key={shop._id} className="link" >
                                 <Stack direction="row">
                                     <StorefrontTwoTone/>
                                     <Typography mr={2}>{shop.shopName}</Typography>

@@ -79,3 +79,7 @@ a {
     object-position: center;
     object-fit: cover;
 }
+
+.link{
+    color: initial;
+}
