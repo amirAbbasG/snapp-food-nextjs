@@ -1,3 +1,4 @@
+
 import { Button, Typography } from "@mui/material";
 import { ArrowDropDown, MyLocation } from "@mui/icons-material";
 
@@ -9,15 +10,16 @@ const AddressButton = () => {
       onClick={() =>
         errorMessage("برای افزودن آدرس وارد حسابد کاربری خود شوید")
       }
-      style={{
+      sx={{
         backgroundColor: "#FFE0F4",
-        borderRadius: 10,
+        borderRadius: "10px",
       }}
       variant="contained"
       endIcon={<ArrowDropDown color="primary" />}
       startIcon={<MyLocation color="primary" />}
     >
-      <Typography color="#DC143C">انتخاب آدرس</Typography>
+                <Typography fontSize="0.8rem" color="#DC143C">انتخاب آدرس</Typography>
+
     </Button>
   );
 };

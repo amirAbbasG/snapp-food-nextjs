@@ -1,254 +1,315 @@
-import { useState, useContext } from "react";
+import {useState, useContext} from "react";
 
 import Link from "next/link";
 import dynamic from "next/dynamic"
 
-import { Grid, Paper, Button, Typography, IconButton } from "@mui/material";
+import {Grid, Paper, Button, Typography, IconButton} from "@mui/material";
 import {
-  AddBusiness,
-  Search,
-  MyLocation,
-  ArrowDropDown,
-  PersonOutline,
-  ListAlt,
+    AddBusiness,
+    Search,
+    MyLocation,
+    ArrowDropDown,
+    PersonOutline,
+    ListAlt,
 } from "@mui/icons-material";
-import { useTheme } from "@mui/styles";
-import {styled, Box} from "@mui/system";
-import { isEmpty } from "lodash";
+import {styled, useTheme} from "@mui/system";
+import {isEmpty} from "lodash";
 import {useSelector} from "react-redux";
 
 import {
-  ShopTypesBox,
-  SnappFoodLogo,
-  SearchDialog,
-  AuthDialog,
-  ProfileMenu,
-  AddressButton,
-  OrdersDrawer,
+    ShopTypesBox,
+    SnappFoodLogo,
+    SearchDialog,
+    AuthDialog,
+    ProfileMenu,
+    AddressButton,
+    OrdersDrawer,
 } from "../";
-import { globalContext } from "../../contexts/global/globalContext";
+import {globalContext} from "../../contexts/global/globalContext";
+
 const AddressDialog = dynamic(() => import('../dialogs/AddressDialog'), {
-  ssr: false
+    ssr: false
 });
 
 
-const Header = ({ shouldShowShopTypes = true }) => {
+const Header = ({shouldShowShopTypes = true}) => {
 
-  const {breakpoints} = useTheme()
+    const {breakpoints} = useTheme()
+    const account = useSelector((state) => state.account);
+    const isLogin = !isEmpty(account)
 
-  const styles = {
-    root: {
-      padding: "0 1rem 1rem 1rem",
-      width: "100%",
-      position: "sticky",
-      zIndex: 999,
-      top: "0px",
-      right: "0px",
-      left: "0px"
-    },
-    logo: {
-      [breakpoints.down("sm")]: {
-        display: "none",
-      },
-    },
-    SearchBox: {
-      backgroundColor: "secondary.dark",
-      borderRadius: "8px",
-      alignItems: "center",
-      display: "flex",
-      width: "27%",
-      padding: "10px",
-      [breakpoints.down("md")]: {
-        display: "none",
-      },
-    },
-    searchText: {
-      display: "inline",
-      color: "#808080",
-      fontSize: 15,
-      marginRight: "8px",
-    },
-    buttonBox: {
-      display: "flex",
-      justifyContent: "flex-end",
-      [breakpoints.down("md")]: {
-        display: "none",
-      },
-    },
-    addressBox: {
-      cursor: "pointer",
-      alignItems: "center",
-    },
-    iconsBox: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      [breakpoints.up("md")]: {
-        display: "none",
-      },
-    },
-    orderBox: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "center",
-    },
-    addressButton: {
-      display: "flex",
-      alignItems: "center",
-    },
-  };
+    const styles = {
+        root: {
+            padding: "0 1rem 1rem 1rem",
+            width: "100%",
+            position: "sticky",
+            zIndex: 999,
+            top: "0px",
+            right: "0px",
+            left: "0px"
+        },
+        logo: {
+            [breakpoints.down("sm")]: {
+                display: "none",
+            },
+        },
+        SearchBox: {
+            backgroundColor: "secondary.dark",
+            borderRadius: "8px",
+            alignItems: "center",
+            display: "flex",
+            maxWidth: "40px",
+            width: "27%",
+            padding: "10px",
+            [breakpoints.down("md")]: {
+                display: "none",
+            },
+        },
+        searchText: {
+            display: "inline",
+            color: "#808080",
+            fontSize: "15px",
+            marginRight: "8px",
+            [breakpoints.down("lg")]: {
+                fontSize: "13px"
+            }
+        },
+        buttonBox: {
+            display: "flex",
+            justifyContent: "flex-end",
+            [breakpoints.down("md")]: {
+                display: "none",
+            },
+        },
+        addressBox: {
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start"
+        },
+        iconsBox: {
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            [breakpoints.up("md")]: {
+                display: !isLogin && "none",
+            },
 
-  const [openSearch, setOpenSearch] = useState(false);
-  const [openAddress, setOpenAddress] = useState(false);
-  const [openDrawer, setOpenDrawer] = useState(false);
-  const [profileAnchorEl, setprofileAnchorEl] = useState(null);
-  const { isSm, isXs, openAuth, setOpenAuth } = useContext(globalContext);
+        },
+        orderBox: {
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+        },
+        addressButton: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start",
+        },
+        addressTitle: {
+            [breakpoints.down("sm")]: {
+                fontSize: "11px"
+            },
+        },
+        exactAddress: {
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            width: "20ch"
+        }
+    };
 
-  const HeaderButton = styled(Button)((theme) => ({
-    height: "3rem",    marginRight: "4px",
-  }));
+    const [openSearch, setOpenSearch] = useState(false);
+    const [openAddress, setOpenAddress] = useState(false);
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const [profileAnchorEl, setProfileAnchorEl] = useState(null);
+    const {isSm, isXs, openAuth, setOpenAuth} = useContext(globalContext);
 
-  const account = useSelector((state) => state.account);
-
-
-  const handleOpenProfileMenu = (event) => {
-    setprofileAnchorEl(event.currentTarget);
-  };
-
-
-  const handleCloseAddress = (event) => {
-    event.preventDefault()
-   setOpenAddress(false)
-  };
-
-  const handleOpenAddress = (event) => {
-    event.preventDefault()
-   setOpenAddress(true)
-  };
+    const HeaderButton = styled(Button)({
+        height: "3rem",
+        marginRight: "2px",
+        [breakpoints.up("xl")]:{
+            fontSize: "14px"
+        }
+    });
 
 
-  return (
-    <>
-      <Paper sx={styles.root} component="header">
-        <Grid container justifyContent="space-between" alignItems="center">
-          <Grid xs={6} md={4} item container>
-            <Grid item xs={3}>
-              <SnappFoodLogo sx={styles.logo} />
-            </Grid>
+    //#region handlers
 
-            {isEmpty(account) ? (
-              <Link href="#">
-                <a onClick={handleCloseAddress}>
-                  <Grid pt={1} item sx={styles.addressButton}>
-                    <AddressButton />
-                  </Grid>
-                </a>
-              </Link>
-            ) : (
-              <Grid item xs={12} sm={9} container sx={styles.addressBox}>
-                <Grid item ml={2}>
-                  <MyLocation sx={{ color: "#808080" }} />
-                </Grid>
-                <Grid item>
-                  <Link href="#">
-                    <a onClick={handleOpenAddress}>
-                      <Typography lineHeight={0.7}>آدرس انتخابی</Typography>
-                      <Typography
-                        lineHeight={0.7}
-                        color="GrayText"
-                        fontSize={10}
-                      >
-                        {!isEmpty(account.addresses)
-                          ? `${[...account.addresses]
-                              .reverse()[0]
-                              .exactAddress.slice(0, 30)}...`
-                          : "آدرسی ثبت نشده"}
-                        {<ArrowDropDown color="primary" />}
-                      </Typography>
-                    </a>
-                  </Link>
-                </Grid>
-              </Grid>
-            )}
-          </Grid>
+    const handleAuth = (event) => {
+        if (isLogin) {
+            setProfileAnchorEl(event.currentTarget);
+        } else {
+            setOpenAuth(true)
 
-          <Grid
+        }
+
+    };
+
+
+    const handleCloseAddress = (event) => {
+        event.preventDefault()
+        setOpenAddress(false)
+    };
+
+    const handleOpenAddress = (event) => {
+        event.preventDefault()
+        setOpenAddress(true)
+    };
+
+    //#endregion
+
+    const SearchBox = () => (
+        <Grid
             onClick={() => setOpenSearch(true)}
             item
-            xs={3}
+            md={3}
             sx={styles.SearchBox}
-          >
-            <Search color="disabled" fontSize="medium" />
+        >
+            <Search color="disabled" fontSize="medium"/>
             <Typography sx={styles.searchText}>جستجو در اسنپ فود</Typography>
-          </Grid>
-
-          {isEmpty(account) && (
-            <Grid item md={5} lg={4} sx={styles.buttonBox}>
-              <HeaderButton
-                variant="text"
-                sx={{ color: "#000" }}
-                startIcon={<AddBusiness sx={{ fontSize: "30px" }} />}
-              >
-                ثبت نام فروشندگان
-              </HeaderButton>
-              <HeaderButton
-                onClick={() => setOpenAuth(true)}
-                variant="contained"
-              >
-                ورود یا عضویت
-              </HeaderButton>
-            </Grid>
-          )}
-          <Grid sx={styles.iconsBox} item xs={3}>
-            <IconButton
-              onClick={() => setOpenSearch(true)}
-              sx={{ marginLeft: "10px" }}
-            >
-              <Search color="disabled" sx={{ fontSize: 30 }} />
-            </IconButton>
-            {isEmpty(account) && (
-              <IconButton>
-                <PersonOutline sx={{ fontSize: 30 }} />
-              </IconButton>
-            )}
-          </Grid>
-          {!isEmpty(account) && (
-            <Grid sx={styles.orderBox} item xs={3}>
-              <IconButton onClick={handleOpenProfileMenu}>
-                <PersonOutline sx={{ fontSize: 30 }} />
-              </IconButton>
-              <HeaderButton
-                onClick={() => setOpenDrawer(true)}
-                variant="text"
-                sx={{ color: "#000" }}
-                startIcon={<ListAlt sx={{ fontSize: 30 }} />}
-              >
-                {!isSm && !isXs && "سفارش ها"}
-              </HeaderButton>
-            </Grid>
-          )}
         </Grid>
-        {shouldShowShopTypes && <ShopTypesBox />}
-      </Paper>
-      <SearchDialog
-        open={openSearch}
-        handleClose={() => setOpenSearch(false)}
-      />
-      <AuthDialog open={openAuth} handleClose={() => setOpenAuth(false)} />
-      <AddressDialog
-        open={openAddress}
-        handleClose={() => setOpenAddress(false)}
-      />
-      <OrdersDrawer
-        open={openDrawer}
-        handleClose={() => setOpenDrawer(false)}
-      />
-      <ProfileMenu
-        anchorEl={profileAnchorEl}
-        onClose={() => setprofileAnchorEl(null)}
-      />
-    </>
-  );
+    )
+
+    const Dialogs = () => (
+        <>
+            <SearchDialog
+                open={openSearch}
+                handleClose={() => setOpenSearch(false)}
+            />
+            <AuthDialog open={openAuth} handleClose={() => setOpenAuth(false)}/>
+            <AddressDialog
+                open={openAddress}
+                handleClose={() => setOpenAddress(false)}
+            />
+            <OrdersDrawer
+                open={openDrawer}
+                handleClose={() => setOpenDrawer(false)}
+            />
+            <ProfileMenu
+                anchorEl={profileAnchorEl}
+                onClose={() => setProfileAnchorEl(null)}
+            />
+        </>
+    )
+
+    const SearchAndAuthButtons = () => (
+        <Grid sx={styles.iconsBox} item xs={isLogin ? 6 : 5} sm={5} md={2} lg={3}>
+
+            <IconButton
+                onClick={() => setOpenSearch(true)}
+                sx={{
+                    marginLeft: "4px",
+                    [breakpoints.up("md")]: {
+                        display: "none",
+                    },
+                }}
+            >
+                <Search color="disabled" sx={{fontSize: 30}}/>
+            </IconButton>
+
+            <IconButton onClick={handleAuth}>
+                <PersonOutline sx={{fontSize: 30}}/>
+            </IconButton>
+
+        </Grid>
+    )
+
+
+    return (
+        <>
+            <Paper sx={styles.root} component="header">
+                <Grid container justifyContent="space-between" alignItems="center" pt="0.7rem">
+
+
+                    <Grid item sm={1}>
+                        <SnappFoodLogo sx={styles.logo}/>
+                    </Grid>
+
+                    {isLogin ? (
+                        <>
+                            <Grid item xs={3} sm={4} container sx={styles.addressBox}>
+                                <Grid item ml={2}>
+                                    <MyLocation sx={{color: "#808080"}}/>
+                                </Grid>
+                                <Grid item>
+                                    <Link href="#">
+                                        <a onClick={handleOpenAddress}>
+                                            <Typography lineHeight={0.7} sx={styles.addressTitle}>آدرس
+                                                انتخابی</Typography>
+                                            <Typography
+                                                color="GrayText"
+                                                fontSize={10}
+                                                sx={styles.exactAddress}
+                                            >
+                                                {!isEmpty(account.addresses)
+                                                    ? [...account.addresses]
+                                                        .reverse()[0]
+                                                        .exactAddress
+                                                    : "آدرسی ثبت نشده"}
+                                                {<ArrowDropDown color="primary"/>}
+                                            </Typography>
+                                        </a>
+                                    </Link>
+                                </Grid>
+                            </Grid>
+
+                            <SearchBox/>
+                            <SearchAndAuthButtons/>
+
+                            <Grid sx={styles.orderBox} item xs={2} sm={1} md={1.3} lg={1}>
+
+                                <HeaderButton
+                                    onClick={() => setOpenDrawer(true)}
+                                    variant="text"
+                                    sx={{color: "#000", px: 0, mr: "4px"}}
+                                    startIcon={<ListAlt sx={{fontSize: 30}}/>}
+                                >
+                                    {!isSm && !isXs && "سفارش ها"}
+                                </HeaderButton>
+
+                            </Grid>
+                        </>
+                    ) : (
+                        <>
+                            <Grid item xs={7} sm={4} sx={styles.addressButton}>
+                                <Link href="#">
+                                    <a onClick={handleCloseAddress}>
+                                        <AddressButton/>
+                                    </a>
+                                </Link>
+                            </Grid>
+                            <SearchBox/>
+
+                            <Grid item md={4} sx={styles.buttonBox}>
+                                <HeaderButton
+                                    variant="text"
+                                    sx={{color: "#000"}}
+                                    startIcon={<AddBusiness sx={{fontSize: "30px"}}/>}
+                                >
+                                    ثبت نام فروشندگان
+                                </HeaderButton>
+                                <HeaderButton
+                                    onClick={() => setOpenAuth(true)}
+                                    variant="contained"
+                                >
+                                    ورود یا عضویت
+                                </HeaderButton>
+                            </Grid>
+
+                            <SearchAndAuthButtons/>
+                        </>
+                    )}
+
+                </Grid>
+
+                {shouldShowShopTypes && <ShopTypesBox/>}
+
+            </Paper>
+            <Dialogs/>
+        </>
+
+    );
 };
 
 export default Header;

@@ -1,15 +1,15 @@
-import { makeStyles } from "@mui/styles";
+
 import { Grid, Typography } from "@mui/material";
 
 import { RateBox, DateTimeBox } from "../";
 
 const CommentCard = ({ comment }) => {
-  const { root, detailBox, replayBox } = useStyles();
+  const { root, detailBox, replayBox } = styles;
   return (
-    <Grid container className={root} direction="column"  component="article">
-      <Grid item container>
-        <Grid item xs={4} className={detailBox}>
-          <Typography fontWeight="bold">{comment.sender}</Typography>
+    <Grid container sx={root} direction="column"  component="article">
+      <Grid item container direction={{xs: "column", sm: "row"}}>
+        <Grid item xs={4} sx={detailBox}>
+          <Typography fontSize={{xs: 11, sm: 14}} fontWeight="bold">{comment.sender}</Typography>
           <Grid py={2}>
             <DateTimeBox dateTime={comment.createDate} />
           </Grid>
@@ -19,7 +19,7 @@ const CommentCard = ({ comment }) => {
           <Typography color="GrayText">{comment.text}</Typography>
         </Grid>
         {comment.replay != null && (
-          <Grid item className={replayBox}>
+          <Grid item sx={replayBox}>
             <Typography color="primary">پاسخ مدیر رستوران</Typography>
             <Typography m={3} color="GrayText">
               {comment.replay}
@@ -33,7 +33,7 @@ const CommentCard = ({ comment }) => {
 
 export default CommentCard;
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     borderBottom: "1px #e3e3e4 solid",
     padding: "24px 14px",
@@ -42,12 +42,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
+    marginBottom: "7px"
   },
   replayBox: {
     border: "1px solid",
-    borderColor: theme.palette.primary.main,
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 10,
+    borderColor: "primary.main",
+    borderRadius: "10px",
+    padding: "10px",
+    marginTop: "10px",
   },
-}));
+};

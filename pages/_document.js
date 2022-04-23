@@ -18,7 +18,6 @@ export default class MyDocument extends Document {
                     ></link>
                     <meta name="theme-color" content={theme.palette.primary.main}/>
                     <link rel="shortcut icon" href="/favicon.ico"/>
-                    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
                     {this.props.emotionStyleTags}
                 </Head>
                 <body>

@@ -93,7 +93,7 @@ const ShopDetails = ({shopDetails}) => {
     };
 
 
-    const { foodItem, shopLogo, informationBtn, sideBox } = styles;
+    const { foodItem, shopLogo, informationBtn, sideBox, deliveryCost } = styles;
 
     return (
         <>
@@ -104,8 +104,8 @@ const ShopDetails = ({shopDetails}) => {
             />
             {shopDetails.foods && (
                 <Grid container>
-                    <Grid container item xs={12} md={4} lg={3} sx={sideBox} component="aside">
-                        <Stack direction="row">
+                    <Grid container item xs={12} md={4} xl={3} sx={sideBox} component="aside">
+                        <Stack direction="row" width="100%" >
                             <Stack sx={shopLogo}>
                             <Image
                                 height={80}
@@ -128,7 +128,8 @@ const ShopDetails = ({shopDetails}) => {
                                     mt={2}
                                 >{`${shopDetails.shopName} (${shopDetails.address.city})`}</Typography>
                             </Stack>
-                            <IconButton onClick={handlePressFavorite} sx={{ marginRight: 1 }}>
+                            <Stack flex={1} />
+                            <IconButton onClick={handlePressFavorite}>
                                 <FavoriteBorderOutlined
                                     color={isFavouriteShop ? "primary" : "#80808"}
                                 />
@@ -143,7 +144,7 @@ const ShopDetails = ({shopDetails}) => {
                             اطلاعات و نظرات
                         </Button>
                     </Grid>
-                    <Grid container item xs={12} lg={6} md={8} mb={2} component="main">
+                    <Grid container item xs={12} xl={6} md={8} mb={2} component="main">
                         <Paper sx={{ borderRadius: 2, overflowY: "scroll", width: "100%" }}>
                             <CouponBox coupons={shopDetails.coupons} shopId={shopId} />
                             <Typography m={2} textAlign="center" component="h1">
@@ -166,11 +167,11 @@ const ShopDetails = ({shopDetails}) => {
                             </Grid>
                         </Paper>
                     </Grid>
-                    <Grid sx={sideBox} container item xs={12} md={12} lg={3} component="aside">
-                        <Paper sx={{ padding: "10px 20px", borderRadius: 2 }}>
+                    <Grid sx={sideBox} container item xs={12} xl={3} component="aside">
+                        <Paper sx={deliveryCost}>
                             <Container>
                                 <DeliveryDiningTwoTone />
-                                <Typography component="h3" mr={2}>{`پیک فروشنده ${cost} تومان`}</Typography>
+                                <Typography fontSize="12px" component="h3" mr={2}>{`پیک فروشنده ${cost} تومان`}</Typography>
                             </Container>
                         </Paper>
                         {!isEmpty(account) && <CartBox shopId={shopId} />}
@@ -203,7 +204,9 @@ const styles = {
     },
     shopLogo: {
         borderRadius: "10px",
-        maxHeight: "80px",
+        maxHeight: "70px",
+        maxWidth: "70px",
+        minWidth: "50px",
         boxShadow: 3,
         marginLeft: "10px",
         overflow: "hidden"
@@ -217,6 +220,10 @@ const styles = {
     sideBox: {
         display: "flex",
         flexDirection: "column",
-        padding: "0 30px",
+        padding: "0 10px",
     },
+    deliveryCost: {
+        padding: "10px",
+        borderRadius: 2,
+    }
 };

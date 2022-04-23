@@ -58,9 +58,12 @@ const CategoriesBox = ({ shopType }) => {
 export default memo(CategoriesBox);
 
 const styles = {
-  root: {
+  root:(theme) => ({
     width: "100%",
-  },
+    [theme.breakpoints.down("md")]:{
+      display: "none"
+    }
+  }),
   img: {
     marginLeft: "14px",
     width: "34px",

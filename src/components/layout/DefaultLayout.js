@@ -22,6 +22,7 @@ const DefaultLayout = ({  children }) => {
         router.events.on("routeChangeComplete", () => setIsRouting(false))
     }, [router])
 
+
     const styles = {
         layout: {
             width: "100%",
@@ -29,14 +30,18 @@ const DefaultLayout = ({  children }) => {
             minHeight: "100vh",
             flexFlow: "column nowrap",
         },
-        main: {
+        main: (theme) => ({
+            overflowX: "hidden",
             flexGrow: 1,
             width: "100%",
             maxWidth: "85.4rem",
             padding: "2.5rem",
             margin: "0px auto",
+            [theme.breakpoints.down("sm")]: {
+                padding: "1rem"
+            }
 
-        }
+        })
     }
 
     return (

@@ -13,11 +13,15 @@ const RemoveOrderDialog = ({open, onClose, orderId}) => {
         onClose();
     };
 
-    const MyButton = styled(Button)({
+    const MyButton = styled(Button)(({theme}) => ({
         width: "44%",
         padding: "14px",
         margin: "14px",
-    })
+        [theme.breakpoints.down("sm")]: {
+            width: "55%",
+            margin: "10px",
+        },
+    }))
 
     const {dialog} = useStyles();
 
@@ -57,9 +61,18 @@ const RemoveOrderDialog = ({open, onClose, orderId}) => {
 
 export default RemoveOrderDialog;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     dialog: {
         borderRadius: 14,
         width: "30%",
+        [theme.breakpoints.down("xl")]: {
+            width: "50%"
+        },
+        [theme.breakpoints.down("md")]: {
+            width: "70%"
+        } ,
+        [theme.breakpoints.down("sm")]: {
+            width: "90%"
+        }
     }
-});
+}));

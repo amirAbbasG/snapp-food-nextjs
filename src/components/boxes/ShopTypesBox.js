@@ -23,6 +23,7 @@ const ShopTypesBox = () => {
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
+            minWidth: "60px"
         },
         iconButton: {
             "&:hover": {
@@ -62,7 +63,7 @@ const ShopTypesBox = () => {
         <Grid wrap="nowrap" container columns={10} sx={root} component="nav">
             {(data && data.shopTypes) &&
             data.shopTypes.map((item) => (
-                <Grid xs={2} lg={1} md={1} key={item._id} item sx={itemBox}>
+                <Grid xs={4} md={2} lg={1}  key={item._id} item sx={itemBox}>
                     <Link href={`/shops?filter=category&category=${item.type}`}>
                         <IconButton sx={iconButton}>
                             <Image

@@ -1,4 +1,4 @@
-import { useState, memo, useContext } from "react";
+import { useState, useContext } from "react";
 import { globalContext } from "../global/globalContext";
 import { accountContext } from "../account/accountContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -259,4 +259,4 @@ const AccountContextProvider = ({ children }) => {
   );
 };
 
-export default memo(AccountContextProvider);
+export default AccountContextProvider;

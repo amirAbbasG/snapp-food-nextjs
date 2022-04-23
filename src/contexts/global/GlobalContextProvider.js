@@ -1,20 +1,21 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { globalContext } from "./globalContext";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/system";
 import { useMediaQuery } from "@mui/material";
 
 const GlobalContextProvider = ({ children }) => {
-  const theme = useTheme();
-  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
-  const isMd = useMediaQuery(theme.breakpoints.between("md", "lg"));
-  const isSm = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
+  const { breakpoints } = useTheme();
+  const isXl = useMediaQuery(breakpoints.up("xl"));
+  const isLg = useMediaQuery(breakpoints.between("lg", "xl"));
+  const isMd = useMediaQuery(breakpoints.between("md", "lg"));
+  const isSm = useMediaQuery(breakpoints.between("sm", "md"));
+  const isXs = useMediaQuery(breakpoints.down("sm"));
   const [openAuth, setOpenAuth] = useState(false);
-
 
   return (
     <globalContext.Provider
       value={{
+        isXl,
         isLg,
         isMd,
         isSm,
@@ -28,4 +29,4 @@ const GlobalContextProvider = ({ children }) => {
   );
 };
 
-export default memo(GlobalContextProvider);
+export default GlobalContextProvider;

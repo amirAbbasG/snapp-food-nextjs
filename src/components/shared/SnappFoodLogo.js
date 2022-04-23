@@ -3,12 +3,13 @@ import Image from "next/image"
 import {Link} from "../";
 import {Box} from "@mui/system";
 
-const SnappFoodLogo = ({className}) => {
+const SnappFoodLogo = ({sx}) => {
     return (
         <Link href="/"
 
         >
-            <Box sx={{
+            <Box sx={{...sx,
+                minWidth: "40px",
                 marginLeft: "1rem",
                 transition: "transform 0.24s ease-in-out",
                 "&:hover": {
@@ -19,7 +20,6 @@ const SnappFoodLogo = ({className}) => {
 
                     height={70}
                     width={70}
-                    className={className}
                     src="/images/logo-name.png"
                     alt="snapp food logo"
                 />

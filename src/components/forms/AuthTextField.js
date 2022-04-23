@@ -11,6 +11,7 @@ const AuthTextField = ({
 }) => {
   const { errors, setFieldValue, touched, setFieldTouched } =
     useFormikContext();
+
   const handleChange = (e) => {
     setFieldValue(name, e.target.value);
     if (changeNumber) {
@@ -20,7 +21,9 @@ const AuthTextField = ({
 
   return (
     <Stack style={{ display: isDisabled && "none", marginTop: 10 }}>
-      <Typography my={1} component="h4">{title}</Typography>
+      <Typography my={1} component="h4">
+        {title}
+      </Typography>
       <TextField
         disabled={isDisabled}
         {...otherProps}

@@ -115,7 +115,7 @@ const styles = {
         backgroundColor: "#FFFFFF",
         borderRadius: "7px",
     },
-    helpText: {
+    helpText: (theme) => ({
         backgroundColor: "#FFFFFF",
         borderRadius: "7px",
         padding: "1.2rem",
@@ -123,13 +123,19 @@ const styles = {
         width: "27rem",
         color: "#000",
         fontWeight: "bold",
-    },
-    shopsBox: {
+        [theme.breakpoints.down("sm")]:{
+            width: "18rem"
+        }
+    }),
+    shopsBox: (theme) => ({
         width: "27rem",
         backgroundColor: "#FFFFFF",
         borderRadius: "7px",
         padding: "10px",
-    },
+        [theme.breakpoints.down("sm")]:{
+            width: "18rem"
+        }
+    }),
 };
 
 const useStyles = makeStyles({

@@ -21,12 +21,15 @@ const PriceRangeButtonGroup = ({handleChange, activeRange}) => {
           {priceRanges.map((item) => (
           <Grid key={item.id}>
             <Button
-                sx={{
-                  width: "90%",
+                sx={theme =>({
+                  width: "auto",
                   borderRadius: 2,
                   color: activeRange === item ? "#00B862" : "black",
                   backgroundColor: activeRange === item ? "white" : "#EBEDF0",
-                }}
+                  [theme.breakpoints.down("sm")]:{
+                   fontSize: "9px"
+                  }
+                })}
                 onClick={() => {
                   handleChange(item);
                 }}
@@ -54,5 +57,7 @@ const styles = {
     gridTemplateColumns: "repeat(4, 1fr)",
     borderRadius: "10px",
     marginTop: "17px",
+    alignItems: "center",
+justifyItems: "center"
   },
 };

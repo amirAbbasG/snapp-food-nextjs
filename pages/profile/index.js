@@ -15,12 +15,12 @@ const Profile = () => {
     const [openEditProfile, setOpenEditProfile] = useState(false);
     const [openChangePassword, setOpenChangePassword] = useState(false);
 
-    const { profileRoot, profileAction, profileDetailBox } = styles;
+    const { profileRoot, profileAction, profileDetailBox, detailText } = styles;
 
     const DetailItem = ({ title, value }) => (
         <Stack spacing={2} alignItems="flex-start">
-            <Typography color="GrayText">{title}</Typography>
-            <Typography variant="subtitle2" fontWeight="bold">
+            <Typography sx={detailText} color="GrayText">{title}</Typography>
+            <Typography sx={detailText} variant="subtitle2" fontWeight="bold">
                 {value}
             </Typography>
         </Stack>
@@ -105,4 +105,11 @@ const styles = {
             marginRight: "0.5rem",
         },
     },
+
+    detailText: (theme) => ({
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "12px"
+        }
+    }),
+
 };

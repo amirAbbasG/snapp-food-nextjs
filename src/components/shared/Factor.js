@@ -26,7 +26,7 @@ const Factor = ({ orderId, couponDiscount = 0 }) => {
       }}
       component="article"
     >
-      <Typography>{title}</Typography>
+      <Typography >{title}</Typography>
       <Typography>{separatePrice(price)} تومان</Typography>
     </Stack>
   );

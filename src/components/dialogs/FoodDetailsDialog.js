@@ -1,3 +1,4 @@
+import {useContext} from "react";
 import Image from "next/image"
 
 import { Grid, Typography, Container } from "@mui/material";
@@ -10,18 +11,20 @@ import {
   FoodOrderButtons,
 } from "../";
 import { calculateRate } from "../../utils/rateCalculator";
+import {globalContext} from "../../contexts/global/globalContext";
 
 const FoodDetailsDialog = ({ food, open, handleClose }) => {
 
 
   const rate = calculateRate(food.comments);
+  const {isXs} = useContext(globalContext)
 
   const { img, detailBox } = styles;
 
   return (
-    <MyDialog width="70%" onClose={handleClose} open={open}>
+    <MyDialog width={isXs ? "90%" : "70%"} onClose={handleClose} open={open}>
       <Grid container p={1}>
-        <Grid item xs={5}>
+        <Grid item xs={12} lg={5} >
           <Grid sx={img}>
           <Image
               width={400}
@@ -33,9 +36,9 @@ const FoodDetailsDialog = ({ food, open, handleClose }) => {
           />
           </Grid>
         </Grid>
-        <Grid item xs={7} sx={detailBox}>
+        <Grid item xs={12} lg={7} sx={detailBox}>
           <Container sx={{ width: "100%", justifyContent: "space-between" }}>
-            <Typography variant="h6">{food.name}</Typography>
+            <Typography variant="h6" fontSize={{xs: "12px", sm: "17px"}}>{food.name}</Typography>
             <RateBox rate={rate === 0 ? "جدید" : rate} />
           </Container>
           <Typography my={3} color="GrayText">
@@ -62,16 +65,21 @@ const FoodDetailsDialog = ({ food, open, handleClose }) => {
 export default FoodDetailsDialog;
 
 const styles = {
-  img: {
+  img: theme => ({
     width: "17rem",
     height: "17rem",
     borderRadius: "10px",
     boxShadow: 2,
     overflow: "hidden",
-  },
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+    width: "10rem",
+    height: "10rem",
+  }
+  }),
   detailBox: {
     display: "flex",
     flexDirection: "column",
-    padding: "14px",
+    padding: "10px",
   },
 };

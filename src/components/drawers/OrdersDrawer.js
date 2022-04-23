@@ -44,8 +44,20 @@ const OrdersDrawer = ({ open, handleClose }) => {
 
 export default OrdersDrawer;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
   drawer: {
     width: "30%",
+    [theme.breakpoints.down("xl")]:{
+      width: "38%"
+    } ,
+    [theme.breakpoints.down("lg")]:{
+      width: "50%"
+    } ,
+    [theme.breakpoints.down("md")]:{
+      width: "67%"
+    },
+    [theme.breakpoints.down("sm")]:{
+      width: "94%"
+    },
   }
-});
+}));

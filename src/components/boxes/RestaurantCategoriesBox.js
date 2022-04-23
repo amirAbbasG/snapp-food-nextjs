@@ -13,16 +13,17 @@ const RestaurantCategoriesBox = ({ categories }) => {
       <Typography mb={3} mr={"2%"} variant="h6" component="h1">
         دسته بندی ها
       </Typography>
-      <Grid container rowSpacing={4} columns={10} sx={root} component="nav">
+      <Grid container rowSpacing={4} sx={root} component="nav">
         {categories.map((category, index) => (
           <Grid
             sx={item}
             item
             key={index}
-            lg={2}
-            md={3.33}
-            sm={5}
-            xs={5}
+            xs={12}
+            sm={6}
+            md={4}
+            lg={2.4}
+
           >
             <CategoryCard category={category} />
           </Grid>

@@ -28,7 +28,7 @@ const OrderCard = ({order}) => {
             justifyContent: "space-between",
             borderBottom: "1px #e3e3e4 solid",
             padding: "14px",
-            [breakpoints.down("md")]: {
+            [breakpoints.down("lg")]: {
                 flexDirection: "column",
                 alignItems: "center",
             },
@@ -38,25 +38,38 @@ const OrderCard = ({order}) => {
             borderRadius: "7px",
             marginLeft: "7px",
             boxShadow: 1,
-            overflow: "hidden"
         },
         foodBox: {
             backgroundColor: "secondary.dark",
             borderRadius: "10px",
             padding: "4px",
+            overflowX: "scroll !important"
+
         },
         statusBox: {
             border: "1px solid green",
             borderRadius: "7px",
             padding: "7px"
+        },
+        badge: {
+            marginLeft: "12px",
+            [breakpoints.down("sm")]: {
+                marginTop: "1rem"
+            }
+        },
+        exactAddress: {
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            width: "20ch",
+            whiteSpace: "noWrap"
         }
     };
 
-    const {root, shopImage, foodBox, statusBox} = styles;
+    const {root, shopImage, foodBox, statusBox, badge, exactAddress} = styles;
 
     return (
         <>
-            <Stack spacing={2} sx={root}  component="article">
+            <Stack spacing={2} sx={root} component="article">
                 <Stack spacing={3}>
                     <Container>
                         <Link href={`/shops/${order.shopId}`} sx={shopImage}>
@@ -75,16 +88,16 @@ const OrderCard = ({order}) => {
                             <DateTimeBox dateTime={order.createDate}/>
                             <Container>
                                 <LocationOn sx={{color: "gray"}}/>
-                                <Typography mr={0.3}>
-                                    {order.address.exactAddress.slice(0, 28)}....
+                                <Typography mr={0.3} sx={exactAddress}>
+                                    {order.address.exactAddress}
                                 </Typography>
                             </Container>
                         </Stack>
                     </Container>
-                    <Stack pr={2} direction="row">
+                    <Stack pr={2} direction={{xs: "column", sm: "row"}}>
                         {order.foods.map((food) => (
                             <Badge
-                                sx={{marginLeft: "12px"}}
+                                sx={badge}
                                 color="primary"
                                 badgeContent={food.count}
                                 key={food._id}
@@ -96,7 +109,7 @@ const OrderCard = ({order}) => {
                         ))}
                     </Stack>
                 </Stack>
-                <Stack spacing={3} alignItems={{xs: "center", md: "flex-end"}}>
+                <Stack spacing={3} alignItems={{xs: "center", lg: "flex-end"}}>
                     {
                         order.isDelivered && (
                             <Stack sx={statusBox}>
