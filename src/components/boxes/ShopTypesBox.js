@@ -2,23 +2,21 @@ import Image from "next/image";
 
 import {Grid, Typography, IconButton} from "@mui/material";
 import useSWR from 'swr';
-import {useTheme} from "@mui/styles";
 
 import {Link} from "../"
 
 
 const ShopTypesBox = () => {
 
-    const {breakpoints} = useTheme()
 
     const styles = {
-        root: {
+        root: theme => ({
             width: "100%",
-            [breakpoints.down("md")]: {
+            [theme.breakpoints.down("md")]: {
                 overflowX: "scroll",
             },
             alignItems: "center",
-        },
+        }),
         itemBox: {
             display: "flex",
             alignItems: "center",

@@ -35,6 +35,7 @@ import { calculateRate } from "../../src/utils/rateCalculator";
 import {addOrRemoveFavoriteShopApi} from "../../src/services/shopServices"
 import {successMessage, errorMessage} from "../../src/lib/toast";
 import {getAccountInformation} from "../../src/recux/actions/account";
+import {styles} from "./styles";
 
 export async function getServerSideProps(context){
     const {shopId} = context.query;
@@ -196,34 +197,4 @@ const ShopDetails = ({shopDetails}) => {
 
 export default ShopDetails;
 
-const styles = {
-    foodItem: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    shopLogo: {
-        borderRadius: "10px",
-        maxHeight: "70px",
-        maxWidth: "70px",
-        minWidth: "50px",
-        boxShadow: 3,
-        marginLeft: "10px",
-        overflow: "hidden"
-    },
-    informationBtn: {
-        borderRadius: "20px",
-        boxShadow: 3,
-        color: "text.secondary",
-        margin: "30px 8px",
-    },
-    sideBox: {
-        display: "flex",
-        flexDirection: "column",
-        padding: "0 10px",
-    },
-    deliveryCost: {
-        padding: "10px",
-        borderRadius: 2,
-    }
-};
+

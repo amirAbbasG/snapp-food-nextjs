@@ -3,11 +3,11 @@ import {useContext} from "react";
 import {Typography, Stack} from "@mui/material";
 import {ChevronLeft} from "@mui/icons-material";
 import Carousel from "react-elastic-carousel";
-import {useTheme} from "@mui/system";
 
 import {Link} from "../";
 import {ShopCard} from "../";
 import {globalContext} from "../../contexts/global/globalContext";
+
 
 
 const ShopsShowCasesBox = ({data, title, url}) => {
@@ -32,7 +32,6 @@ const ShopsShowCasesBox = ({data, title, url}) => {
             break
     }
 
-    const {breakpoints} = useTheme()
 
     return (
         <section>
@@ -44,15 +43,15 @@ const ShopsShowCasesBox = ({data, title, url}) => {
                             مشاهده همه
                         </Typography>
                         <ChevronLeft
-                            sx={{
+                            sx={theme => ({
                                 fontSize: 30,
                                 fontWeight: "bold",
                                 marginRight: 1,
                                 color: "#00B862",
-                                [breakpoints.down("sm")]: {
+                                [theme.breakpoints.down("sm")]: {
                                     marginRight: "2px"
                                 }
-                            }}
+                            })}
                         />
                     </Stack>
                 </Link>

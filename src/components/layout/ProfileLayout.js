@@ -3,7 +3,7 @@ import {useContext} from "react";
 import Link from "next/link";
 
 import { Stack, Paper, Typography, Grid } from "@mui/material";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/system";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { isEmpty } from "lodash";
 import {useSelector} from "react-redux";

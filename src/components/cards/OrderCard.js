@@ -3,7 +3,7 @@ import {useState} from "react";
 import Image from "next/image"
 
 import {Badge, Button, Stack, Typography, Container} from "@mui/material";
-import {useTheme} from "@mui/styles";
+import {useTheme} from "@mui/system";
 import {InfoOutlined, Autorenew, LocationOn} from "@mui/icons-material";
 import {useDispatch} from "react-redux";
 

@@ -1,8 +1,7 @@
 import Image from "next/image";
 
 import { Grid, Typography, Stack } from "@mui/material";
-import { useTheme } from "@mui/styles";
-import {styled} from "@mui/system";
+import {styled, useTheme} from "@mui/system";
 
 import {Link} from "../";
 import { SocialMediaButton, SnappFoodLogo } from "../";

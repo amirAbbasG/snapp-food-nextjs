@@ -23,6 +23,7 @@ import { errorMessage, successMessage } from "../../src/lib/toast";
 import { checkPaymentApi } from "../../src/services/paymentsServices";
 import { setDiscountApi } from "../../src/services/orderServices";
 import {getOrders} from "../../src/recux/actions/orders";
+import {styles} from "./styles"
 
 const FinalizeOrder = () => {
     const router = useRouter()
@@ -167,38 +168,3 @@ const FinalizeOrder = () => {
 export default FinalizeOrder;
 
 
-const styles = {
-    paymentButton: {
-        width: "100%",
-        padding: "10px",
-    },
-    rightBox: {
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-    },
-    foodBox: {
-        display: "flex",
-        flexDirection: "column",
-        borderBottom: "1px solid",
-        borderTop: "1px solid",
-        borderTopColor: "secondary.dark",
-        borderBottomColor: "secondary.dark",
-        margin: "14px",
-    },
-    foodItem: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    roundedBox: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        border: "1px solid",
-        borderColor: "success.light",
-        borderRadius: "10px",
-        padding: "10px",
-    },
-};

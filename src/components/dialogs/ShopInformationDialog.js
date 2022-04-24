@@ -11,7 +11,7 @@ import {
     Grid,
     linearProgressClasses,
 } from "@mui/material";
-import {useTheme} from "@mui/styles";
+import {useTheme} from "@mui/system";
 import {LocationOn, Star} from "@mui/icons-material";
 import {range} from "lodash";
 import GoogleMapReact from 'google-map-react';
@@ -30,14 +30,14 @@ const ShopInformationDialog = ({open, handleClose, shopDetails}) => {
         (c) => c.score !== 0
     ).length;
 
-    const theme = useTheme();
+    const {palette} = useTheme();
 
     const scoreRanges = [
-        {color: theme.palette.success.dark, value: 5},
-        {color: theme.palette.success.main, value: 4},
-        {color: theme.palette.success.light, value: 3},
-        {color: theme.palette.warning.light, value: 2},
-        {color: theme.palette.error.light, value: 1},
+        {color: palette.success.dark, value: 5},
+        {color: palette.success.main, value: 4},
+        {color: palette.success.light, value: 3},
+        {color: palette.warning.light, value: 2},
+        {color: palette.error.light, value: 1},
     ];
 
     const getPersentageOfScore = (score) => {
