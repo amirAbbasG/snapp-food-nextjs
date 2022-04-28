@@ -1,9 +1,10 @@
-import {makeStyles} from "@mui/styles";
+
 import {styled} from "@mui/system"
 import {Dialog, DialogContent, Button, DialogTitle} from "@mui/material";
 import {useDispatch} from "react-redux";
 
 import {removeCart} from "../../recux/actions/orders";
+import useStyles from "./styles/RemoveOrderDialog.styles"
 
 const RemoveOrderDialog = ({open, onClose, orderId}) => {
     const dispatch = useDispatch();
@@ -61,18 +62,3 @@ const RemoveOrderDialog = ({open, onClose, orderId}) => {
 
 export default RemoveOrderDialog;
 
-const useStyles = makeStyles(theme => ({
-    dialog: {
-        borderRadius: 14,
-        width: "30%",
-        [theme.breakpoints.down("xl")]: {
-            width: "50%"
-        },
-        [theme.breakpoints.down("md")]: {
-            width: "70%"
-        } ,
-        [theme.breakpoints.down("sm")]: {
-            width: "90%"
-        }
-    }
-}));

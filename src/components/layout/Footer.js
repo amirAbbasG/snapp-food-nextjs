@@ -1,45 +1,15 @@
 import Image from "next/image";
 
 import { Grid, Typography, Stack } from "@mui/material";
-import {styled, useTheme} from "@mui/system";
+import {styled} from "@mui/system";
 
 import {Link} from "../";
 import { SocialMediaButton, SnappFoodLogo } from "../";
 import { socialMedias, links } from "../../utils/values";
+import styles from "./styles/Footer.styles"
 
 const Footer = () => {
 
-  const {breakpoints} = useTheme()
-
-  const styles =  {
-    root: {
-      backgroundColor: "secondary.main",
-      padding: "1rem",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      width: "100%",
-      flex: 1
-    },
-
-    socialsMediaBox: {
-      direction: "column",
-    },
-
-    linkBox: {
-      [breakpoints.down("md")]: {
-        marginBottom: "2rem",
-        textAlign: "center",
-      },
-    },
-
-    logoBox: {
-      [breakpoints.down("md")]: {
-        justifyContent: "space-around",
-        marginBottom: "2rem",
-      },
-    },
-  };
 
   const { root, logoBox, socialsMediaBox, linkBox } = styles;
 

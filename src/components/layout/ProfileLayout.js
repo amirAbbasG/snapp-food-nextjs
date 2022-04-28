@@ -3,56 +3,18 @@ import {useContext} from "react";
 import Link from "next/link";
 
 import { Stack, Paper, Typography, Grid } from "@mui/material";
-import { useTheme } from "@mui/system";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { isEmpty } from "lodash";
 import {useSelector} from "react-redux";
 
 import ShouldLoginPage from "./should-login";
 import {accountContext} from "../..//contexts/account/accountContext";
+import styles from "./styles/ProfileLayout.styles"
 
 const ProfileLayout = ({ children }) => {
   const account = useSelector((state) => state.account);
 
   const { exitAccount } = useContext(accountContext);
-
-  const {breakpoints} = useTheme();
-
-  const styles = {
-    root: {
-      display: "flex",
-      alignItems: "flex-start",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      [breakpoints.down("md")]: {
-        flexDirection: "column",
-        alignItems: "center",
-      },
-    },
-    paper: {
-      borderRadius: "14px",
-      width: "100%",
-      position: "sticky",
-      top: 10,
-    },
-    paperBox: {
-      [breakpoints.down("md")]: {
-        width: "100%",
-      },
-    },
-    numberBox: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-    fullName: {
-      fontWeight: "bold",
-      lineHeight: "0.5px",
-      marginBottom: "7px",
-    },
-  };
-
 
 
   const { fullName, numberBox, paper, paperBox, root } = styles;

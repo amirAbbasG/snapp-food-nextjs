@@ -8,6 +8,7 @@ import { globalContext } from "../../contexts/global/globalContext";
 import {errorMessage} from "../../lib/toast";
 import {getOrders} from "../../recux/actions/orders";
 import {setCouponApi} from "../../services/orderServices";
+import styles from "./styles/CouponBox.styles"
 
 const CouponBox = ({ shopId, coupons }) => {
   const dispatch = useDispatch();
@@ -79,20 +80,4 @@ const CouponBox = ({ shopId, coupons }) => {
 
 export default CouponBox;
 
-const styles = {
-  root: {
-    borderBottom: "1px #e3e3e4 solid",
-    padding: "10px",
-  },
-  couponBox: {
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "center",
-    border: "1px solid",
-    backgroundColor: "secondary.main",
-    borderRadius: "10px",
-    padding: "7px",
-    marginTop: "10px",
-    width: "100%",
-  },
-};
+

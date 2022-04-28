@@ -11,6 +11,8 @@ import {
   Grid,
 } from "@mui/material";
 
+import styles from "./styles/CategoriesBox.styles"
+
 
 const CategoriesBox = ({ shopType }) => {
 
@@ -27,6 +29,7 @@ const CategoriesBox = ({ shopType }) => {
   };
 
   const { root, img, titleBox, categoryItem } = styles;
+
   return (
     <Grid item sx={root} p={2} component="aside">
       <Paper sx={{ padding: 2 }}>
@@ -57,32 +60,4 @@ const CategoriesBox = ({ shopType }) => {
 
 export default memo(CategoriesBox);
 
-const styles = {
-  root:(theme) => ({
-    width: "100%",
-    [theme.breakpoints.down("md")]:{
-      display: "none"
-    }
-  }),
-  img: {
-    marginLeft: "14px",
-    width: "34px",
-    height: "34px",
-    boxShadow: 2,
-  },
-  titleBox: {
-    borderRadius: "10px",
-    backgroundColor:" secondary.dark",
-    padding: "1rem !important",
-    fontSize: "17px",
-    marginBottom: "17px",
-    fontWeight: "bold",
-  },
 
-  categoryItem: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: "14px",
-  },
-};

@@ -1,17 +1,16 @@
 import { Typography, Stack, Container } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { CheckCircle, Cancel } from "@mui/icons-material";
 
 import { separatePrice } from "../../utils/priceSeparator";
 import { DateTimeBox } from "../";
 
 const PaymentCard = ({ payment }) => {
-  const { root, successBox } = useStyles();
+  const { root, successBox } = styles;
   return (
-    <Stack className={root}  component="article">
+    <Stack sx={root}  component="article">
       <Stack spacing={3}>
         <Typography fontWeight="bold">{payment.shopId.shopName}</Typography>
-        <Container className={successBox}>
+        <Container sx={successBox}>
           {payment.success ? (
             <CheckCircle sx={{ color: "#00B862", fontSize: 17 }} />
           ) : (
@@ -39,7 +38,7 @@ const PaymentCard = ({ payment }) => {
 
 export default PaymentCard;
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     display: "flex",
     flexDirection: "row",
@@ -53,4 +52,4 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 10,
     padding: 2,
   },
-}));
+};

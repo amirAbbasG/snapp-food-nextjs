@@ -4,53 +4,12 @@ import {Grid, Typography, IconButton} from "@mui/material";
 import useSWR from 'swr';
 
 import {Link} from "../"
+import styles from "./styles/ShopTypesBox.styles"
 
 
 const ShopTypesBox = () => {
 
 
-    const styles = {
-        root: theme => ({
-            width: "100%",
-            [theme.breakpoints.down("md")]: {
-                overflowX: "scroll",
-            },
-            alignItems: "center",
-        }),
-        itemBox: {
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-            minWidth: "60px"
-        },
-        iconButton: {
-            "&:hover": {
-                animation: "pendulum 0.6s"
-            },
-            "@keyframes pendulum": {
-                "0%": {
-                    transform: "scale(1.1)",
-
-                },
-                "25%": {
-                    transform: "rotate(-8deg)",
-
-                },
-                "50%": {
-                    transform: "rotate(8deg)",
-                },
-                "75%": {
-                    transform: "rotate(-8deg)",
-                },
-                "100%": {
-                    transform: "rotate(8deg)",
-
-                }
-            }
-        },
-
-
-    };
 
     const {data} = useSWR('/shopTypes')
 

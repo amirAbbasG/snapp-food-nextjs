@@ -12,7 +12,7 @@ import {
     PersonOutline,
     ListAlt,
 } from "@mui/icons-material";
-import {styled, useTheme} from "@mui/system";
+import {styled} from "@mui/system";
 import {isEmpty} from "lodash";
 import {useSelector} from "react-redux";
 
@@ -26,6 +26,7 @@ import {
     OrdersDrawer,
 } from "../";
 import {globalContext} from "../../contexts/global/globalContext";
+import styles from "./styles/Header.styles"
 
 const AddressDialog = dynamic(() => import('../dialogs/AddressDialog'), {
     ssr: false
@@ -34,90 +35,9 @@ const AddressDialog = dynamic(() => import('../dialogs/AddressDialog'), {
 
 const Header = ({shouldShowShopTypes = true}) => {
 
-    const {breakpoints} = useTheme()
     const account = useSelector((state) => state.account);
     const isLogin = !isEmpty(account)
 
-    const styles = {
-        root: {
-            padding: "0 1rem 1rem 1rem",
-            width: "100%",
-            position: "sticky",
-            zIndex: 999,
-            top: "0px",
-            right: "0px",
-            left: "0px"
-        },
-        logo: {
-            [breakpoints.down("sm")]: {
-                display: "none",
-            },
-        },
-        SearchBox: {
-            backgroundColor: "secondary.dark",
-            borderRadius: "8px",
-            alignItems: "center",
-            display: "flex",
-            maxWidth: "40px",
-            width: "27%",
-            padding: "10px",
-            [breakpoints.down("md")]: {
-                display: "none",
-            },
-        },
-        searchText: {
-            display: "inline",
-            color: "#808080",
-            fontSize: "15px",
-            marginRight: "8px",
-            [breakpoints.down("lg")]: {
-                fontSize: "13px"
-            }
-        },
-        buttonBox: {
-            display: "flex",
-            justifyContent: "flex-end",
-            [breakpoints.down("md")]: {
-                display: "none",
-            },
-        },
-        addressBox: {
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start"
-        },
-        iconsBox: {
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            [breakpoints.up("md")]: {
-                display: !isLogin && "none",
-            },
-
-        },
-        orderBox: {
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-        },
-        addressButton: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-        },
-        addressTitle: {
-            [breakpoints.down("sm")]: {
-                fontSize: "11px"
-            },
-        },
-        exactAddress: {
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-            width: "20ch"
-        }
-    };
 
     const [openSearch, setOpenSearch] = useState(false);
     const [openAddress, setOpenAddress] = useState(false);
@@ -125,13 +45,13 @@ const Header = ({shouldShowShopTypes = true}) => {
     const [profileAnchorEl, setProfileAnchorEl] = useState(null);
     const {isSm, isXs, openAuth, setOpenAuth} = useContext(globalContext);
 
-    const HeaderButton = styled(Button)({
+    const HeaderButton = styled(Button)( ({theme}) => ({
         height: "3rem",
         marginRight: "2px",
-        [breakpoints.up("xl")]:{
+        [theme.breakpoints.up("xl")]:{
             fontSize: "14px"
         }
-    });
+    }));
 
 
     //#region handlers
@@ -194,16 +114,16 @@ const Header = ({shouldShowShopTypes = true}) => {
     )
 
     const SearchAndAuthButtons = () => (
-        <Grid sx={styles.iconsBox} item xs={isLogin ? 6 : 5} sm={5} md={2} lg={3}>
+        <Grid sx={styles.iconsBox(isLogin)} item xs={isLogin ? 6 : 5} sm={5} md={2} lg={3}>
 
             <IconButton
                 onClick={() => setOpenSearch(true)}
-                sx={{
+                sx={ theme => ({
                     marginLeft: "4px",
-                    [breakpoints.up("md")]: {
+                    [theme.breakpoints.up("md")]: {
                         display: "none",
                     },
-                }}
+                })}
             >
                 <Search color="disabled" sx={{fontSize: 30}}/>
             </IconButton>

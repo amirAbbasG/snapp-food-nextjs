@@ -36,7 +36,7 @@ const FinalizeOrder = () => {
     const order = orders.find((o) => o._id === orderId);
 
     let couponDiscount = 0;
-    if (order.usedCoupon && order.usedCoupon.discount > 0) {
+    if (order && order.usedCoupon && order.usedCoupon.discount > 0) {
         couponDiscount = (order.amountByDiscount * order.usedCoupon.discount) / 100;
     }
 
@@ -74,7 +74,7 @@ const FinalizeOrder = () => {
         styles;
 
     return (
-        <Grid container spacing={2} p={7}>
+        <Grid container spacing={2} p={{ xs: 0 , sm :2}}>
             <MyHead
                 description="پرداخت انلاین و پرداخت درب منزل برای سفارش غذا"
                 title="تایید سفارش"
@@ -82,13 +82,13 @@ const FinalizeOrder = () => {
             />
             {order && (
                 <>
-                    <Grid item sm={12} md={8} p={4}>
+                    <Grid item xs={12} lg={8} p={{ xs: 0 , sm :2}}>
                         <Paper sx={{ width: "100%" }}>
                             <Grid sx={rightBox}>
                                 <Typography m={2}>آدرس</Typography>
                                 <Grid sx={roundedBox} mb={14}>
                                     <LocationOn sx={{ color: "gray" }} />
-                                    <Typography mr={0.3} my={1}>
+                                    <Typography mr={0.3} my={1} fontSize={{xs: "11px" , sm: "14px"}}>
                                         {order.address.exactAddress}
                                     </Typography>
                                     <Grid flex={1} />
@@ -96,7 +96,7 @@ const FinalizeOrder = () => {
                                 </Grid>
                                 <Grid sx={roundedBox}>
                                     <LocalOfferOutlined />
-                                    <Typography mr={2}>کد تخفیف دارید ؟</Typography>
+                                    <Typography fontSize={{xs: "11px" , sm: "14px"}} mr={2}>کد تخفیف دارید ؟</Typography>
                                     <InputBase
                                         sx={{
                                             ml: 4,
@@ -112,6 +112,7 @@ const FinalizeOrder = () => {
                                         color="success"
                                         onClick={handleUseDiscount}
                                         sx={{ left: 0, borderRadius: 3 }}
+
                                     >
                                         وارد کردن
                                     </Button>
@@ -119,7 +120,7 @@ const FinalizeOrder = () => {
                             </Grid>
                         </Paper>
                     </Grid>
-                    <Grid item sm={12} md={4} p={4}>
+                    <Grid item xs={12} lg={4} p={{ xs: 0 , sm :2}}>
                         <Paper
                             sx={{ width: "100%", display: "flex", flexDirection: "column" }}
                         >

@@ -1,6 +1,7 @@
 import { Typography, Container, Stack } from "@mui/material";
 
 import { separatePrice } from "../../utils/priceSeparator";
+import styles from "./styles/FoodPriceBox.styles"
 
 const FoodPriceBox = ({ discount, price }) => {
   const { discountBox, firstPrice } = styles;
@@ -32,19 +33,3 @@ const FoodPriceBox = ({ discount, price }) => {
 
 export default FoodPriceBox;
 
-const styles ={
-  discountBox: {
-    border: "1px #F700A2 solid",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "5px",
-    padding: "7px",
-    marginLeft: "5px",
-  },
-  firstPrice: {
-    color: "#808080",
-    textDecorationLine: "line-through",
-    textDecorationColor: "#808080",
-  },
-};
