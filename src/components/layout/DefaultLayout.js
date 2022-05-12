@@ -5,9 +5,7 @@ import {useRouter} from "next/router";
 import { LinearProgress } from "@mui/material";
 import {Box} from "@mui/system"
 
-import Header from "./Header";
-import Footer from "./Footer";
-import ProfileLayout from "./ProfileLayout"
+import {Header, Footer, RenderIf, ProfileLayout} from "../"
 
 
 const DefaultLayout = ({  children }) => {
@@ -46,11 +44,11 @@ const DefaultLayout = ({  children }) => {
 
     return (
     <Box sx={styles.layout}>
-        {
-            isRoting && (
-                <LinearProgress/>
-            )
-        }
+
+        <RenderIf isTrue={isRoting}>
+            <LinearProgress/>
+        </RenderIf>
+
       <Header  shouldShowShopTypes={!isProfile}/>
       <Box
         sx={styles.main}

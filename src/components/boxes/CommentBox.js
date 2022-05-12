@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Stack, Typography, Button} from "@mui/material";
-import {CommentCard, AddCommentDialog} from "../";
+import {CommentCard, AddCommentDialog, RenderIf} from "../";
 import {isEmpty} from "lodash";
 import {useSelector} from "react-redux";
 
@@ -48,7 +48,8 @@ const CommentBox = ({comments, id}) => {
                 >
                     نظرات کاربران
                 </Typography>
-                {isUserBuyFromShop && (
+
+                <RenderIf isTrue={isUserBuyFromShop}>
                     <Button
                         variant="outlined"
                         onClick={() => setOpenAddComment(true)}
@@ -56,7 +57,8 @@ const CommentBox = ({comments, id}) => {
                     >
                         افزودن نظر
                     </Button>
-                )}
+                </RenderIf>
+
             </Stack>
             {[...commentsList].reverse().map((comment) => (
                 <CommentCard comment={comment} key={comment._id}/>

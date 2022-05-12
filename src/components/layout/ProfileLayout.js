@@ -12,6 +12,7 @@ import {accountContext} from "../..//contexts/account/accountContext";
 import styles from "./styles/ProfileLayout.styles"
 
 const ProfileLayout = ({ children }) => {
+
   const account = useSelector((state) => state.account);
 
   const { exitAccount } = useContext(accountContext);

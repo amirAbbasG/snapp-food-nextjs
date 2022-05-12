@@ -27,6 +27,8 @@ export { default as MyForm } from "./forms/MyForm";
 export { default as DefaultLayout } from "./layout/DefaultLayout";
 export { default as ProfileLayout } from "./layout/ProfileLayout";
 export { default as MyHead } from "./layout/MyHead";
+export { default as Header } from "./layout/Header";
+export { default as Footer } from "./layout/Footer";
 //#endregion
 
 //#region shared
@@ -36,6 +38,7 @@ export { default as SortShopsSelect } from "./shared/SortShopsSelect";
 export { default as FilterItem } from "./shared/FilterItem";
 export { default as Factor } from "./shared/Factor";
 export { default as Link } from "./shared/Link";
+export { default as RenderIf } from "./shared/RenderIf";
 //#endregion
 
 //#region dialogs
