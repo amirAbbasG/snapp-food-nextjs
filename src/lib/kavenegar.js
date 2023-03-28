@@ -9,8 +9,9 @@ const api = Kavenegar.KavenegarApi({
 
 
 const sendCode = (userNumber, callback) => {
-    const number = Math.floor(Math.random()*90000 + 10000)
-    console.log(number)
+    // const number = Math.floor(Math.random()*90000 + 10000)
+    const number = 11111
+
     myCache.set(userNumber, number)
     api.Send({
             message: ` کد فعال سازی : ${number}`,
